@@ -1,6 +1,6 @@
 ---
 // Clinical Risk Visualization Component
-// Evidence-based medical comparison using icon grids with Material Design
+// Evidence-based medical comparison with anime.js animations
 ---
 
 <div class="clinical-visualization" id="clinical-viz">
@@ -13,7 +13,7 @@
     <div class="method-toggle">
       <button class="method-btn active" data-method="mri">
         <svg class="method-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1zm4 0c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1zm-4-3c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1zm4 0c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1z"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
         </svg>
         <span class="method-name">MRI-First</span>
       </button>
@@ -45,15 +45,11 @@
         </div>
         <div class="grid-legend">
           <div class="legend-item">
-            <svg class="legend-icon success" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
+            <span class="legend-emoji success">😊</span>
             <span>Detected</span>
           </div>
           <div class="legend-item">
-            <svg class="legend-icon danger" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
+            <span class="legend-emoji danger">😰</span>
             <span>Missed</span>
           </div>
         </div>
@@ -77,15 +73,11 @@
         </div>
         <div class="grid-legend">
           <div class="legend-item">
-            <svg class="legend-icon success" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-            </svg>
+            <span class="legend-emoji success">😊</span>
             <span>No Issues</span>
           </div>
           <div class="legend-item">
-            <svg class="legend-icon danger" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
-            </svg>
+            <span class="legend-emoji danger">😣</span>
             <span>Complications</span>
           </div>
         </div>
@@ -109,15 +101,11 @@
         </div>
         <div class="grid-legend">
           <div class="legend-item">
-            <svg class="legend-icon success" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-            </svg>
+            <span class="legend-emoji success">😌</span>
             <span>Appropriate</span>
           </div>
           <div class="legend-item">
-            <svg class="legend-icon warning" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
-            </svg>
+            <span class="legend-emoji warning">😟</span>
             <span>Unnecessary</span>
           </div>
         </div>
@@ -145,10 +133,10 @@
 <style>
   .clinical-visualization {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border-radius: 16px;
-    padding: 2rem;
+    border-radius: 20px;
+    padding: 2.5rem;
     margin: 2rem 0;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     border: 2px solid #e2e8f0;
   }
 
@@ -156,7 +144,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     flex-wrap: wrap;
     gap: 1.5rem;
   }
@@ -166,15 +154,15 @@
   }
 
   .viz-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #0f172a;
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 0.375rem 0;
     font-family: var(--font-serif);
   }
 
   .viz-subtitle {
-    font-size: 1rem;
+    font-size: 1.125rem;
     color: #64748b;
     margin: 0;
     font-weight: 600;
@@ -183,88 +171,68 @@
   .method-toggle {
     display: flex;
     background: white;
-    border-radius: 12px;
-    padding: 0.375rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 0.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     border: 2px solid #e2e8f0;
   }
 
   .method-btn {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
-    padding: 0.875rem 1.25rem;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
     border: none;
     background: transparent;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 600;
     color: #475569;
     position: relative;
-    overflow: hidden;
   }
 
-  .method-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--color-accent, #1B4332);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
-  }
-
-  .method-btn:hover::before {
-    opacity: 0.05;
+  .method-btn:hover {
+    background: #f1f5f9;
+    transform: translateY(-2px);
   }
 
   .method-btn.active {
     background: var(--color-accent, #1B4332);
     color: white;
-    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.4);
-  }
-
-  .method-btn.active::before {
-    opacity: 1;
+    box-shadow: 0 8px 20px rgba(27, 67, 50, 0.4);
+    transform: translateY(-2px);
   }
 
   .method-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    position: relative;
-    z-index: 1;
+    width: 1.625rem;
+    height: 1.625rem;
   }
 
   .method-name {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    position: relative;
-    z-index: 1;
+    font-size: 1rem;
+    font-weight: 700;
   }
 
   .viz-main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .metric-section {
     background: white;
-    border-radius: 12px;
-    padding: 1.75rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     border: 2px solid #f1f5f9;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .metric-section:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
     border-color: var(--color-accent, #1B4332);
   }
 
@@ -272,143 +240,135 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .metric-title {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: 0.75rem;
   }
 
   .metric-title h4 {
-    font-size: 1.0625rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 700;
     color: #0f172a;
     margin: 0;
     line-height: 1.3;
   }
 
   .metric-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
     color: var(--color-accent, #1B4332);
+    flex-shrink: 0;
   }
 
   .metric-value {
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 800;
     color: var(--color-accent, #1B4332);
     font-variant-numeric: tabular-nums;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .icon-grid-container {
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
   }
 
   .icon-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 0.375rem;
-    margin-bottom: 1rem;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    min-height: 100px;
   }
 
   .grid-icon {
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 6px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Initial state for anime.js */
     opacity: 0;
-    transform: scale(0.5);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .grid-icon.animate-in {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .grid-icon svg {
-    width: 70%;
-    height: 70%;
+    transform: scale(0) rotate(-180deg);
   }
 
   .grid-icon:hover {
-    transform: scale(1.15);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.2) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 10;
   }
 
   .grid-icon.success {
-    background: linear-gradient(135deg, #10b981, #059669);
-  }
-
-  .grid-icon.success svg {
-    fill: white;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   }
 
   .grid-icon.warning {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-  }
-
-  .grid-icon.warning svg {
-    fill: white;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   }
 
   .grid-icon.danger {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-  }
-
-  .grid-icon.danger svg {
-    fill: white;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   }
 
   .grid-legend {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
+    padding-top: 0.75rem;
+    border-top: 2px solid #f1f5f9;
   }
 
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: #475569;
   }
 
-  .legend-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 4px;
+  .legend-emoji {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
   }
 
-  .legend-icon.success {
-    fill: #10b981;
+  .legend-emoji.success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
   }
 
-  .legend-icon.warning {
-    fill: #f59e0b;
+  .legend-emoji.warning {
+    background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
   }
 
-  .legend-icon.danger {
-    fill: #ef4444;
+  .legend-emoji.danger {
+    background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
   }
 
   .clinical-summary {
     background: linear-gradient(135deg, var(--color-accent, #1B4332) 0%, var(--color-accent-hover, #2D5A3D) 100%);
-    border-radius: 12px;
-    padding: 1.75rem;
+    border-radius: 16px;
+    padding: 2rem;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1.5rem;
-    box-shadow: 0 8px 20px rgba(27, 67, 50, 0.3);
+    gap: 2rem;
+    box-shadow: 0 12px 32px rgba(27, 67, 50, 0.3);
   }
 
   .summary-content {
@@ -416,38 +376,39 @@
   }
 
   .summary-title {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     font-weight: 700;
-    margin: 0 0 0.625rem 0;
+    margin: 0 0 0.75rem 0;
     font-family: var(--font-serif);
   }
 
   .summary-text {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: 1.6;
     opacity: 0.95;
     margin: 0;
+    transition: all 0.4s ease;
   }
 
   .evidence-badge {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: 0.75rem;
     background: rgba(255, 255, 255, 0.2);
-    padding: 0.875rem 1.25rem;
-    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
   }
 
   .badge-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
     fill: white;
   }
 
   .badge-text {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 700;
   }
 
@@ -461,7 +422,8 @@
     .viz-header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
     }
 
     .method-toggle {
@@ -471,74 +433,81 @@
     .method-btn {
       flex: 1;
       justify-content: center;
-      padding: 0.75rem 0.875rem;
-    }
-
-    .method-name {
-      font-size: 0.8125rem;
+      padding: 0.875rem 1rem;
     }
 
     .viz-main {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
 
     .icon-grid {
       grid-template-columns: repeat(10, 1fr);
-      gap: 0.3rem;
+      gap: 0.375rem;
+    }
+
+    .grid-icon {
+      font-size: 1.125rem;
     }
 
     .clinical-summary {
       flex-direction: column;
       text-align: center;
-      gap: 1rem;
+      gap: 1.25rem;
       padding: 1.5rem;
     }
 
     .viz-title {
-      font-size: 1.375rem;
-    }
-
-    .metric-value {
       font-size: 1.5rem;
     }
 
-    .metric-title h4 {
-      font-size: 0.9375rem;
+    .metric-value {
+      font-size: 1.625rem;
     }
   }
 
   @media (max-width: 480px) {
     .icon-grid {
       grid-template-columns: repeat(10, 1fr);
-      gap: 0.25rem;
+      gap: 0.3rem;
     }
 
-    .grid-icon svg {
-      width: 60%;
-      height: 60%;
+    .grid-icon {
+      font-size: 1rem;
+    }
+
+    .legend-emoji {
+      font-size: 1.25rem;
+      width: 1.75rem;
+      height: 1.75rem;
     }
   }
 </style>
 
 <script>
+  import * as animeModule from 'animejs';
+  const anime = animeModule.default || animeModule;
+
   // Clinical data based on medical evidence
   const clinicalData = {
     mri: {
       accuracy: {
         value: '96/100',
         success: 96,
-        danger: 4
+        danger: 4,
+        emoji: { success: '😊', danger: '😰' }
       },
       complications: {
         value: '2/100',
         success: 98,
-        danger: 2
+        danger: 2,
+        emoji: { success: '😊', danger: '😣' }
       },
       unnecessary: {
         value: '96/100',
         success: 96,
-        warning: 4
+        warning: 4,
+        emoji: { success: '😌', warning: '😟' }
       },
       summary: 'MRI-first approach reduces unnecessary procedures by 70% while maintaining 96% sensitivity for clinically significant cancer.'
     },
@@ -546,17 +515,20 @@
       accuracy: {
         value: '75/100',
         success: 75,
-        danger: 25
+        danger: 25,
+        emoji: { success: '😊', danger: '😰' }
       },
       complications: {
         value: '25/100',
         success: 75,
-        danger: 25
+        danger: 25,
+        emoji: { success: '😊', danger: '😣' }
       },
       unnecessary: {
         value: '65/100',
         success: 65,
-        warning: 35
+        warning: 35,
+        emoji: { success: '😌', warning: '😟' }
       },
       summary: 'Traditional biopsy leads to higher complication rates and unnecessary procedures due to blind sampling approach.'
     }
@@ -564,116 +536,162 @@
 
   let currentMethod = 'mri';
 
-  // SVG icon templates
-  const icons = {
-    success: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>',
-    warning: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>',
-    danger: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>'
-  };
-
   // Create icon grid visualization with clustering
-  function createIconGrid(containerId, data, iconType) {
+  function createIconGrid(containerId, data, animationDelay = 0) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
+    // Clear existing icons
     container.innerHTML = '';
     
-    const totalIcons = 100;
     const icons_array = [];
     
     // Create success icons first (clustered)
     for (let i = 0; i < (data.success || 0); i++) {
-      icons_array.push({ type: 'success', icon: icons.success });
+      icons_array.push({ 
+        type: 'success', 
+        emoji: data.emoji.success 
+      });
     }
     
     // Add warning icons (clustered)
     for (let i = 0; i < (data.warning || 0); i++) {
-      icons_array.push({ type: 'warning', icon: icons.warning });
+      icons_array.push({ 
+        type: 'warning', 
+        emoji: data.emoji.warning 
+      });
     }
     
     // Add danger icons (clustered)
     for (let i = 0; i < (data.danger || 0); i++) {
-      icons_array.push({ type: 'danger', icon: icons.danger });
+      icons_array.push({ 
+        type: 'danger', 
+        emoji: data.emoji.danger 
+      });
     }
     
-    // Create icon elements with staggered animation
+    // Create icon elements
     icons_array.forEach((iconData, index) => {
       const icon = document.createElement('div');
       icon.className = `grid-icon ${iconData.type}`;
-      icon.innerHTML = iconData.icon;
-      
-      // Staggered animation delay
-      setTimeout(() => {
-        icon.classList.add('animate-in');
-      }, index * 20); // 20ms delay per icon
-      
+      icon.textContent = iconData.emoji;
+      icon.setAttribute('data-index', index);
       container.appendChild(icon);
     });
+
+    // Animate with anime.js - beautiful staggered entrance
+    setTimeout(() => {
+      anime({
+        targets: `#${containerId} .grid-icon`,
+        opacity: [0, 1],
+        scale: [0, 1],
+        rotate: [-180, 0],
+        duration: 600,
+        delay: anime.stagger(15, { 
+          grid: [10, 10], 
+          from: 'center',
+          easing: 'easeOutElastic(1, .8)'
+        }),
+        easing: 'easeOutElastic(1, .6)'
+      });
+    }, animationDelay);
   }
 
-  // Update visualization
+  // Update visualization with anime.js transitions
   function updateVisualization(method) {
     currentMethod = method;
     const data = clinicalData[method];
     
-    // Update metric values with animation
+    // Animate metric values
     const accuracyValue = document.getElementById('accuracy-value');
     const complicationValue = document.getElementById('complication-value');
     const unnecessaryValue = document.getElementById('unnecessary-value');
     
-    // Fade out
-    [accuracyValue, complicationValue, unnecessaryValue].forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(-10px)';
+    // Anime.js value animation
+    anime({
+      targets: [accuracyValue, complicationValue, unnecessaryValue],
+      opacity: [1, 0],
+      translateY: [0, -20],
+      duration: 300,
+      easing: 'easeInQuad',
+      complete: () => {
+        accuracyValue.textContent = data.accuracy.value;
+        complicationValue.textContent = data.complications.value;
+        unnecessaryValue.textContent = data.unnecessary.value;
+        
+        anime({
+          targets: [accuracyValue, complicationValue, unnecessaryValue],
+          opacity: [0, 1],
+          translateY: [20, 0],
+          duration: 400,
+          easing: 'easeOutQuad'
+        });
+      }
     });
     
-    setTimeout(() => {
-      accuracyValue.textContent = data.accuracy.value;
-      complicationValue.textContent = data.complications.value;
-      unnecessaryValue.textContent = data.unnecessary.value;
-      
-      // Fade in
-      [accuracyValue, complicationValue, unnecessaryValue].forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      });
-    }, 300);
-    
-    // Update summary text
+    // Animate summary text
     const summaryText = document.getElementById('summary-text');
-    summaryText.style.opacity = '0';
-    setTimeout(() => {
-      summaryText.textContent = data.summary;
-      summaryText.style.opacity = '1';
-    }, 300);
+    anime({
+      targets: summaryText,
+      opacity: [1, 0],
+      translateX: [0, -30],
+      duration: 300,
+      easing: 'easeInQuad',
+      complete: () => {
+        summaryText.textContent = data.summary;
+        anime({
+          targets: summaryText,
+          opacity: [0, 1],
+          translateX: [30, 0],
+          duration: 400,
+          easing: 'easeOutQuad'
+        });
+      }
+    });
     
-    // Update icon grids with animation
-    setTimeout(() => {
-      createIconGrid('accuracy-grid', data.accuracy, 'accuracy');
-    }, 100);
+    // Animate out existing icons before creating new ones
+    const existingIcons = document.querySelectorAll('.grid-icon');
+    if (existingIcons.length > 0) {
+      anime({
+        targets: existingIcons,
+        opacity: [1, 0],
+        scale: [1, 0],
+        rotate: [0, 180],
+        duration: 400,
+        delay: anime.stagger(10, { from: 'last' }),
+        easing: 'easeInBack',
+        complete: () => {
+          // Create new icon grids with staggered delays
+          createIconGrid('accuracy-grid', data.accuracy, 100);
+          createIconGrid('complication-grid', data.complications, 200);
+          createIconGrid('unnecessary-grid', data.unnecessary, 300);
+        }
+      });
+    } else {
+      // First time initialization
+      createIconGrid('accuracy-grid', data.accuracy, 100);
+      createIconGrid('complication-grid', data.complications, 200);
+      createIconGrid('unnecessary-grid', data.unnecessary, 300);
+    }
     
-    setTimeout(() => {
-      createIconGrid('complication-grid', data.complications, 'complication');
-    }, 200);
-    
-    setTimeout(() => {
-      createIconGrid('unnecessary-grid', data.unnecessary, 'unnecessary');
-    }, 300);
-    
-    // Update button states
+    // Update button states with animation
     document.querySelectorAll('.method-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.method === method);
+      if (btn.dataset.method === method) {
+        btn.classList.add('active');
+        anime({
+          targets: btn,
+          scale: [0.95, 1],
+          duration: 300,
+          easing: 'easeOutElastic(1, .6)'
+        });
+      } else {
+        btn.classList.remove('active');
+      }
     });
   }
 
   // Initialize visualization
   document.addEventListener('DOMContentLoaded', () => {
-    // Add transition styles
-    document.getElementById('accuracy-value').style.transition = 'all 0.3s ease';
-    document.getElementById('complication-value').style.transition = 'all 0.3s ease';
-    document.getElementById('unnecessary-value').style.transition = 'all 0.3s ease';
-    document.getElementById('summary-text').style.transition = 'all 0.3s ease';
-    
     // Set up button handlers
     document.querySelectorAll('.method-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -681,9 +699,22 @@
       });
     });
     
-    // Initialize with MRI data
+    // Initialize with MRI data after a short delay
     setTimeout(() => {
       updateVisualization('mri');
-    }, 100);
+    }, 200);
+
+    // Add pulse animation to metric sections on hover
+    document.querySelectorAll('.metric-section').forEach(section => {
+      section.addEventListener('mouseenter', () => {
+        anime({
+          targets: section.querySelector('.metric-icon'),
+          scale: [1, 1.2, 1],
+          rotate: [0, 10, 0],
+          duration: 600,
+          easing: 'easeInOutQuad'
+        });
+      });
+    });
   });
 </script>
