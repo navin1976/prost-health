@@ -296,45 +296,47 @@
     cursor: pointer;
     position: relative;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     /* Initial state for anime.js */
     opacity: 0;
-    transform: scale(0) rotate(-180deg);
+    transform: scale(0);
   }
 
   .grid-icon .material-symbols-outlined {
-    font-size: 1.5rem;
-    color: white;
+    font-size: 1.75rem;
+    font-weight: 400;
   }
 
   .grid-icon:hover {
-    transform: scale(1.2) rotate(5deg);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: scale(1.25) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
     z-index: 10;
   }
 
+  /* Success icons - GREEN */
   .grid-icon.success {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
   }
 
   .grid-icon.success .material-symbols-outlined {
-    color: white !important;
+    color: #ffffff !important;
   }
 
+  /* Warning icons - AMBER */
   .grid-icon.warning {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
   }
 
   .grid-icon.warning .material-symbols-outlined {
-    color: white !important;
+    color: #ffffff !important;
   }
 
+  /* Danger icons - RED */
   .grid-icon.danger {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
   }
 
   .grid-icon.danger .material-symbols-outlined {
-    color: white !important;
+    color: #ffffff !important;
   }
 
   .grid-legend {
@@ -601,23 +603,44 @@
       icon.className = `grid-icon ${iconData.type}`;
       icon.innerHTML = `<span class="material-symbols-outlined">${iconData.icon}</span>`;
       icon.setAttribute('data-index', index);
+      icon.setAttribute('data-type', iconData.type);
+      
+      // DEBUG: Force inline styles as backup
+      if (iconData.type === 'success') {
+        icon.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+      } else if (iconData.type === 'warning') {
+        icon.style.background = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
+      } else if (iconData.type === 'danger') {
+        icon.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+      }
+      
       container.appendChild(icon);
+      console.log(`Created icon ${index}: type=${iconData.type}, classes=${icon.className}`);
     });
 
-    // Animate with anime.js - beautiful staggered entrance
+    // Animate with anime.js - DRAMATIC spring/bounce entrance with obvious stagger
     setTimeout(() => {
       anime({
         targets: `#${containerId} .grid-icon`,
         opacity: [0, 1],
-        scale: [0, 1],
-        rotate: [-180, 0],
-        duration: 600,
-        delay: anime.stagger(15, { 
+        scale: [0, 1.2, 1],  // Overshoot then settle - creates bounce
+        rotate: [0, 360],     // Full rotation for drama
+        duration: 1200,       // Slower for more visible effect
+        delay: anime.stagger(50, {  // 50ms stagger - MUCH more obvious
           grid: [10, 10], 
-          from: 'center',
-          easing: 'easeOutElastic(1, .8)'
+          from: 'first',      // Start from first icon
+          direction: 'normal'
         }),
-        easing: 'easeOutElastic(1, .6)'
+        easing: 'spring(1, 80, 10, 0)',  // Spring physics: mass, stiffness, damping, velocity
+        begin: function(anim) {
+          // Force the background colors to apply immediately
+          anim.animatables.forEach((animatable, index) => {
+            const element = animatable.target;
+            if (!element.style.background) {
+              console.log('Forcing background for', element.className);
+            }
+          });
+        }
       });
     }, animationDelay);
   }
@@ -674,29 +697,29 @@
       }
     });
     
-    // Animate out existing icons before creating new ones
+    // Animate out existing icons before creating new ones - DRAMATIC EXIT
     const existingIcons = document.querySelectorAll('.grid-icon');
     if (existingIcons.length > 0) {
       anime({
         targets: existingIcons,
         opacity: [1, 0],
         scale: [1, 0],
-        rotate: [0, 180],
-        duration: 400,
-        delay: anime.stagger(10, { from: 'last' }),
-        easing: 'easeInBack',
+        rotate: [0, -360],    // Spin opposite direction on exit
+        duration: 600,
+        delay: anime.stagger(30, { from: 'last' }),  // Obvious stagger on exit too
+        easing: 'easeInExpo',
         complete: () => {
           // Create new icon grids with staggered delays
-          createIconGrid('accuracy-grid', data.accuracy, 100);
-          createIconGrid('complication-grid', data.complications, 200);
-          createIconGrid('unnecessary-grid', data.unnecessary, 300);
+          createIconGrid('accuracy-grid', data.accuracy, 200);
+          createIconGrid('complication-grid', data.complications, 400);
+          createIconGrid('unnecessary-grid', data.unnecessary, 600);
         }
       });
     } else {
       // First time initialization
-      createIconGrid('accuracy-grid', data.accuracy, 100);
-      createIconGrid('complication-grid', data.complications, 200);
-      createIconGrid('unnecessary-grid', data.unnecessary, 300);
+      createIconGrid('accuracy-grid', data.accuracy, 200);
+      createIconGrid('complication-grid', data.complications, 400);
+      createIconGrid('unnecessary-grid', data.unnecessary, 600);
     }
     
     // Update button states with animation
