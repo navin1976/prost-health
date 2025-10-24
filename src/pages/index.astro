@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import RiskVisualization from '../components/RiskVisualization.astro';
 import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../lib/constants';
 ---
 
@@ -80,6 +81,21 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
   <!-- Problem/Solution Section -->
   <section class="py-20 md:py-32 bg-[--color-off-white]">
     <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-serif font-bold text-[--color-black] mb-6">
+          Two Paths, One Clear Choice
+        </h2>
+        <p class="text-xl text-[--color-gray] max-w-3xl mx-auto">
+          Compare the traditional approach with our MRI-first method. See the difference in accuracy, 
+          safety, and peace of mind.
+        </p>
+      </div>
+
+      <!-- Interactive Risk Visualization -->
+      <div class="mb-16">
+        <RiskVisualization />
+      </div>
+
       <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
         <!-- The Old Way -->
         <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray]">
