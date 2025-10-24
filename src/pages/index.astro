@@ -5,13 +5,25 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
 ---
 
 <BaseLayout>
-  <!-- Theme Toggle -->
-  <div class="theme-toggle">
-    <button id="theme-green" class="active">Racing Green</button>
-    <button id="theme-cobalt">Cobalt Blue</button>
-    <button id="theme-amber">Amber</button>
-    <button id="theme-professional-purple">Professional Purple</button>
-    <button id="theme-black-white">Black/White</button>
+  <!-- Theme & Font Controls -->
+  <div class="design-controls">
+    <!-- Color Theme Toggle -->
+    <div class="theme-toggle">
+      <span class="control-label">Color:</span>
+      <button id="theme-green" class="theme-circle active" data-color="#1B4332" aria-label="Racing Green" title="Racing Green"></button>
+      <button id="theme-cobalt" class="theme-circle" data-color="#1e40af" aria-label="Cobalt Blue" title="Cobalt Blue"></button>
+      <button id="theme-amber" class="theme-circle" data-color="#d97706" aria-label="Amber" title="Amber"></button>
+      <button id="theme-professional-purple" class="theme-circle" data-color="#7c3aed" aria-label="Professional Purple" title="Professional Purple"></button>
+      <button id="theme-black-white" class="theme-circle" data-color="#000000" aria-label="Black & White" title="Black & White"></button>
+    </div>
+    
+    <!-- Font Toggle -->
+    <div class="font-toggle">
+      <span class="control-label">Font:</span>
+      <button id="font-serif" class="font-btn active" data-font="serif" title="Playfair Display">Aa</button>
+      <button id="font-calsans" class="font-btn" data-font="calsans" title="Cal Sans">Aa</button>
+      <button id="font-inter" class="font-btn" data-font="inter" title="Inter">Aa</button>
+    </div>
   </div>
 
   <!-- Hero Section -->
@@ -207,8 +219,9 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
     </div>
   </section>
 
-  <!-- Theme Toggle Script -->
+  <!-- Design Controls Script -->
   <script>
+    // Color Theme Buttons
     const themeButtons = {
       'theme-green': 'green',
       'theme-cobalt': 'cobalt',
@@ -217,10 +230,18 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
       'theme-black-white': 'black-white'
     };
     
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'green';
+    // Font Theme Buttons
+    const fontButtons = {
+      'font-serif': 'serif',
+      'font-calsans': 'calsans',
+      'font-inter': 'inter'
+    };
     
-    // Set active theme on load
+    // Load saved preferences
+    const savedTheme = localStorage.getItem('theme') || 'green';
+    const savedFont = localStorage.getItem('font') || 'serif';
+    
+    // Set active color theme on load
     Object.keys(themeButtons).forEach(buttonId => {
       const button = document.getElementById(buttonId);
       const themeName = themeButtons[buttonId];
@@ -235,7 +256,22 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
       }
     });
     
-    // Add click handlers to all theme buttons
+    // Set active font theme on load
+    Object.keys(fontButtons).forEach(buttonId => {
+      const button = document.getElementById(buttonId);
+      const fontName = fontButtons[buttonId];
+      
+      if (fontName === savedFont) {
+        button?.classList.add('active');
+        if (fontName !== 'serif') {
+          document.documentElement.setAttribute('data-font', fontName);
+        }
+      } else {
+        button?.classList.remove('active');
+      }
+    });
+    
+    // Add click handlers to color theme buttons
     Object.keys(themeButtons).forEach(buttonId => {
       const button = document.getElementById(buttonId);
       const themeName = themeButtons[buttonId];
@@ -257,6 +293,31 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
         
         // Save preference
         localStorage.setItem('theme', themeName);
+      });
+    });
+    
+    // Add click handlers to font buttons
+    Object.keys(fontButtons).forEach(buttonId => {
+      const button = document.getElementById(buttonId);
+      const fontName = fontButtons[buttonId];
+      
+      button?.addEventListener('click', () => {
+        // Remove all font themes
+        document.documentElement.removeAttribute('data-font');
+        
+        // Set new font if not default serif
+        if (fontName !== 'serif') {
+          document.documentElement.setAttribute('data-font', fontName);
+        }
+        
+        // Update active states
+        Object.keys(fontButtons).forEach(otherButtonId => {
+          document.getElementById(otherButtonId)?.classList.remove('active');
+        });
+        button.classList.add('active');
+        
+        // Save preference
+        localStorage.setItem('font', fontName);
       });
     });
   </script>
