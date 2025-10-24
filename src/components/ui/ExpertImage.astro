@@ -1,0 +1,41 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  name: string;
+  title: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  priority?: boolean;
+}
+
+const {
+  src,
+  alt,
+  name,
+  title,
+  width = 400,
+  height = 533,
+  class: className = "",
+  priority = false,
+} = Astro.props;
+---
+
+<figure class={`space-y-3 ${className}`}>
+  <div class="aspect-[3/4] overflow-hidden rounded-lg shadow-lg">
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+    />
+  </div>
+  <figcaption class="text-center">
+    <h3 class="font-serif font-semibold text-black">{name}</h3>
+    <p class="text-sm text-gray">{title}</p>
+  </figcaption>
+</figure>

@@ -1,0 +1,131 @@
+---
+import { NAV_ITEMS } from '../../lib/constants';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 header-transition bg-[--color-white]/95 backdrop-blur-sm border-b border-[--color-light-gray] header-light">
+  <nav class="container mx-auto px-6 py-4" aria-label="Primary navigation">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="text-2xl font-serif font-semibold text-black hover:text-accent transition-colors">
+        Prost Health
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex items-center gap-8">
+        {NAV_ITEMS.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class={`text-sm font-medium transition-colors ${
+                currentPath.startsWith(href)
+                  ? 'text-accent'
+                  : 'text-black hover:text-accent'
+              }`}
+              aria-current={currentPath.startsWith(href) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/contact"
+            class="px-6 py-2 bg-accent text-white rounded-md bg-accent-hover transition-colors font-medium text-sm"
+          >
+            Contact Us
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden p-2 text-black hover:text-accent transition-colors"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Toggle navigation menu"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+      <ul class="flex flex-col gap-4">
+        {NAV_ITEMS.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class={`block py-2 text-base font-medium transition-colors ${
+                currentPath.startsWith(href)
+                  ? 'text-accent'
+                  : 'text-black hover:text-accent'
+              }`}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/contact"
+            class="block px-6 py-2 bg-accent text-white rounded-md bg-accent-hover transition-colors font-medium text-center"
+          >
+            Contact Us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuButton?.addEventListener('click', () => {
+    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Header background and color transition on scroll
+  const header = document.querySelector('.header-transition');
+  
+  const updateHeaderBackground = () => {
+    const scrollPosition = window.scrollY;
+    const heroHeight = window.innerHeight * 0.8; // Approximate hero section height
+    
+    if (scrollPosition > heroHeight - 100) {
+      // Scrolled past hero - light background
+      header?.classList.remove('header-dark');
+      header?.classList.add('header-light', 'scrolled');
+    } else {
+      // Over hero image - dark background
+      header?.classList.remove('header-light', 'scrolled');
+      header?.classList.add('header-dark');
+    }
+  };
+
+  // Initial check
+  updateHeaderBackground();
+  
+  // Listen for scroll events
+  window.addEventListener('scroll', updateHeaderBackground);
+</script>

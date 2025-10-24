@@ -1,16 +1,247 @@
 ---
-
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../lib/constants';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <button id="theme-green" class="active">Racing Green</button>
+    <button id="theme-cobalt">Cobalt Blue</button>
+    <button id="theme-amber">Amber</button>
+    <button id="theme-professional-purple">Professional Purple</button>
+    <button id="theme-black-white">Black/White</button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <!-- Large Hero Image -->
+    <div class="hero-image-container">
+      <img 
+        src="/images/alex-kirkham.jpg" 
+        alt="Alex Kirkham reporting - Expert Uroradiologist"
+        loading="eager"
+        decoding="async"
+      />
+      <!-- Overlay -->
+      <div class="hero-overlay"></div>
+    </div>
+    
+    <!-- Hero Content -->
+    <div class="hero-content container mx-auto px-6">
+      <div class="max-w-2xl text-left space-y-6">
+        <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight text-white" style="color: white !important;">
+          {TAGLINE}
+        </h1>
+        <p class="text-xl md:text-2xl font-medium text-white">
+          {PRIMARY_MESSAGE}
+        </p>
+        <p class="text-lg text-gray-100">
+          {SECONDARY_MESSAGE}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 pt-8">
+          <a
+            href="/our-approach"
+            class="px-8 py-4 bg-accent text-white rounded-md bg-accent-hover transition-colors font-semibold text-lg"
+          >
+            Discover Our Approach
+          </a>
+          <a
+            href="/contact"
+            class="px-8 py-4 border-2 border-white text-white rounded-md hover:bg-white hover:text-black transition-colors font-semibold text-lg"
+          >
+            Speak with a Coordinator
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="bg-[--color-white] py-8 border-y border-[--color-light-gray]">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
+        {TRUST_SIGNALS.map((signal) => (
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="text-sm font-medium text-black">{signal}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem/Solution Section -->
+  <section class="py-20 md:py-32 bg-[--color-off-white]">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <!-- The Old Way -->
+        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray]">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[--color-black]">
+            Uncertainty and Invasion.
+          </h2>
+          <p class="text-[--color-gray] leading-relaxed">
+            Traditional prostate cancer screening relies on blind biopsies—invasive procedures that carry 
+            significant risks including infection, bleeding, and long-lasting urinary or sexual problems. 
+            These biopsies can miss cancers, over-diagnose insignificant ones, and leave men in a state 
+            of uncertainty.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-[#E50914] mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-[--color-black]">Risk of infection and complications</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-[#E50914] mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-[--color-black]">Potential for missed cancers</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-[#E50914] mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-[--color-black]">Over-diagnosis of insignificant findings</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The Prost Health Way -->
+        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray]">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[--color-black]">
+            Precision and Peace of Mind.
+          </h2>
+          <p class="text-[--color-gray] leading-relaxed">
+            Our MRI-first approach provides high-resolution imaging that allows our expert radiologists 
+            to see exactly what's happening before any invasive procedure. This means accurate diagnosis, 
+            fewer unnecessary biopsies, and definitive answers that give you clarity and control.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-black">Non-invasive, no recovery time needed</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-black">96% accuracy in ruling out aggressive cancer</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-black">Helps avoid unnecessary biopsies and treatment</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-[--color-black] text-white py-20">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-5xl font-serif font-bold mb-6">
+        Ready to Take Control of Your Prostate Health?
+      </h2>
+      <p class="text-xl text-[--color-light-gray] mb-8 max-w-2xl mx-auto">
+        Learn more about our MRI-first approach and how it can provide you with the clarity you deserve.
+      </p>
+      <a
+        href="/our-approach"
+        class="inline-block px-8 py-4 bg-accent text-white rounded-md bg-accent-hover transition-colors font-semibold text-lg"
+      >
+        Discover Our Approach
+      </a>
+    </div>
+  </section>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    const themeButtons = {
+      'theme-green': 'green',
+      'theme-cobalt': 'cobalt',
+      'theme-amber': 'amber',
+      'theme-professional-purple': 'professional-purple',
+      'theme-black-white': 'black-white'
+    };
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'green';
+    
+    // Set active theme on load
+    Object.keys(themeButtons).forEach(buttonId => {
+      const button = document.getElementById(buttonId);
+      const themeName = themeButtons[buttonId];
+      
+      if (themeName === savedTheme) {
+        button?.classList.add('active');
+        if (themeName !== 'green') {
+          document.documentElement.setAttribute('data-theme', themeName);
+        }
+      } else {
+        button?.classList.remove('active');
+      }
+    });
+    
+    // Add click handlers to all theme buttons
+    Object.keys(themeButtons).forEach(buttonId => {
+      const button = document.getElementById(buttonId);
+      const themeName = themeButtons[buttonId];
+      
+      button?.addEventListener('click', () => {
+        // Remove all themes
+        document.documentElement.removeAttribute('data-theme');
+        
+        // Set new theme if not default green
+        if (themeName !== 'green') {
+          document.documentElement.setAttribute('data-theme', themeName);
+        }
+        
+        // Update active states
+        Object.keys(themeButtons).forEach(otherButtonId => {
+          document.getElementById(otherButtonId)?.classList.remove('active');
+        });
+        button.classList.add('active');
+        
+        // Save preference
+        localStorage.setItem('theme', themeName);
+      });
+    });
+  </script>
+</BaseLayout>
