@@ -2,6 +2,3 @@ name = "prost-health"
 compatibility_date = "2024-10-24"
 
 pages_build_output_dir = "dist"
-
-[site]
-bucket = "./dist"

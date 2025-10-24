@@ -27,9 +27,9 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
   </div>
 
   <!-- Hero Section -->
-  <section class="hero-section">
+  <section class="hero-section scroll-animate">
     <!-- Large Hero Image -->
-    <div class="hero-image-container">
+    <div class="hero-image-container scroll-animate">
       <img 
         src="/images/alex-kirkham.jpg" 
         alt="Alex Kirkham reporting - Expert Uroradiologist"
@@ -71,9 +71,9 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
   </section>
 
   <!-- Trust Bar -->
-  <section class="bg-[--color-white] py-8 border-y border-[--color-light-gray]">
+  <section class="bg-[--color-white] py-8 border-y border-[--color-light-gray] scroll-animate">
     <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
+      <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center scroll-stagger">
         {TRUST_SIGNALS.map((signal) => (
           <div class="flex items-center gap-2">
             <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
@@ -93,11 +93,11 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
   <!-- Problem/Solution Section -->
   <section class="py-20 md:py-32 bg-[--color-off-white]">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-serif font-bold text-[--color-black] mb-6">
+      <div class="text-center mb-16 scroll-animate">
+        <h2 class="text-4xl md:text-5xl font-serif font-bold text-[--color-black] mb-6 scroll-animate-heading">
           Two Paths, One Clear Choice
         </h2>
-        <p class="text-xl text-[--color-gray] max-w-3xl mx-auto">
+        <p class="text-xl text-[--color-gray] max-w-3xl mx-auto scroll-animate-text">
           Compare the traditional approach with our MRI-first method. See the difference in accuracy, 
           safety, and peace of mind.
         </p>
@@ -108,9 +108,9 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
         <RiskVisualization />
       </div>
 
-      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto scroll-cards">
         <!-- The Old Way -->
-        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray]">
+        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray] scroll-card-left">
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[--color-black]">
             Uncertainty and Invasion.
           </h2>
@@ -155,7 +155,7 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
         </div>
 
         <!-- The Prost Health Way -->
-        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray]">
+        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray] scroll-card-right">
           <h2 class="text-3xl md:text-4xl font-serif font-bold text-[--color-black]">
             Precision and Peace of Mind.
           </h2>
@@ -202,8 +202,8 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
   </section>
 
   <!-- CTA Section -->
-  <section class="bg-[--color-black] text-white py-20">
-    <div class="container mx-auto px-6 text-center">
+  <section class="bg-[--color-black] text-white py-20 scroll-animate">
+    <div class="container mx-auto px-6 text-center scroll-animate-cta">
       <h2 class="text-3xl md:text-5xl font-serif font-bold mb-6">
         Ready to Take Control of Your Prostate Health?
       </h2>
@@ -318,6 +318,255 @@ import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../l
         
         // Save preference
         localStorage.setItem('font', fontName);
+      });
+    });
+  </script>
+
+  <!-- Scroll Animations Script - Dramatic & Reversible -->
+  <script>
+    import anime from 'animejs';
+
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', () => {
+      // Animation state tracking
+      const animatedElements = new Map();
+
+      // Intersection Observer for bidirectional scroll animations
+      const observerOptions = {
+        threshold: 0.1, // Lower threshold - trigger earlier when 10% visible
+        rootMargin: '100px 0px 100px 0px' // Add margin to prevent flickering at screen edges
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const element = entry.target;
+          const isInView = entry.isIntersecting;
+          
+          // Animate in when entering viewport
+          if (isInView) {
+            animateIn(element);
+          } 
+          // Animate out when leaving viewport
+          else {
+            animateOut(element);
+          }
+        });
+      }, observerOptions);
+
+      // Dramatic ENTRANCE animations
+      function animateIn(element) {
+        if (element.classList.contains('scroll-animate-viz')) {
+          // Entire visualization container - 50% reduced
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            scale: [0.95, 1],
+            translateY: [30, 0], // 60 → 30
+            duration: 1000,
+            easing: 'easeOutExpo'
+          });
+        } else if (element.classList.contains('scroll-animate-header')) {
+          // Visualization header - 50% reduced
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            translateY: [25, 0], // 50 → 25
+            duration: 800,
+            easing: 'easeOutExpo'
+          });
+        } else if (element.classList.contains('scroll-animate-toggle')) {
+          // Method toggle buttons - 50% reduced
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            scale: [0.9, 1], // 0.8 → 0.9
+            rotateY: [45, 0], // 90 → 45
+            duration: 900,
+            easing: 'easeOutExpo',
+            delay: 200
+          });
+        } else if (element.classList.contains('scroll-viz-card')) {
+          // Individual metric cards - 50% reduced
+          const cards = document.querySelectorAll('.scroll-viz-card');
+          const index = Array.from(cards).indexOf(element);
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            translateY: [40, 0], // 80 → 40
+            scale: [0.925, 1], // 0.85 → 0.925
+            rotateX: [10, 0], // 20 → 10
+            duration: 900,
+            easing: 'easeOutExpo',
+            delay: index * 150
+          });
+        } else if (element.classList.contains('scroll-animate-summary')) {
+          // Clinical summary footer - 50% reduced
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            translateY: [35, 0], // 70 → 35
+            scale: [0.95, 1], // 0.9 → 0.95
+            duration: 900,
+            easing: 'easeOutExpo',
+            delay: 300
+          });
+        } else if (element.classList.contains('scroll-animate-heading')) {
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            translateY: [40, 0], // 80 → 40
+            scale: [0.9, 1], // 0.8 → 0.9
+            rotate: [-2.5, 0], // -5 → -2.5
+            duration: 1000,
+            easing: 'easeOutExpo'
+          });
+        } else if (element.classList.contains('scroll-card-left')) {
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            translateX: [-75, 0], // -150 → -75
+            rotateY: [-10, 0], // -20 → -10
+            duration: 900,
+            easing: 'easeOutExpo',
+            delay: 100
+          });
+        } else if (element.classList.contains('scroll-card-right')) {
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            translateX: [75, 0], // 150 → 75
+            rotateY: [10, 0], // 20 → 10
+            duration: 900,
+            easing: 'easeOutExpo',
+            delay: 200
+          });
+        } else if (element.classList.contains('scroll-stagger')) {
+          anime({
+            targets: element.children,
+            opacity: [0, 1],
+            translateY: [30, 0], // 60 → 30
+            scale: [0.85, 1], // 0.7 → 0.85
+            duration: 700,
+            delay: anime.stagger(150),
+            easing: 'easeOutExpo'
+          });
+        } else if (element.classList.contains('scroll-animate')) {
+          anime({
+            targets: element,
+            opacity: [0, 1],
+            translateY: [50, 0], // 100 → 50
+            scale: [0.925, 1], // 0.85 → 0.925
+            duration: 1000,
+            easing: 'easeOutExpo'
+          });
+        }
+      }
+
+      // Dramatic EXIT animations (reverse)
+      function animateOut(element) {
+        if (element.classList.contains('scroll-animate-viz')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            scale: [1, 0.95],
+            translateY: [0, 30], // 60 → 30
+            duration: 800,
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-animate-header')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            translateY: [0, -25], // -50 → -25
+            duration: 700,
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-animate-toggle')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            scale: [1, 0.9], // 0.8 → 0.9
+            rotateY: [0, -45], // -90 → -45
+            duration: 700,
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-viz-card')) {
+          const cards = document.querySelectorAll('.scroll-viz-card');
+          const index = Array.from(cards).indexOf(element);
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            translateY: [0, -40], // -80 → -40
+            scale: [1, 0.925], // 0.85 → 0.925
+            rotateX: [0, -10], // -20 → -10
+            duration: 700,
+            easing: 'easeInExpo',
+            delay: (cards.length - 1 - index) * 100
+          });
+        } else if (element.classList.contains('scroll-animate-summary')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            translateY: [0, 35], // 70 → 35
+            scale: [1, 0.95], // 0.9 → 0.95
+            duration: 700,
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-animate-heading')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            translateY: [0, -40], // -80 → -40
+            scale: [1, 0.9], // 0.8 → 0.9
+            rotate: [0, 2.5], // 5 → 2.5
+            duration: 800,
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-card-left')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            translateX: [0, -75], // -150 → -75
+            rotateY: [0, -10], // -20 → -10
+            duration: 800,
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-card-right')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            translateX: [0, 75], // 150 → 75
+            rotateY: [0, 10], // 20 → 10
+            duration: 800,
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-stagger')) {
+          anime({
+            targets: element.children,
+            opacity: [1, 0],
+            translateY: [0, 30], // 60 → 30
+            scale: [1, 0.85], // 0.7 → 0.85
+            duration: 600,
+            delay: anime.stagger(80, {from: 'last'}),
+            easing: 'easeInExpo'
+          });
+        } else if (element.classList.contains('scroll-animate')) {
+          anime({
+            targets: element,
+            opacity: [1, 0],
+            translateY: [0, 50], // 100 → 50
+            scale: [1, 0.925], // 0.85 → 0.925
+            duration: 800,
+            easing: 'easeInExpo'
+          });
+        }
+      }
+
+      // Observe all scroll-animated elements
+      document.querySelectorAll(
+        '.scroll-animate, .scroll-animate-heading, .scroll-animate-text, .scroll-card-left, .scroll-card-right, .scroll-stagger, .scroll-animate-viz, .scroll-animate-header, .scroll-animate-toggle, .scroll-viz-card, .scroll-animate-summary'
+      ).forEach(el => {
+        observer.observe(el);
       });
     });
   </script>

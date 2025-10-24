@@ -470,6 +470,43 @@ button {
   font-family: var(--font-inter);
 }
 
+/* Scroll Animations - Dramatic & Reversible */
+.scroll-animate,
+.scroll-animate-heading,
+.scroll-animate-text,
+.scroll-card-left,
+.scroll-card-right,
+.scroll-animate-viz,
+.scroll-animate-header,
+.scroll-animate-toggle,
+.scroll-viz-card,
+.scroll-animate-summary {
+  opacity: 0;
+  will-change: opacity, transform;
+  transform-style: preserve-3d; /* Enable 3D transforms */
+}
+
+/* Add perspective to parent containers for 3D effect */
+.scroll-cards,
+.scroll-stagger,
+.scroll-viz-cards {
+  perspective: 1200px;
+  perspective-origin: center;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .scroll-animate-heading,
+  .scroll-animate-text,
+  .scroll-card-left,
+  .scroll-card-right {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .design-controls {
