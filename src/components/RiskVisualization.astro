@@ -317,12 +317,24 @@
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   }
 
+  .grid-icon.success .material-symbols-outlined {
+    color: white !important;
+  }
+
   .grid-icon.warning {
     background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   }
 
+  .grid-icon.warning .material-symbols-outlined {
+    color: white !important;
+  }
+
   .grid-icon.danger {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  }
+
+  .grid-icon.danger .material-symbols-outlined {
+    color: white !important;
   }
 
   .grid-legend {
@@ -478,9 +490,11 @@
   }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-
 <script>
+  import anime from 'animejs';
+
+  console.log('Anime.js loaded:', typeof anime, anime);
+
   // Clinical data based on medical evidence
   const clinicalData = {
     mri: {
@@ -591,32 +605,21 @@
     });
 
     // Animate with anime.js - beautiful staggered entrance
-    if (typeof anime !== 'undefined') {
-      setTimeout(() => {
-        anime({
-          targets: `#${containerId} .grid-icon`,
-          opacity: [0, 1],
-          scale: [0, 1],
-          rotate: [-180, 0],
-          duration: 600,
-          delay: anime.stagger(15, { 
-            grid: [10, 10], 
-            from: 'center',
-            easing: 'easeOutElastic(1, .8)'
-          }),
-          easing: 'easeOutElastic(1, .6)'
-        });
-      }, animationDelay);
-    } else {
-      // Fallback without animation
-      setTimeout(() => {
-        const icons = container.querySelectorAll('.grid-icon');
-        icons.forEach(icon => {
-          icon.style.opacity = '1';
-          icon.style.transform = 'scale(1) rotate(0)';
-        });
-      }, animationDelay);
-    }
+    setTimeout(() => {
+      anime({
+        targets: `#${containerId} .grid-icon`,
+        opacity: [0, 1],
+        scale: [0, 1],
+        rotate: [-180, 0],
+        duration: 600,
+        delay: anime.stagger(15, { 
+          grid: [10, 10], 
+          from: 'center',
+          easing: 'easeOutElastic(1, .8)'
+        }),
+        easing: 'easeOutElastic(1, .6)'
+      });
+    }, animationDelay);
   }
 
   // Update visualization with anime.js transitions
@@ -629,103 +632,87 @@
     const complicationValue = document.getElementById('complication-value');
     const unnecessaryValue = document.getElementById('unnecessary-value');
     
-    if (typeof anime !== 'undefined') {
-      // Anime.js value animation
-      anime({
-        targets: [accuracyValue, complicationValue, unnecessaryValue],
-        opacity: [1, 0],
-        translateY: [0, -20],
-        duration: 300,
-        easing: 'easeInQuad',
-        complete: () => {
-          accuracyValue.textContent = data.accuracy.value;
-          complicationValue.textContent = data.complications.value;
-          unnecessaryValue.textContent = data.unnecessary.value;
-          
-          anime({
-            targets: [accuracyValue, complicationValue, unnecessaryValue],
-            opacity: [0, 1],
-            translateY: [20, 0],
-            duration: 400,
-            easing: 'easeOutQuad'
-          });
-        }
-      });
-      
-      // Animate summary text
-      const summaryText = document.getElementById('summary-text');
-      anime({
-        targets: summaryText,
-        opacity: [1, 0],
-        translateX: [0, -30],
-        duration: 300,
-        easing: 'easeInQuad',
-        complete: () => {
-          summaryText.textContent = data.summary;
-          anime({
-            targets: summaryText,
-            opacity: [0, 1],
-            translateX: [30, 0],
-            duration: 400,
-            easing: 'easeOutQuad'
-          });
-        }
-      });
-      
-      // Animate out existing icons before creating new ones
-      const existingIcons = document.querySelectorAll('.grid-icon');
-      if (existingIcons.length > 0) {
+    // Anime.js value animation
+    anime({
+      targets: [accuracyValue, complicationValue, unnecessaryValue],
+      opacity: [1, 0],
+      translateY: [0, -20],
+      duration: 300,
+      easing: 'easeInQuad',
+      complete: () => {
+        accuracyValue.textContent = data.accuracy.value;
+        complicationValue.textContent = data.complications.value;
+        unnecessaryValue.textContent = data.unnecessary.value;
+        
         anime({
-          targets: existingIcons,
-          opacity: [1, 0],
-          scale: [1, 0],
-          rotate: [0, 180],
+          targets: [accuracyValue, complicationValue, unnecessaryValue],
+          opacity: [0, 1],
+          translateY: [20, 0],
           duration: 400,
-          delay: anime.stagger(10, { from: 'last' }),
-          easing: 'easeInBack',
-          complete: () => {
-            // Create new icon grids with staggered delays
-            createIconGrid('accuracy-grid', data.accuracy, 100);
-            createIconGrid('complication-grid', data.complications, 200);
-            createIconGrid('unnecessary-grid', data.unnecessary, 300);
-          }
+          easing: 'easeOutQuad'
         });
-      } else {
-        // First time initialization
-        createIconGrid('accuracy-grid', data.accuracy, 100);
-        createIconGrid('complication-grid', data.complications, 200);
-        createIconGrid('unnecessary-grid', data.unnecessary, 300);
       }
-      
-      // Update button states with animation
-      document.querySelectorAll('.method-btn').forEach(btn => {
-        if (btn.dataset.method === method) {
-          btn.classList.add('active');
-          anime({
-            targets: btn,
-            scale: [0.95, 1],
-            duration: 300,
-            easing: 'easeOutElastic(1, .6)'
-          });
-        } else {
-          btn.classList.remove('active');
+    });
+    
+    // Animate summary text
+    const summaryText = document.getElementById('summary-text');
+    anime({
+      targets: summaryText,
+      opacity: [1, 0],
+      translateX: [0, -30],
+      duration: 300,
+      easing: 'easeInQuad',
+      complete: () => {
+        summaryText.textContent = data.summary;
+        anime({
+          targets: summaryText,
+          opacity: [0, 1],
+          translateX: [30, 0],
+          duration: 400,
+          easing: 'easeOutQuad'
+        });
+      }
+    });
+    
+    // Animate out existing icons before creating new ones
+    const existingIcons = document.querySelectorAll('.grid-icon');
+    if (existingIcons.length > 0) {
+      anime({
+        targets: existingIcons,
+        opacity: [1, 0],
+        scale: [1, 0],
+        rotate: [0, 180],
+        duration: 400,
+        delay: anime.stagger(10, { from: 'last' }),
+        easing: 'easeInBack',
+        complete: () => {
+          // Create new icon grids with staggered delays
+          createIconGrid('accuracy-grid', data.accuracy, 100);
+          createIconGrid('complication-grid', data.complications, 200);
+          createIconGrid('unnecessary-grid', data.unnecessary, 300);
         }
       });
     } else {
-      // Fallback without animations
-      accuracyValue.textContent = data.accuracy.value;
-      complicationValue.textContent = data.complications.value;
-      unnecessaryValue.textContent = data.unnecessary.value;
-      document.getElementById('summary-text').textContent = data.summary;
-      
-      createIconGrid('accuracy-grid', data.accuracy, 0);
-      createIconGrid('complication-grid', data.complications, 0);
-      createIconGrid('unnecessary-grid', data.unnecessary, 0);
-      
-      document.querySelectorAll('.method-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.method === method);
-      });
+      // First time initialization
+      createIconGrid('accuracy-grid', data.accuracy, 100);
+      createIconGrid('complication-grid', data.complications, 200);
+      createIconGrid('unnecessary-grid', data.unnecessary, 300);
     }
+    
+    // Update button states with animation
+    document.querySelectorAll('.method-btn').forEach(btn => {
+      if (btn.dataset.method === method) {
+        btn.classList.add('active');
+        anime({
+          targets: btn,
+          scale: [0.95, 1],
+          duration: 300,
+          easing: 'easeOutElastic(1, .6)'
+        });
+      } else {
+        btn.classList.remove('active');
+      }
+    });
   }
 
   // Initialize visualization
@@ -742,22 +729,20 @@
       updateVisualization('mri');
     }, 200);
 
-    // Add pulse animation to metric sections on hover if anime is available
-    if (typeof anime !== 'undefined') {
-      document.querySelectorAll('.metric-section').forEach(section => {
-        section.addEventListener('mouseenter', () => {
-          const icon = section.querySelector('.metric-icon');
-          if (icon) {
-            anime({
-              targets: icon,
-              scale: [1, 1.2, 1],
-              rotate: [0, 10, 0],
-              duration: 600,
-              easing: 'easeInOutQuad'
-            });
-          }
-        });
+    // Add pulse animation to metric sections on hover
+    document.querySelectorAll('.metric-section').forEach(section => {
+      section.addEventListener('mouseenter', () => {
+        const icon = section.querySelector('.metric-icon');
+        if (icon) {
+          anime({
+            targets: icon,
+            scale: [1, 1.2, 1],
+            rotate: [0, 10, 0],
+            duration: 600,
+            easing: 'easeInOutQuad'
+          });
+        }
       });
-    }
+    });
   });
 </script>
