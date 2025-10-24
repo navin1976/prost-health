@@ -790,14 +790,30 @@
       });
     });
     
-    // Initialize with MRI data - only once!
-    if (!hasInitialized) {
-      console.log('Initial load - creating MRI grids');
-      setTimeout(() => {
-        updateVisualization('mri');
-      }, 300);
+    // Use Intersection Observer to trigger animation when in view
+    const vizContainer = document.getElementById('clinical-viz');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasInitialized) {
+          console.log('Visualization entered view - initializing');
+          // Trigger animation when 20% visible
+          setTimeout(() => {
+            updateVisualization('mri');
+          }, 200);
+          // Stop observing after first trigger
+          observer.unobserve(vizContainer);
+        }
+      });
+    }, {
+      threshold: 0.2,  // Trigger when 20% visible
+      rootMargin: '0px'
+    });
+    
+    if (vizContainer) {
+      observer.observe(vizContainer);
     }
-
+    
     // Add pulse animation to metric sections on hover
     document.querySelectorAll('.metric-section').forEach(section => {
       section.addEventListener('mouseenter', () => {
