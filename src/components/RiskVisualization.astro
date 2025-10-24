@@ -1,0 +1,458 @@
+---
+// Risk Visualization Component
+// Lightweight 3D visualization for prostate cancer risk comparison
+---
+
+<div class="risk-visualization-container" id="risk-viz-container">
+  <canvas id="risk-canvas"></canvas>
+  
+  <!-- Mobile-friendly controls -->
+  <div class="viz-controls">
+    <button class="viz-btn active" data-path="mri">MRI-First Approach</button>
+    <button class="viz-btn" data-path="traditional">Traditional Biopsy</button>
+  </div>
+  
+  <!-- Mobile info panel -->
+  <div class="viz-info-panel">
+    <h3 class="viz-title">The Clarity Compass</h3>
+    <p class="viz-description" id="viz-description">
+      MRI-first screening provides 96% accuracy in ruling out aggressive cancer while minimizing unnecessary procedures.
+    </p>
+    <div class="viz-stats">
+      <div class="stat-item">
+        <span class="stat-label">Accuracy:</span>
+        <span class="stat-value" id="accuracy-stat">96%</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Complications:</span>
+        <span class="stat-value" id="complication-stat">1-2%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .risk-visualization-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    max-height: 50vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  #risk-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .viz-controls {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+
+  .viz-btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .viz-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .viz-btn.active {
+    background: var(--color-accent, #1B4332);
+    border-color: var(--color-accent, #1B4332);
+  }
+
+  .viz-info-panel {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 1rem;
+    color: white;
+    z-index: 10;
+  }
+
+  .viz-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    font-family: var(--font-serif);
+  }
+
+  .viz-description {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    margin: 0 0 1rem 0;
+    opacity: 0.9;
+  }
+
+  .viz-stats {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-accent, #1B4332);
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .risk-visualization-container {
+      height: 300px;
+      max-height: 40vh;
+      margin: 1rem 0;
+    }
+
+    .viz-controls {
+      top: 0.5rem;
+      left: 0.5rem;
+      right: 0.5rem;
+    }
+
+    .viz-btn {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    .viz-info-panel {
+      bottom: 0.5rem;
+      left: 0.5rem;
+      right: 0.5rem;
+      padding: 0.75rem;
+    }
+
+    .viz-title {
+      font-size: 1rem;
+    }
+
+    .viz-description {
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .viz-stats {
+      gap: 0.75rem;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .risk-visualization-container {
+      height: 250px;
+      max-height: 35vh;
+    }
+
+    .viz-stats {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Lightweight Three.js visualization
+  import * as THREE from 'three';
+
+  // Visualization data
+  const pathwayData = {
+    mri: {
+      title: "MRI-First Approach",
+      description: "MRI-first screening provides 96% accuracy in ruling out aggressive cancer while minimizing unnecessary procedures.",
+      accuracy: "96%",
+      complications: "1-2%",
+      particles: {
+        healthy: 150,
+        risk: 20,
+        confidence: 80
+      },
+      colors: {
+        primary: 0x1B4332, // Dark green
+        secondary: 0x2D5A3D, // Lighter green
+        accent: 0x4ADE80, // Bright green
+        background: 0x0a0a0a
+      }
+    },
+    traditional: {
+      title: "Traditional Biopsy",
+      description: "Traditional biopsy carries higher complication risks and may miss or over-diagnose certain conditions.",
+      accuracy: "70-80%",
+      complications: "15-30%",
+      particles: {
+        healthy: 100,
+        risk: 60,
+        confidence: 30
+      },
+      colors: {
+        primary: 0xDC2626, // Red
+        secondary: 0xEF4444, // Lighter red
+        accent: 0xF87171, // Pink
+        background: 0x1a0000
+      }
+    }
+  };
+
+  let scene, camera, renderer, particles;
+  let currentPathway = 'mri';
+  let animationId;
+
+  // Initialize visualization
+  function initVisualization() {
+    const container = document.getElementById('risk-viz-container');
+    const canvas = document.getElementById('risk-canvas');
+    
+    if (!container || !canvas) return;
+
+    // Scene setup
+    scene = new THREE.Scene();
+    
+    // Camera setup
+    const aspect = container.clientWidth / container.clientHeight;
+    camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
+    camera.position.z = 5;
+
+    // Renderer setup
+    renderer = new THREE.WebGLRenderer({ 
+      canvas: canvas, 
+      antialias: true,
+      alpha: true 
+    });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Create particles
+    createParticles(currentPathway);
+
+    // Handle window resize
+    window.addEventListener('resize', onWindowResize);
+
+    // Start animation
+    animate();
+  }
+
+  // Create particle system
+  function createParticles(pathway) {
+    // Clear existing particles
+    if (particles) {
+      scene.remove(particles);
+      particles.geometry.dispose();
+      particles.material.dispose();
+    }
+
+    const data = pathwayData[pathway];
+    const particleCount = data.particles.healthy + data.particles.risk + data.particles.confidence;
+    
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    const sizes = new Float32Array(particleCount);
+
+    let particleIndex = 0;
+
+    // Healthy particles (green/blue)
+    for (let i = 0; i < data.particles.healthy; i++) {
+      positions[particleIndex * 3] = (Math.random() - 0.5) * 10;
+      positions[particleIndex * 3 + 1] = (Math.random() - 0.5) * 10;
+      positions[particleIndex * 3 + 2] = (Math.random() - 0.5) * 10;
+
+      const color = new THREE.Color(pathway === 'mri' ? 0x4ADE80 : 0x60A5FA);
+      colors[particleIndex * 3] = color.r;
+      colors[particleIndex * 3 + 1] = color.g;
+      colors[particleIndex * 3 + 2] = color.b;
+
+      sizes[particleIndex] = Math.random() * 0.1 + 0.05;
+      particleIndex++;
+    }
+
+    // Risk particles (red/orange)
+    for (let i = 0; i < data.particles.risk; i++) {
+      positions[particleIndex * 3] = (Math.random() - 0.5) * 10;
+      positions[particleIndex * 3 + 1] = (Math.random() - 0.5) * 10;
+      positions[particleIndex * 3 + 2] = (Math.random() - 0.5) * 10;
+
+      const color = new THREE.Color(pathway === 'mri' ? 0xF59E0B : 0xDC2626);
+      colors[particleIndex * 3] = color.r;
+      colors[particleIndex * 3 + 1] = color.g;
+      colors[particleIndex * 3 + 2] = color.b;
+
+      sizes[particleIndex] = Math.random() * 0.15 + 0.1;
+      particleIndex++;
+    }
+
+    // Confidence particles (white/gold)
+    for (let i = 0; i < data.particles.confidence; i++) {
+      positions[particleIndex * 3] = (Math.random() - 0.5) * 10;
+      positions[particleIndex * 3 + 1] = (Math.random() - 0.5) * 10;
+      positions[particleIndex * 3 + 2] = (Math.random() - 0.5) * 10;
+
+      const color = new THREE.Color(pathway === 'mri' ? 0xFCD34D : 0xE5E7EB);
+      colors[particleIndex * 3] = color.r;
+      colors[particleIndex * 3 + 1] = color.g;
+      colors[particleIndex * 3 + 2] = color.b;
+
+      sizes[particleIndex] = Math.random() * 0.08 + 0.03;
+      particleIndex++;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    // Shader material for particles
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 }
+      },
+      vertexShader: `
+        attribute float size;
+        attribute vec3 color;
+        varying vec3 vColor;
+        uniform float time;
+        
+        void main() {
+          vColor = color;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = size * (300.0 / -mvPosition.z);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vColor;
+        
+        void main() {
+          float r = distance(gl_PointCoord, vec2(0.5, 0.5));
+          if (r > 0.5) discard;
+          
+          float alpha = 1.0 - smoothstep(0.3, 0.5, r);
+          gl_FragColor = vec4(vColor, alpha);
+        }
+      `,
+      transparent: true,
+      vertexColors: true
+    });
+
+    particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+  }
+
+  // Animation loop
+  function animate() {
+    animationId = requestAnimationFrame(animate);
+
+    // Rotate particles slowly
+    if (particles) {
+      particles.rotation.y += 0.002;
+      particles.rotation.x += 0.001;
+      
+      // Update shader time
+      if (particles.material.uniforms) {
+        particles.material.uniforms.time.value += 0.01;
+      }
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  // Handle window resize
+  function onWindowResize() {
+    const container = document.getElementById('risk-viz-container');
+    if (!container || !camera || !renderer) return;
+
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  }
+
+  // Switch pathway
+  function switchPathway(pathway) {
+    currentPathway = pathway;
+    createParticles(pathway);
+    
+    // Update UI
+    const data = pathwayData[pathway];
+    document.getElementById('viz-description').textContent = data.description;
+    document.getElementById('accuracy-stat').textContent = data.accuracy;
+    document.getElementById('complication-stat').textContent = data.complications;
+    
+    // Update button states
+    document.querySelectorAll('.viz-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.path === pathway);
+    });
+  }
+
+  // Initialize when component is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize visualization
+    initVisualization();
+
+    // Setup button handlers
+    document.querySelectorAll('.viz-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchPathway(btn.dataset.path);
+      });
+    });
+
+    // Handle visibility changes for performance
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+      } else {
+        animate();
+      }
+    });
+  });
+
+  // Cleanup on unmount
+  document.addEventListener('astro:before-swap', () => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+    if (renderer) {
+      renderer.dispose();
+    }
+    window.removeEventListener('resize', onWindowResize);
+  });
+</script>

@@ -15,8 +15,10 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
+    "@types/three": "^0.180.0",
     "astro": "^5.15.1",
-    "tailwindcss": "^4.1.16"
+    "tailwindcss": "^4.1.16",
+    "three": "^0.180.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
