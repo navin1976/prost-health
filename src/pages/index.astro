@@ -4,18 +4,20 @@ import RiskVisualization from '../components/RiskVisualization.astro';
 ---
 
 <BaseLayout>
-  <!-- Clean Hero Section - Reference Sites Style -->
-  <section class="hero">
+  <!-- Formal Hero Section - Brighton College Style -->
+  <section class="hero formal-section">
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-eyebrow">Advanced Medical Imaging</div>
+      <div class="hero-content scroll-animate-scale">
+        <div class="hero-eyebrow formal-eyebrow">Advanced Medical Imaging</div>
         
         <h1 class="hero-title">
           Accurate, Non-Invasive
           <span class="hero-title-break">Prostate Cancer Screening</span>
         </h1>
         
-        <p class="hero-description">
+        <div class="formal-divider"></div>
+        
+        <p class="hero-description formal-lead">
           Advanced bi-parametric MRI technology provides precise prostate cancer 
           detection without radiation exposure or invasive procedures.
         </p>
@@ -29,26 +31,34 @@ import RiskVisualization from '../components/RiskVisualization.astro';
           </a>
         </div>
       </div>
+      
+      <div class="hero-image scroll-animate-fade">
+        <img 
+          src="/images/doctor-patient-consultation.jpg" 
+          alt="Doctor consulting with patient in professional medical setting"
+          class="hero-img"
+        />
+      </div>
     </div>
   </section>
 
-  <!-- Clean Statistics Section -->
-  <section class="stats">
+  <!-- Formal Statistics Section -->
+  <section class="stats formal-section">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
+      <div class="stats-grid scroll-animate-stagger">
+        <div class="stat-item formal-card">
           <div class="stat-number">96%</div>
           <div class="stat-label">Clinical Accuracy</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item formal-card">
           <div class="stat-number">0</div>
           <div class="stat-label">Radiation Exposure</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item formal-card">
           <div class="stat-number">20</div>
           <div class="stat-label">Minute Procedure</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item formal-card">
           <div class="stat-number">< 2%</div>
           <div class="stat-label">Complication Rate</div>
         </div>
@@ -56,15 +66,16 @@ import RiskVisualization from '../components/RiskVisualization.astro';
     </div>
   </section>
 
-  <!-- Clean PSA Limitations Section -->
-  <section class="content-section">
+  <!-- Formal PSA Limitations Section -->
+  <section class="content-section formal-section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">Clinical Limitations</div>
+      <div class="section-header scroll-animate">
+        <div class="section-eyebrow formal-eyebrow">Clinical Limitations</div>
         <h2 class="section-title">
           PSA Testing Has Significant Drawbacks
         </h2>
-        <p class="section-subtitle">
+        <div class="formal-divider"></div>
+        <p class="section-subtitle formal-lead">
           Prostate-Specific Antigen (PSA) testing suffers from poor specificity and sensitivity, 
           leading to unnecessary procedures and missed diagnoses.
         </p>
@@ -89,21 +100,21 @@ import RiskVisualization from '../components/RiskVisualization.astro';
         </div>
         
         <div class="content-cards">
-          <div class="card">
+          <div class="card formal-card scroll-animate-left">
             <div class="card-number">01</div>
             <h3 class="card-title">Poor Specificity</h3>
             <p class="card-description">
               PSA elevation occurs in benign conditions, leading to unnecessary interventions.
             </p>
           </div>
-          <div class="card">
+          <div class="card formal-card scroll-animate-right">
             <div class="card-number">02</div>
             <h3 class="card-title">Limited Sensitivity</h3>
             <p class="card-description">
               Normal PSA levels can mask clinically significant cancers.
             </p>
           </div>
-          <div class="card">
+          <div class="card formal-card scroll-animate-left">
             <div class="card-number">03</div>
             <h3 class="card-title">Unnecessary Procedures</h3>
             <p class="card-description">
@@ -115,15 +126,16 @@ import RiskVisualization from '../components/RiskVisualization.astro';
     </div>
   </section>
 
-  <!-- Clean bpMRI Advantages Section -->
-  <section class="content-section alt-bg">
+  <!-- Formal bpMRI Advantages Section -->
+  <section class="content-section alt-bg formal-section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">Advanced Technology</div>
+      <div class="section-header scroll-animate">
+        <div class="section-eyebrow formal-eyebrow">Advanced Technology</div>
         <h2 class="section-title">
           Bi-parametric MRI Superior Diagnostic Accuracy
         </h2>
-        <p class="section-subtitle">
+        <div class="formal-divider"></div>
+        <p class="section-subtitle formal-lead">
           Advanced imaging technology that overcomes PSA testing limitations through precise 
           anatomical and functional assessment of prostate tissue.
         </p>
