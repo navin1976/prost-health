@@ -4,40 +4,43 @@ import RiskVisualization from '../components/RiskVisualization.astro';
 ---
 
 <BaseLayout>
-  <!-- Formal Hero Section - Brighton College Style -->
-  <section class="hero formal-section">
-    <div class="container">
-      <div class="hero-content scroll-animate-scale">
-        <div class="hero-eyebrow formal-eyebrow">Advanced Medical Imaging</div>
-        
-        <h1 class="hero-title">
-          Accurate, Non-Invasive
-          <span class="hero-title-break">Prostate Cancer Screening</span>
-        </h1>
-        
-        <div class="formal-divider"></div>
-        
-        <p class="hero-description formal-lead">
-          Advanced bi-parametric MRI technology provides precise prostate cancer 
-          detection without radiation exposure or invasive procedures.
-        </p>
-        
-        <div class="hero-actions">
-          <a href="/book-mri" class="btn-primary">
-            Schedule Your Screening
-          </a>
-          <a href="/consultation" class="btn-secondary">
-            Learn More
-          </a>
+  <!-- Full-Screen Hero Section - Brighton College Style -->
+  <section class="hero-fullscreen">
+    <div class="hero-background">
+      <img 
+        src="/images/male-patient-mri-screening.jpg" 
+        alt="Male patient undergoing MRI screening for prostate health"
+        class="hero-bg-image"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="hero-content-fullscreen">
+      <div class="container">
+        <div class="hero-text-content scroll-animate-scale">
+          <div class="hero-eyebrow formal-eyebrow">Advanced Medical Imaging</div>
+          
+          <h1 class="hero-title-fullscreen">
+            Accurate, Non-Invasive
+            <span class="hero-title-break">Prostate Cancer Screening</span>
+          </h1>
+          
+          <div class="formal-divider"></div>
+          
+          <p class="hero-description-fullscreen formal-lead">
+            Advanced bi-parametric MRI technology provides precise prostate cancer 
+            detection without radiation exposure or invasive procedures.
+          </p>
+          
+          <div class="hero-actions-fullscreen">
+            <a href="/book-mri" class="btn-primary btn-large">
+              Schedule Your Screening
+            </a>
+            <a href="/consultation" class="btn-secondary btn-large">
+              Learn More
+            </a>
+          </div>
         </div>
-      </div>
-      
-      <div class="hero-image scroll-animate-fade">
-        <img 
-          src="/images/doctor-patient-consultation.jpg" 
-          alt="Doctor consulting with patient in professional medical setting"
-          class="hero-img"
-        />
       </div>
     </div>
   </section>
