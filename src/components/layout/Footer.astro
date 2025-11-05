@@ -4,93 +4,221 @@ import { NAV_ITEMS, CONTACT_EMAIL, EXTERNAL_RESOURCES } from '../../lib/constant
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-[--color-black] text-white mt-auto">
-  <div class="container mx-auto px-6 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <!-- Brand Column -->
-      <div class="space-y-4">
-        <h3 class="text-2xl font-serif font-semibold">Prost Health</h3>
-        <p class="text-sm text-gray-800">
+<footer class="footer-minimal">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- Brand Section -->
+      <div class="footer-brand">
+        <h3 class="footer-brand-title">Prost Health</h3>
+        <p class="footer-brand-description">
           The definitive approach to prostate health. MRI-first screening for clarity, not chance.
         </p>
       </div>
 
-      <!-- Navigation Column -->
-      <div>
-        <h4 class="text-sm font-semibold mb-4 uppercase tracking-wider">Navigate</h4>
-        <ul class="space-y-2">
-          {NAV_ITEMS.map(({ label, href }) => (
-            <li>
-              <a href={href} class="text-sm text-gray-800 hover:text-accent transition-colors">
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <!-- Links Sections -->
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4 class="footer-section-title">Navigate</h4>
+          <ul class="footer-links-list">
+            {NAV_ITEMS.map(({ label, href }) => (
+              <li>
+                <a href={href} class="footer-link">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <!-- Resources Column -->
-      <div>
-        <h4 class="text-sm font-semibold mb-4 uppercase tracking-wider">Support Resources</h4>
-        <ul class="space-y-2">
-          {EXTERNAL_RESOURCES.map((resource) => (
+        <div class="footer-section">
+          <h4 class="footer-section-title">Resources</h4>
+          <ul class="footer-links-list">
+            {EXTERNAL_RESOURCES.map((resource) => (
+              <li>
+                <a
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="footer-link"
+                >
+                  {resource.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-section-title">Contact</h4>
+          <ul class="footer-links-list">
             <li>
               <a
-                href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-class="text-sm text-gray-800 hover:text-accent transition-colors"
+                href={`mailto:${CONTACT_EMAIL}`}
+                class="footer-link"
               >
-                {resource.name}
+                {CONTACT_EMAIL}
               </a>
             </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Contact Column -->
-      <div>
-        <h4 class="text-sm font-semibold mb-4 uppercase tracking-wider">Get in Touch</h4>
-        <ul class="space-y-2">
-          <li>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              class="text-sm text-gray-800 hover:text-[--color-accent] transition-colors"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contact"
-              class="text-sm text-gray-800 hover:text-[--color-accent] transition-colors"
-            >
-              Contact Form
-            </a>
-          </li>
-        </ul>
+            <li>
+              <a
+                href="/contact"
+                class="footer-link"
+              >
+                Contact Form
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="mt-12 pt-8 border-t border-gray-600">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-gray-800">
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p class="footer-copyright">
           © {currentYear} Prost Health. All rights reserved.
         </p>
-        <ul class="flex gap-6 text-sm">
-          <li>
-            <a href="/privacy" class="text-gray-800 hover:text-accent transition-colors">
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a href="/terms" class="text-gray-800 hover:text-accent transition-colors">
-              Terms of Service
-            </a>
-          </li>
-        </ul>
+        <div class="footer-legal">
+          <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+          <a href="/terms" class="footer-legal-link">Terms of Service</a>
+        </div>
       </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-minimal {
+    background: var(--color-charcoal);
+    color: white;
+    margin-top: auto;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem 2rem;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand {
+    max-width: 300px;
+  }
+
+  .footer-brand-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: white;
+  }
+
+  .footer-brand-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .footer-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .footer-links-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-link {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--color-accent-light);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+  }
+
+  .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-legal-link {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-legal-link:hover {
+    color: var(--color-accent-light);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-container {
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .footer-links {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-bottom-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .footer-legal {
+      gap: 1.5rem;
+    }
+  }
+</style>

@@ -1,573 +1,480 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import RiskVisualization from '../components/RiskVisualization.astro';
-import { TAGLINE, PRIMARY_MESSAGE, SECONDARY_MESSAGE, TRUST_SIGNALS } from '../lib/constants';
 ---
 
 <BaseLayout>
-  <!-- Theme & Font Controls -->
-  <div class="design-controls">
-    <!-- Color Theme Toggle -->
-    <div class="theme-toggle">
-      <span class="control-label">Color:</span>
-      <button id="theme-green" class="theme-circle active" data-color="#1B4332" aria-label="Racing Green" title="Racing Green"></button>
-      <button id="theme-cobalt" class="theme-circle" data-color="#1e40af" aria-label="Cobalt Blue" title="Cobalt Blue"></button>
-      <button id="theme-amber" class="theme-circle" data-color="#d97706" aria-label="Amber" title="Amber"></button>
-      <button id="theme-professional-purple" class="theme-circle" data-color="#7c3aed" aria-label="Professional Purple" title="Professional Purple"></button>
-      <button id="theme-black-white" class="theme-circle" data-color="#000000" aria-label="Black & White" title="Black & White"></button>
-    </div>
-    
-    <!-- Font Toggle -->
-    <div class="font-toggle">
-      <span class="control-label">Font:</span>
-      <button id="font-serif" class="font-btn active" data-font="serif" title="Playfair Display">Aa</button>
-      <button id="font-calsans" class="font-btn" data-font="calsans" title="Cal Sans">Aa</button>
-      <button id="font-inter" class="font-btn" data-font="inter" title="Inter">Aa</button>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <section class="hero-section scroll-animate">
-    <!-- Large Hero Image -->
-    <div class="hero-image-container scroll-animate">
-      <img 
-        src="/images/alex-kirkham.jpg" 
-        alt="Alex Kirkham reporting - Expert Uroradiologist"
-        loading="eager"
-        decoding="async"
-      />
-      <!-- Overlay -->
-      <div class="hero-overlay"></div>
-    </div>
-    
-    <!-- Hero Content -->
-    <div class="hero-content container mx-auto px-6">
-      <div class="max-w-2xl text-left space-y-6">
-        <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight text-white" style="color: white !important;">
-          {TAGLINE}
+  <!-- Clean Hero Section - Reference Sites Style -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Advanced Medical Imaging</div>
+        
+        <h1 class="hero-title">
+          Accurate, Non-Invasive
+          <span class="hero-title-break">Prostate Cancer Screening</span>
         </h1>
-        <p class="text-xl md:text-2xl font-medium text-white">
-          {PRIMARY_MESSAGE}
+        
+        <p class="hero-description">
+          Advanced bi-parametric MRI technology provides precise prostate cancer 
+          detection without radiation exposure or invasive procedures.
         </p>
-        <p class="text-lg text-gray-100">
-          {SECONDARY_MESSAGE}
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 pt-8">
-          <a
-            href="/our-approach"
-            class="px-8 py-4 bg-accent text-white rounded-md bg-accent-hover transition-colors font-semibold text-lg"
-          >
-            Discover Our Approach
+        
+        <div class="hero-actions">
+          <a href="/book-mri" class="btn-primary">
+            Schedule Your Screening
           </a>
-          <a
-            href="/contact"
-            class="px-8 py-4 border-2 border-white text-white rounded-md hover:bg-white hover:text-black transition-colors font-semibold text-lg"
-          >
-            Speak with a Coordinator
+          <a href="/consultation" class="btn-secondary">
+            Learn More
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust Bar -->
-  <section class="bg-[--color-white] py-8 border-y border-[--color-light-gray] scroll-animate">
-    <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center scroll-stagger">
-        {TRUST_SIGNALS.map((signal) => (
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <span class="text-sm font-medium text-black">{signal}</span>
-          </div>
-        ))}
+  <!-- Clean Statistics Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">96%</div>
+          <div class="stat-label">Clinical Accuracy</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Radiation Exposure</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">20</div>
+          <div class="stat-label">Minute Procedure</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">< 2%</div>
+          <div class="stat-label">Complication Rate</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Problem/Solution Section -->
-  <section class="py-20 md:py-32 bg-[--color-off-white]">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16 scroll-animate">
-        <h2 class="text-4xl md:text-5xl font-serif font-bold text-[--color-black] mb-6 scroll-animate-heading">
-          Two Paths, One Clear Choice
+  <!-- Clean PSA Limitations Section -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Clinical Limitations</div>
+        <h2 class="section-title">
+          PSA Testing Has Significant Drawbacks
         </h2>
-        <p class="text-xl text-[--color-gray] max-w-3xl mx-auto scroll-animate-text">
-          Compare the traditional approach with our MRI-first method. See the difference in accuracy, 
-          safety, and peace of mind.
+        <p class="section-subtitle">
+          Prostate-Specific Antigen (PSA) testing suffers from poor specificity and sensitivity, 
+          leading to unnecessary procedures and missed diagnoses.
         </p>
       </div>
-
-      <!-- Interactive Risk Visualization -->
-      <div class="mb-16">
-        <RiskVisualization />
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto scroll-cards">
-        <!-- The Old Way -->
-        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray] scroll-card-left">
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[--color-black]">
-            Uncertainty and Invasion.
-          </h2>
-          <p class="text-[--color-gray] leading-relaxed">
-            Traditional prostate cancer screening relies on blind biopsies—invasive procedures that carry 
-            significant risks including infection, bleeding, and long-lasting urinary or sexual problems. 
-            These biopsies can miss cancers, over-diagnose insignificant ones, and leave men in a state 
-            of uncertainty.
-          </p>
-          <ul class="space-y-3">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-[#E50914] mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="text-[--color-black]">Risk of infection and complications</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-[#E50914] mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="text-[--color-black]">Potential for missed cancers</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-[#E50914] mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="text-[--color-black]">Over-diagnosis of insignificant findings</span>
-            </li>
-          </ul>
+      
+      <div class="content-grid">
+        <div class="content-text">
+          <div class="data-points">
+            <div class="data-point">
+              <div class="data-value">75%</div>
+              <div class="data-label">False positive rate</div>
+            </div>
+            <div class="data-point">
+              <div class="data-value">20%</div>
+              <div class="data-label">Cancers missed</div>
+            </div>
+            <div class="data-point">
+              <div class="data-value">25%</div>
+              <div class="data-label">Biopsy complications</div>
+            </div>
+          </div>
         </div>
-
-        <!-- The Prost Health Way -->
-        <div class="space-y-6 bg-[--color-white] p-8 rounded-lg border border-[--color-light-gray] scroll-card-right">
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-[--color-black]">
-            Precision and Peace of Mind.
-          </h2>
-          <p class="text-[--color-gray] leading-relaxed">
-            Our MRI-first approach provides high-resolution imaging that allows our expert radiologists 
-            to see exactly what's happening before any invasive procedure. This means accurate diagnosis, 
-            fewer unnecessary biopsies, and definitive answers that give you clarity and control.
-          </p>
-          <ul class="space-y-3">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-accent mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="text-black">Non-invasive, no recovery time needed</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-accent mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="text-black">96% accuracy in ruling out aggressive cancer</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-accent mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="text-black">Helps avoid unnecessary biopsies and treatment</span>
-            </li>
-          </ul>
+        
+        <div class="content-cards">
+          <div class="card">
+            <div class="card-number">01</div>
+            <h3 class="card-title">Poor Specificity</h3>
+            <p class="card-description">
+              PSA elevation occurs in benign conditions, leading to unnecessary interventions.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-number">02</div>
+            <h3 class="card-title">Limited Sensitivity</h3>
+            <p class="card-description">
+              Normal PSA levels can mask clinically significant cancers.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-number">03</div>
+            <h3 class="card-title">Unnecessary Procedures</h3>
+            <p class="card-description">
+              Blind biopsies carry risks and often detect insignificant disease.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="bg-[--color-black] text-white py-20 scroll-animate">
-    <div class="container mx-auto px-6 text-center scroll-animate-cta">
-      <h2 class="text-3xl md:text-5xl font-serif font-bold mb-6">
-        Ready to Take Control of Your Prostate Health?
-      </h2>
-      <p class="text-xl text-[--color-light-gray] mb-8 max-w-2xl mx-auto">
-        Learn more about our MRI-first approach and how it can provide you with the clarity you deserve.
-      </p>
-      <a
-        href="/our-approach"
-        class="inline-block px-8 py-4 bg-accent text-white rounded-md bg-accent-hover transition-colors font-semibold text-lg"
-      >
-        Discover Our Approach
-      </a>
+  <!-- Clean bpMRI Advantages Section -->
+  <section class="content-section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Advanced Technology</div>
+        <h2 class="section-title">
+          Bi-parametric MRI Superior Diagnostic Accuracy
+        </h2>
+        <p class="section-subtitle">
+          Advanced imaging technology that overcomes PSA testing limitations through precise 
+          anatomical and functional assessment of prostate tissue.
+        </p>
+      </div>
+      
+      <div class="advantage-grid">
+        <div class="advantage-card">
+          <div class="advantage-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+            </svg>
+          </div>
+          <div class="advantage-content">
+            <h3 class="advantage-title">T2-Weighted Imaging</h3>
+            <p class="advantage-description">
+              High-resolution anatomical visualization enables precise identification of suspicious 
+              lesions and assessment of prostate gland architecture.
+            </p>
+          </div>
+        </div>
+        
+        <div class="advantage-card">
+          <div class="advantage-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <div class="advantage-content">
+            <h3 class="advantage-title">Diffusion-Weighted Imaging</h3>
+            <p class="advantage-description">
+              Functional imaging detects cellular density changes characteristic of malignancy, 
+              providing biochemical information invisible to conventional testing.
+            </p>
+          </div>
+        </div>
+        
+        <div class="advantage-card">
+          <div class="advantage-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="advantage-content">
+            <h3 class="advantage-title">No Contrast Required</h3>
+            <p class="advantage-description">
+              Eliminates gadolinium injection risks while maintaining diagnostic accuracy, 
+              making the procedure safer and more comfortable.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Design Controls Script -->
-  <script>
-    // Color Theme Buttons
-    const themeButtons = {
-      'theme-green': 'green',
-      'theme-cobalt': 'cobalt',
-      'theme-amber': 'amber',
-      'theme-professional-purple': 'professional-purple',
-      'theme-black-white': 'black-white'
-    };
-    
-    // Font Theme Buttons
-    const fontButtons = {
-      'font-serif': 'serif',
-      'font-calsans': 'calsans',
-      'font-inter': 'inter'
-    };
-    
-    // Load saved preferences
-    const savedTheme = localStorage.getItem('theme') || 'green';
-    const savedFont = localStorage.getItem('font') || 'serif';
-    
-    // Set active color theme on load
-    Object.keys(themeButtons).forEach(buttonId => {
-      const button = document.getElementById(buttonId);
-      const themeName = themeButtons[buttonId];
+  <!-- Interactive Risk Visualization -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Clinical Evidence</div>
+        <h2 class="section-title">
+          See the Data
+          <span style="display: block;">Proven Results</span>
+        </h2>
+        <p class="section-subtitle">
+          Compare screening outcomes and understand the bpMRI advantage
+        </p>
+      </div>
+      <RiskVisualization />
+    </div>
+  </section>
+
+  <!-- Clean Process Timeline Section -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Screening Process</div>
+        <h2 class="section-title">
+          Your Journey to Accurate Results
+        </h2>
+        <p class="section-subtitle">
+          A streamlined process from consultation to results delivery
+        </p>
+      </div>
       
-      if (themeName === savedTheme) {
-        button?.classList.add('active');
-        if (themeName !== 'green') {
-          document.documentElement.setAttribute('data-theme', themeName);
-        }
-      } else {
-        button?.classList.remove('active');
-      }
-    });
-    
-    // Set active font theme on load
-    Object.keys(fontButtons).forEach(buttonId => {
-      const button = document.getElementById(buttonId);
-      const fontName = fontButtons[buttonId];
+      <div class="process-timeline">
+        <div class="process-timeline-line"></div>
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">01</div>
+            <div class="step-text">
+              <h3 class="step-title">Consultation</h3>
+              <p class="step-description">Medical history review and risk assessment with our specialist team</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">02</div>
+            <div class="step-text">
+              <h3 class="step-title">Assessment</h3>
+              <p class="step-description">Comprehensive evaluation of screening appropriateness and timing</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">03</div>
+            <div class="step-text">
+              <h3 class="step-title">Scheduling</h3>
+              <p class="step-description">Convenient appointment booking at our state-of-the-art facility</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">04</div>
+            <div class="step-text">
+              <h3 class="step-title">Preparation</h3>
+              <p class="step-description">Simple pre-procedure instructions and comfort optimization</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">05</div>
+            <div class="step-text">
+              <h3 class="step-title">bpMRI Scan</h3>
+              <p class="step-description">20-minute non-invasive imaging with advanced technology</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">06</div>
+            <div class="step-text">
+              <h3 class="step-title">Expert Review</h3>
+              <p class="step-description">Specialized prostate imaging radiologist analyzes your results</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">07</div>
+            <div class="step-text">
+              <h3 class="step-title">Results Report</h3>
+              <p class="step-description">Comprehensive report with detailed findings and recommendations</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">08</div>
+            <div class="step-text">
+              <h3 class="step-title">Consultation</h3>
+              <p class="step-description">Personal consultation to discuss results and next steps</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-content">
+            <div class="step-number">09</div>
+            <div class="step-text">
+              <h3 class="step-title">Follow-Up</h3>
+              <p class="step-description">Personalized monitoring schedule or treatment referral if needed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean Clinical Benefits Section -->
+  <section class="content-section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Clinical Advantages</div>
+        <h2 class="section-title">
+          Evidence-Based Medical Benefits
+        </h2>
+      </div>
       
-      if (fontName === savedFont) {
-        button?.classList.add('active');
-        if (fontName !== 'serif') {
-          document.documentElement.setAttribute('data-font', fontName);
-        }
-      } else {
-        button?.classList.remove('active');
-      }
-    });
-    
-    // Add click handlers to color theme buttons
-    Object.keys(themeButtons).forEach(buttonId => {
-      const button = document.getElementById(buttonId);
-      const themeName = themeButtons[buttonId];
-      
-      button?.addEventListener('click', () => {
-        // Remove all themes
-        document.documentElement.removeAttribute('data-theme');
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Targeted Detection</h3>
+          <p class="benefit-description">
+            Distinguishes clinically significant cancers from indolent disease, 
+            reducing over-diagnosis while ensuring appropriate treatment.
+          </p>
+        </div>
         
-        // Set new theme if not default green
-        if (themeName !== 'green') {
-          document.documentElement.setAttribute('data-theme', themeName);
-        }
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 12l2 2 4-4"/>
+              <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+              <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+              <path d="M13 12h3"/>
+              <path d="M8 12H5"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Non-Invasive Safety</h3>
+          <p class="benefit-description">
+            Eliminates procedure-related complications associated with biopsies 
+            while providing superior diagnostic information.
+          </p>
+        </div>
         
-        // Update active states
-        Object.keys(themeButtons).forEach(otherButtonId => {
-          document.getElementById(otherButtonId)?.classList.remove('active');
-        });
-        button.classList.add('active');
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/>
+              <path d="M18 17V9"/>
+              <path d="M13 17V5"/>
+              <path d="M8 17v-3"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Quantitative Results</h3>
+          <p class="benefit-description">
+            Provides objective, reproducible measurements that support 
+            evidence-based clinical decision making.
+          </p>
+        </div>
         
-        // Save preference
-        localStorage.setItem('theme', themeName);
-      });
-    });
-    
-    // Add click handlers to font buttons
-    Object.keys(fontButtons).forEach(buttonId => {
-      const button = document.getElementById(buttonId);
-      const fontName = fontButtons[buttonId];
-      
-      button?.addEventListener('click', () => {
-        // Remove all font themes
-        document.documentElement.removeAttribute('data-font');
-        
-        // Set new font if not default serif
-        if (fontName !== 'serif') {
-          document.documentElement.setAttribute('data-font', fontName);
-        }
-        
-        // Update active states
-        Object.keys(fontButtons).forEach(otherButtonId => {
-          document.getElementById(otherButtonId)?.classList.remove('active');
-        });
-        button.classList.add('active');
-        
-        // Save preference
-        localStorage.setItem('font', fontName);
-      });
-    });
-  </script>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Reliable Reassurance</h3>
+          <p class="benefit-description">
+            Normal results provide high-confidence reassurance, eliminating 
+            unnecessary anxiety and follow-up procedures.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Scroll Animations Script - Dramatic & Reversible -->
-  <script>
-    import anime from 'animejs';
-
-    // Wait for DOM to be ready
-    document.addEventListener('DOMContentLoaded', () => {
-      // Animation state tracking
-      const animatedElements = new Map();
-
-      // Intersection Observer for bidirectional scroll animations
-      const observerOptions = {
-        threshold: 0.1, // Lower threshold - trigger earlier when 10% visible
-        rootMargin: '100px 0px 100px 0px' // Add margin to prevent flickering at screen edges
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const element = entry.target;
-          const isInView = entry.isIntersecting;
-          
-          // Animate in when entering viewport
-          if (isInView) {
-            animateIn(element);
-          } 
-          // Animate out when leaving viewport
-          else {
-            animateOut(element);
-          }
-        });
-      }, observerOptions);
-
-      // Dramatic ENTRANCE animations
-      function animateIn(element) {
-        if (element.classList.contains('scroll-animate-viz')) {
-          // Entire visualization container - 50% reduced
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            scale: [0.95, 1],
-            translateY: [30, 0], // 60 → 30
-            duration: 1000,
-            easing: 'easeOutExpo'
-          });
-        } else if (element.classList.contains('scroll-animate-header')) {
-          // Visualization header - 50% reduced
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateY: [25, 0], // 50 → 25
-            duration: 800,
-            easing: 'easeOutExpo'
-          });
-        } else if (element.classList.contains('scroll-animate-toggle')) {
-          // Method toggle buttons - 50% reduced
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            scale: [0.9, 1], // 0.8 → 0.9
-            rotateY: [45, 0], // 90 → 45
-            duration: 900,
-            easing: 'easeOutExpo',
-            delay: 200
-          });
-        } else if (element.classList.contains('scroll-viz-card')) {
-          // Individual metric cards - 50% reduced
-          const cards = document.querySelectorAll('.scroll-viz-card');
-          const index = Array.from(cards).indexOf(element);
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateY: [40, 0], // 80 → 40
-            scale: [0.925, 1], // 0.85 → 0.925
-            rotateX: [10, 0], // 20 → 10
-            duration: 900,
-            easing: 'easeOutExpo',
-            delay: index * 150
-          });
-        } else if (element.classList.contains('scroll-animate-summary')) {
-          // Clinical summary footer - 50% reduced
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateY: [35, 0], // 70 → 35
-            scale: [0.95, 1], // 0.9 → 0.95
-            duration: 900,
-            easing: 'easeOutExpo',
-            delay: 300
-          });
-        } else if (element.classList.contains('scroll-animate-heading')) {
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateY: [40, 0], // 80 → 40
-            scale: [0.9, 1], // 0.8 → 0.9
-            rotate: [-2.5, 0], // -5 → -2.5
-            duration: 1000,
-            easing: 'easeOutExpo'
-          });
-        } else if (element.classList.contains('scroll-card-left')) {
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateX: [-75, 0], // -150 → -75
-            rotateY: [-10, 0], // -20 → -10
-            duration: 900,
-            easing: 'easeOutExpo',
-            delay: 100
-          });
-        } else if (element.classList.contains('scroll-card-right')) {
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateX: [75, 0], // 150 → 75
-            rotateY: [10, 0], // 20 → 10
-            duration: 900,
-            easing: 'easeOutExpo',
-            delay: 200
-          });
-        } else if (element.classList.contains('scroll-stagger')) {
-          anime({
-            targets: element.children,
-            opacity: [0, 1],
-            translateY: [30, 0], // 60 → 30
-            scale: [0.85, 1], // 0.7 → 0.85
-            duration: 700,
-            delay: anime.stagger(150),
-            easing: 'easeOutExpo'
-          });
-        } else if (element.classList.contains('scroll-animate')) {
-          anime({
-            targets: element,
-            opacity: [0, 1],
-            translateY: [50, 0], // 100 → 50
-            scale: [0.925, 1], // 0.85 → 0.925
-            duration: 1000,
-            easing: 'easeOutExpo'
-          });
-        }
-      }
-
-      // Dramatic EXIT animations (reverse)
-      function animateOut(element) {
-        if (element.classList.contains('scroll-animate-viz')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            scale: [1, 0.95],
-            translateY: [0, 30], // 60 → 30
-            duration: 800,
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-animate-header')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            translateY: [0, -25], // -50 → -25
-            duration: 700,
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-animate-toggle')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            scale: [1, 0.9], // 0.8 → 0.9
-            rotateY: [0, -45], // -90 → -45
-            duration: 700,
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-viz-card')) {
-          const cards = document.querySelectorAll('.scroll-viz-card');
-          const index = Array.from(cards).indexOf(element);
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            translateY: [0, -40], // -80 → -40
-            scale: [1, 0.925], // 0.85 → 0.925
-            rotateX: [0, -10], // -20 → -10
-            duration: 700,
-            easing: 'easeInExpo',
-            delay: (cards.length - 1 - index) * 100
-          });
-        } else if (element.classList.contains('scroll-animate-summary')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            translateY: [0, 35], // 70 → 35
-            scale: [1, 0.95], // 0.9 → 0.95
-            duration: 700,
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-animate-heading')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            translateY: [0, -40], // -80 → -40
-            scale: [1, 0.9], // 0.8 → 0.9
-            rotate: [0, 2.5], // 5 → 2.5
-            duration: 800,
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-card-left')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            translateX: [0, -75], // -150 → -75
-            rotateY: [0, -10], // -20 → -10
-            duration: 800,
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-card-right')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            translateX: [0, 75], // 150 → 75
-            rotateY: [0, 10], // 20 → 10
-            duration: 800,
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-stagger')) {
-          anime({
-            targets: element.children,
-            opacity: [1, 0],
-            translateY: [0, 30], // 60 → 30
-            scale: [1, 0.85], // 0.7 → 0.85
-            duration: 600,
-            delay: anime.stagger(80, {from: 'last'}),
-            easing: 'easeInExpo'
-          });
-        } else if (element.classList.contains('scroll-animate')) {
-          anime({
-            targets: element,
-            opacity: [1, 0],
-            translateY: [0, 50], // 100 → 50
-            scale: [1, 0.925], // 0.85 → 0.925
-            duration: 800,
-            easing: 'easeInExpo'
-          });
-        }
-      }
-
-      // Observe all scroll-animated elements
-      document.querySelectorAll(
-        '.scroll-animate, .scroll-animate-heading, .scroll-animate-text, .scroll-card-left, .scroll-card-right, .scroll-stagger, .scroll-animate-viz, .scroll-animate-header, .scroll-animate-toggle, .scroll-viz-card, .scroll-animate-summary'
-      ).forEach(el => {
-        observer.observe(el);
-      });
-    });
-  </script>
+  <!-- Clean CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">
+          Advanced Screening Expert Care
+        </h2>
+        <p class="cta-description">
+          Take the proactive step toward accurate prostate health assessment. 
+          Our specialized team provides comprehensive screening with immediate results consultation.
+        </p>
+        <div class="cta-actions">
+          <a href="/book-mri" class="btn-primary">
+            Schedule Your Screening
+          </a>
+          <a href="/consultation" class="btn-secondary">
+            Speak with Our Team
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<!-- Scroll-Triggered Timeline Animation Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.process-step');
+    const timeline = document.querySelector('.process-timeline');
+    const line = document.querySelector('.process-timeline-line');
+    
+    let prevScrollY = window.scrollY;
+    let up, down;
+    let full = false;
+    let set = 0;
+    const targetY = window.innerHeight * 0.8;
+    
+    function scrollHandler() {
+      const { scrollY } = window;
+      
+      up = scrollY < prevScrollY;
+      down = !up;
+      
+      const timelineRect = timeline.getBoundingClientRect();
+      const dist = targetY - timelineRect.top;
+      
+      // Handle line growth animation
+      if (down && !full) {
+        set = Math.max(set, dist);
+        line.style.height = `${set}px`;
+      }
+      
+      // Handle section animations
+      sections.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        
+        if (rect.top + item.offsetHeight / 5 < targetY) {
+          item.classList.add('show-me');
+        } else if (up) {
+          // Remove class when scrolling up for reverse animation
+          item.classList.remove('show-me');
+        }
+      });
+      
+      // Handle full line extension
+      if (dist > timeline.offsetHeight + 50 && !full) {
+        full = true;
+        line.style.height = `calc(100% + 50px)`;
+      } else if (up && full) {
+        // Reset when scrolling up
+        full = false;
+        line.style.height = '0px';
+      }
+      
+      prevScrollY = window.scrollY;
+    }
+    
+    // Initialize
+    scrollHandler();
+    window.addEventListener('scroll', scrollHandler);
+    
+    // Add hover effects
+    sections.forEach(step => {
+      const content = step.querySelector('.step-content');
+      
+      content.addEventListener('mouseenter', () => {
+        if (step.classList.contains('show-me')) {
+          content.style.transform = 'translateY(-4px)';
+          content.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.15)';
+        }
+      });
+      
+      content.addEventListener('mouseleave', () => {
+        content.style.transform = 'translateY(0)';
+        content.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.08)';
+      });
+    });
+  });
+</script>
