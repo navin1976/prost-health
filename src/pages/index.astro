@@ -7,9 +7,9 @@ import RiskVisualization from '../components/RiskVisualization.astro';
   <!-- Full-Screen Hero Section - Brighton College Style -->
   <section class="hero-fullscreen">
     <div class="hero-background">
-      <img 
-        src="/images/male-patient-mri-screening.jpg" 
-        alt="Male patient undergoing MRI screening for prostate health"
+      <img
+        src="/images/alex-kirkham.jpg"
+        alt="Professional medical imaging consultation for prostate health"
         class="hero-bg-image"
       />
       <div class="hero-overlay"></div>
@@ -129,6 +129,30 @@ import RiskVisualization from '../components/RiskVisualization.astro';
     </div>
   </section>
 
+  <!-- Image Feature Section - Brighton College Style -->
+  <section class="content-section image-feature-section">
+    <div class="container">
+      <div class="image-feature-grid">
+        <div class="image-feature-content scroll-animate-left">
+          <div class="formal-eyebrow">State-of-the-Art Technology</div>
+          <h2 class="section-title">Advanced Imaging Excellence</h2>
+          <div class="formal-divider" style="margin-left: 0;"></div>
+          <p class="formal-lead" style="color: var(--color-gray-700);">
+            Our cutting-edge MRI technology provides unparalleled clarity and precision,
+            enabling our specialists to detect and assess prostate conditions with exceptional accuracy.
+          </p>
+          <p style="color: var(--color-gray-600); font-size: 1.125rem; line-height: 1.7;">
+            We utilize the latest bi-parametric MRI systems, specifically calibrated for prostate imaging,
+            ensuring optimal diagnostic quality while maintaining patient comfort throughout the procedure.
+          </p>
+        </div>
+        <div class="image-feature-image scroll-animate-right">
+          <img src="/images/mri-scanner-modern.jpg" alt="Modern MRI scanner technology" class="feature-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Formal bpMRI Advantages Section -->
   <section class="content-section alt-bg formal-section">
     <div class="container">
@@ -139,7 +163,7 @@ import RiskVisualization from '../components/RiskVisualization.astro';
         </h2>
         <div class="formal-divider"></div>
         <p class="section-subtitle formal-lead">
-          Advanced imaging technology that overcomes PSA testing limitations through precise 
+          Advanced imaging technology that overcomes PSA testing limitations through precise
           anatomical and functional assessment of prostate tissue.
         </p>
       </div>
@@ -394,6 +418,49 @@ import RiskVisualization from '../components/RiskVisualization.astro';
     </div>
   </section>
 
+  <!-- Patient Care Section - Brighton College Style -->
+  <section class="content-section patient-care-section">
+    <div class="container">
+      <div class="patient-care-grid">
+        <div class="patient-care-image scroll-animate-left">
+          <img src="/images/doctor-patient-consultation.jpg" alt="Doctor consulting with patient" class="care-img" />
+        </div>
+        <div class="patient-care-content scroll-animate-right">
+          <div class="formal-eyebrow">Personalized Care</div>
+          <h2 class="section-title">Expert Guidance at Every Step</h2>
+          <div class="formal-divider" style="margin-left: 0;"></div>
+          <p class="formal-lead" style="color: var(--color-gray-700);">
+            Our dedicated specialists provide comprehensive support throughout your screening journey,
+            ensuring you understand every aspect of your prostate health assessment.
+          </p>
+          <div class="care-features">
+            <div class="care-feature-item">
+              <div class="care-feature-number">01</div>
+              <div class="care-feature-text">
+                <h4>Individual Consultation</h4>
+                <p>Detailed discussion of your medical history and screening objectives with experienced specialists.</p>
+              </div>
+            </div>
+            <div class="care-feature-item">
+              <div class="care-feature-number">02</div>
+              <div class="care-feature-text">
+                <h4>Results Interpretation</h4>
+                <p>Clear explanation of findings and personalized recommendations for your ongoing health management.</p>
+              </div>
+            </div>
+            <div class="care-feature-item">
+              <div class="care-feature-number">03</div>
+              <div class="care-feature-text">
+                <h4>Continuous Support</h4>
+                <p>Ongoing access to our medical team for questions and guidance throughout your care journey.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Clean CTA Section -->
   <section class="cta-section">
     <div class="container">
@@ -402,14 +469,14 @@ import RiskVisualization from '../components/RiskVisualization.astro';
           Advanced Screening Expert Care
         </h2>
         <p class="cta-description">
-          Take the proactive step toward accurate prostate health assessment. 
+          Take the proactive step toward accurate prostate health assessment.
           Our specialized team provides comprehensive screening with immediate results consultation.
         </p>
         <div class="cta-actions">
-          <a href="/book-mri" class="btn-primary">
+          <a href="/book-mri" class="btn-primary btn-large">
             Schedule Your Screening
           </a>
-          <a href="/consultation" class="btn-secondary">
+          <a href="/consultation" class="btn-secondary btn-large">
             Speak with Our Team
           </a>
         </div>
@@ -418,78 +485,104 @@ import RiskVisualization from '../components/RiskVisualization.astro';
   </section>
 </BaseLayout>
 
-<!-- Scroll-Triggered Timeline Animation Script -->
+<!-- Scroll-Triggered Animations Script -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Timeline animation
     const sections = document.querySelectorAll('.process-step');
     const timeline = document.querySelector('.process-timeline');
     const line = document.querySelector('.process-timeline-line');
-    
+
     let prevScrollY = window.scrollY;
     let up, down;
     let full = false;
     let set = 0;
     const targetY = window.innerHeight * 0.8;
-    
+
     function scrollHandler() {
       const { scrollY } = window;
-      
+
       up = scrollY < prevScrollY;
       down = !up;
-      
-      const timelineRect = timeline.getBoundingClientRect();
-      const dist = targetY - timelineRect.top;
-      
-      // Handle line growth animation
-      if (down && !full) {
-        set = Math.max(set, dist);
-        line.style.height = `${set}px`;
+
+      if (timeline) {
+        const timelineRect = timeline.getBoundingClientRect();
+        const dist = targetY - timelineRect.top;
+
+        // Handle line growth animation
+        if (down && !full && line) {
+          set = Math.max(set, dist);
+          line.style.height = `${set}px`;
+        }
+
+        // Handle full line extension
+        if (dist > timeline.offsetHeight + 50 && !full && line) {
+          full = true;
+          line.style.height = `calc(100% + 50px)`;
+        } else if (up && full && line) {
+          // Reset when scrolling up
+          full = false;
+          line.style.height = '0px';
+        }
       }
-      
+
       // Handle section animations
       sections.forEach(item => {
         const rect = item.getBoundingClientRect();
-        
+
         if (rect.top + item.offsetHeight / 5 < targetY) {
           item.classList.add('show-me');
         } else if (up) {
-          // Remove class when scrolling up for reverse animation
           item.classList.remove('show-me');
         }
       });
-      
-      // Handle full line extension
-      if (dist > timeline.offsetHeight + 50 && !full) {
-        full = true;
-        line.style.height = `calc(100% + 50px)`;
-      } else if (up && full) {
-        // Reset when scrolling up
-        full = false;
-        line.style.height = '0px';
-      }
-      
+
       prevScrollY = window.scrollY;
     }
-    
-    // Initialize
-    scrollHandler();
-    window.addEventListener('scroll', scrollHandler);
-    
-    // Add hover effects
-    sections.forEach(step => {
-      const content = step.querySelector('.step-content');
-      
-      content.addEventListener('mouseenter', () => {
-        if (step.classList.contains('show-me')) {
-          content.style.transform = 'translateY(-4px)';
-          content.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.15)';
+
+    // General scroll animations for all elements
+    function handleScrollAnimations() {
+      const animatedElements = document.querySelectorAll(
+        '.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale, .scroll-animate-stagger'
+      );
+
+      animatedElements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // Trigger animation when element is 20% into viewport
+        if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+          element.classList.add('visible');
         }
       });
-      
-      content.addEventListener('mouseleave', () => {
-        content.style.transform = 'translateY(0)';
-        content.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.08)';
-      });
+    }
+
+    // Initialize
+    scrollHandler();
+    handleScrollAnimations();
+
+    window.addEventListener('scroll', () => {
+      scrollHandler();
+      handleScrollAnimations();
+    });
+
+    // Add hover effects for timeline
+    sections.forEach(step => {
+      const content = step.querySelector('.step-content');
+
+      if (content) {
+        content.addEventListener('mouseenter', () => {
+          if (step.classList.contains('show-me')) {
+            content.style.transform = 'translateY(-4px)';
+            content.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.15)';
+          }
+        });
+
+        content.addEventListener('mouseleave', () => {
+          content.style.transform = 'translateY(0)';
+          content.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.08)';
+        });
+      }
     });
   });
 </script>
