@@ -897,8 +897,6 @@ div,
 .process-step {
   display: flex;
   opacity: 1; /* Visible by default for graceful degradation */
-  transform: translateX(0); /* No transform by default */
-  transition: 600ms ease;
   position: relative;
   z-index: 1;
   margin: 40px 0;
@@ -912,39 +910,29 @@ div,
   min-height: 120px;
   width: calc(50% - 4rem);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  /* GSAP handles all transforms - no CSS transforms here */
 }
 
 .process-step:nth-child(even) {
-  transform: translateX(100%);
   margin-left: auto;
   margin-right: 0;
 }
 
 .process-step:nth-child(odd) {
-  transform: translateX(-100%);
   margin-right: auto;
   margin-left: 0;
 }
 
-.process-step.show-me {
-  transform: translateX(0);
-  opacity: 1;
-}
+/* Removed .show-me class - GSAP controls animations now */
 
 .process-step:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(91, 159, 216, 0.4);
-  transform: translateX(0) translateY(-2px);
   box-shadow: 0 4px 16px rgba(91, 159, 216, 0.2);
+  /* GSAP handles transforms, hover only changes visual properties */
 }
 
 /* Timeline dots removed - clean timeline without dots */
-
-/* Simple, fast hover animation - no bounce */
-
-.process-step.show-me::before {
-  border-color: var(--color-accent);
-}
 
 .step-content {
   width: 100%;
@@ -1042,7 +1030,7 @@ div,
     margin-left: 55px !important;
     margin-right: 0 !important;
     margin-bottom: var(--space-lg);
-    transform: translateX(0) !important;
+    /* GSAP handles transforms */
   }
 
   /* Force ALL cards to appear on RIGHT side on mobile - no alternating */
@@ -1057,12 +1045,10 @@ div,
   .process-step:nth-child(9) {
     margin-left: 55px !important;
     margin-right: 0 !important;
-    transform: translateX(0) !important;
+    /* GSAP handles transforms */
   }
 
-  .process-step.show-me {
-    transform: translateX(0) !important;
-  }
+  /* Removed .show-me - GSAP handles mobile animations too */
 
   .step-content {
     width: 100%;

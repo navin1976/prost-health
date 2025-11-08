@@ -690,9 +690,8 @@
 </style>
 
 <script>
-  import anime from 'animejs';
-
-  console.log('Anime.js loaded:', typeof anime, anime);
+  // Removed anime.js dependency - using instant display instead
+  console.log('RiskVisualization script loaded');
 
   // Global function for toggling visualization details
   window.toggleVisualizationDetails = function() {
@@ -795,11 +794,7 @@
       return;
     }
 
-    // Clear existing icons and stop any animations
-    const existingIcons = container.querySelectorAll('.grid-icon-spacious');
-    if (existingIcons.length > 0) {
-      anime.remove(existingIcons);
-    }
+    // Clear existing icons
     container.innerHTML = '';
     
     console.log(`Creating ${containerId} with ${data.success + (data.warning || 0) + (data.danger || 0)} icons`);
