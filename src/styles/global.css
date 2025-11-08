@@ -896,8 +896,8 @@ div,
 
 .process-step {
   display: flex;
-  opacity: 0;
-  transform: translateX(-100%);
+  opacity: 1; /* Visible by default for graceful degradation */
+  transform: translateX(0); /* No transform by default */
   transition: 600ms ease;
   position: relative;
   z-index: 1;
@@ -1318,10 +1318,10 @@ div,
   border-color: var(--color-white);
 }
 
-/* Scroll Animations - Formal like Brighton College */
+/* Scroll Animations - Visible by default for graceful degradation */
 .scroll-animate {
-  opacity: 0;
-  transform: translateY(50px);
+  opacity: 1; /* Visible by default */
+  transform: translateY(0); /* No transform by default */
   transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
               transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -1332,8 +1332,8 @@ div,
 }
 
 .scroll-animate-left {
-  opacity: 0;
-  transform: translateX(-80px);
+  opacity: 1; /* Visible by default */
+  transform: translateX(0); /* No transform by default */
   transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
               transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -1344,8 +1344,8 @@ div,
 }
 
 .scroll-animate-right {
-  opacity: 0;
-  transform: translateX(80px);
+  opacity: 1; /* Visible by default */
+  transform: translateX(0); /* No transform by default */
   transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
               transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -1356,8 +1356,8 @@ div,
 }
 
 .scroll-animate-scale {
-  opacity: 0;
-  transform: scale(0.85);
+  opacity: 1; /* Visible by default */
+  transform: scale(1); /* No transform by default */
   transition: opacity 0.9s cubic-bezier(0.215, 0.61, 0.355, 1),
               transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
@@ -1368,8 +1368,8 @@ div,
 }
 
 .scroll-animate-stagger {
-  opacity: 0;
-  transform: translateY(40px) scale(0.9);
+  opacity: 1; /* Visible by default */
+  transform: translateY(0) scale(1); /* No transform by default */
   transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1),
               transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -2157,6 +2157,47 @@ div,
   }
 }
 
+/* 3D Transform Perspectives for Dramatic Animations */
+.stats-grid,
+.process-timeline,
+.benefits-grid,
+.advantage-grid {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.stat-item,
+.process-step,
+.benefit-card,
+.advantage-card,
+.btn-primary,
+.btn-secondary,
+.btn-large {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Smooth scroll container */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .scroll-animate,
@@ -2166,6 +2207,15 @@ div,
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  /* Disable 3D transforms for reduced motion */
+  .stat-item,
+  .process-step,
+  .benefit-card,
+  .advantage-card {
+    perspective: none !important;
+    transform: none !important;
   }
 }
 

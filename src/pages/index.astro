@@ -478,122 +478,15 @@ import RiskVisualization from '../components/RiskVisualization.astro';
   </section>
 </BaseLayout>
 
-<!-- Scroll-Triggered Animations Script -->
+
+<!-- Dramatic Scroll Animations -->
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Timeline animation
-    const sections = document.querySelectorAll('.process-step');
-    const timeline = document.querySelector('.process-timeline');
-    const line = document.querySelector('.process-timeline-line');
-    let prevScrollY = window.scrollY;
-    let ticking = false;
+  import { initAnimations } from '../scripts/animations';
 
-    function scrollHandler() {
-      const { scrollY } = window;
-      const up = scrollY < prevScrollY;
-
-      if (timeline && line) {
-        const timelineRect = timeline.getBoundingClientRect();
-        const timelineTop = timelineRect.top + scrollY;
-        const timelineHeight = timeline.offsetHeight;
-        const viewportHeight = window.innerHeight;
-
-        // Start growing when timeline enters viewport
-        const scrollTriggerStart = timelineTop - viewportHeight + 300;
-        // Complete when timeline bottom reaches middle of viewport
-        const scrollTriggerEnd = timelineTop + timelineHeight - (viewportHeight / 2);
-
-        // Calculate progress (0 to 1)
-        const scrollProgress = (scrollY - scrollTriggerStart) / (scrollTriggerEnd - scrollTriggerStart);
-        const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
-
-        // Set line height based on progress - extend to full height plus padding
-        const lineHeight = clampedProgress * (timelineHeight + 100); // Extra 100px for top/bottom padding
-        line.style.height = `${lineHeight}px`;
-      }
-
-      // Handle section animations
-      const targetY = window.innerHeight * 0.8;
-      sections.forEach(item => {
-        const rect = item.getBoundingClientRect();
-
-        if (rect.top + item.offsetHeight / 5 < targetY) {
-          item.classList.add('show-me');
-        } else if (up && rect.top > targetY) {
-          item.classList.remove('show-me');
-        }
-      });
-
-      prevScrollY = scrollY;
-      ticking = false;
-    }
-
-    // Use requestAnimationFrame for smooth performance
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(scrollHandler);
-        ticking = true;
-      }
-    }
-
-    // General scroll animations for all elements
-    function handleScrollAnimations() {
-      const animatedElements = document.querySelectorAll(
-        '.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale, .scroll-animate-stagger'
-      );
-
-      animatedElements.forEach(element => {
-        const rect = element.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        // Trigger animation when element enters viewport from bottom
-        // Remove when element exits viewport from top (scrolling up past it)
-        if (rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2) {
-          element.classList.add('visible');
-        } else {
-          element.classList.remove('visible');
-        }
-      });
-
-      // Parallax effect for images
-      const parallaxImages = document.querySelectorAll('.parallax-image');
-      parallaxImages.forEach(image => {
-        const rect = image.getBoundingClientRect();
-        const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        const translateY = (scrollPercent - 0.5) * 30; // Subtle movement
-
-        if (scrollPercent >= 0 && scrollPercent <= 1) {
-          image.style.transform = `translateY(${translateY}px) scale(1.05)`;
-        }
-      });
-    }
-
-    // Initialize
-    scrollHandler();
-    handleScrollAnimations();
-
-    window.addEventListener('scroll', () => {
-      requestTick();
-      handleScrollAnimations();
-    }, { passive: true });
-
-    // Add hover effects for timeline
-    sections.forEach(step => {
-      const content = step.querySelector('.step-content');
-
-      if (content) {
-        content.addEventListener('mouseenter', () => {
-          if (step.classList.contains('show-me')) {
-            content.style.transform = 'translateY(-4px)';
-            content.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.15)';
-          }
-        });
-
-        content.addEventListener('mouseleave', () => {
-          content.style.transform = 'translateY(0)';
-          content.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.08)';
-        });
-      }
-    });
-  });
+  // Initialize animations when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnimations);
+  } else {
+    initAnimations();
+  }
 </script>
