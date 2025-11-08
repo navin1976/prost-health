@@ -63,7 +63,8 @@ export function initAnimations() {
       scrollTrigger: {
         trigger: heroContent,
         start: 'top 95%',
-        toggleActions: 'play none none reverse', // Reversible but no re-play on enter back
+        end: 'bottom 5%', // Only reverse when nearly off top of screen
+        toggleActions: 'play none none reverse',
       },
     });
   }
@@ -80,6 +81,7 @@ export function initAnimations() {
     scrollTrigger: {
       trigger: '.stats-grid',
       start: 'top 80%',
+      end: 'bottom 5%', // Only reverse when nearly off top of screen
       onEnter: () => console.log('Stats animation triggered'),
       onLeave: () => console.log('Stats animation left'),
       onEnterBack: () => console.log('Stats animation entered back'),
@@ -153,6 +155,7 @@ export function initAnimations() {
         scrollTrigger: {
           trigger: element,
           start: 'top 85%',
+          end: 'bottom 5%', // Only reverse when nearly off top of screen
           onEnter: () => console.log(`Process step ${index} animation triggered`),
           toggleActions: 'play reverse play reverse', // Reversible animation
         },
@@ -175,6 +178,7 @@ export function initAnimations() {
         scrollTrigger: {
           trigger: element,
           start: index >= processSteps.length - 2 ? 'top 90%' : 'top 80%',
+          end: 'bottom 5%', // Only reverse when nearly off top of screen
           onEnter: () => console.log(`Process step ${index} animation triggered`),
           toggleActions: 'play reverse play reverse', // Reversible animation
         },
@@ -208,6 +212,7 @@ export function initAnimations() {
           scrollTrigger: {
             trigger: element,
             start: 'top 90%',
+            end: 'bottom 5%', // Only reverse when nearly off top of screen
             toggleActions: 'play reverse play reverse', // Reversible animation
           },
           y: 40,
@@ -223,6 +228,7 @@ export function initAnimations() {
           scrollTrigger: {
             trigger: element,
             start: 'top 85%',
+            end: 'bottom 5%', // Only reverse when nearly off top of screen
             toggleActions: 'play reverse play reverse', // Reversible animation
           },
           rotationX: 15,
@@ -252,6 +258,7 @@ export function initAnimations() {
       scrollTrigger: {
         trigger: el,
         start: 'top 85%',
+        end: 'bottom 5%', // Only reverse when nearly off top of screen
         onEnter: () => console.log(`Scroll-animate element ${i} triggered`),
         onLeave: () => console.log(`Scroll-animate element ${i} left`),
         toggleActions: 'play reverse play reverse', // Reversible animation
@@ -271,6 +278,7 @@ export function initAnimations() {
       scrollTrigger: {
         trigger: el,
         start: 'top 85%',
+        end: 'bottom 5%', // Only reverse when nearly off top of screen
         onEnter: () => console.log(`Scroll-left element ${i} triggered`),
         onLeave: () => console.log(`Scroll-left element ${i} left`),
         toggleActions: 'play reverse play reverse', // Reversible animation
@@ -290,6 +298,7 @@ export function initAnimations() {
       scrollTrigger: {
         trigger: el,
         start: 'top 85%',
+        end: 'bottom 5%', // Only reverse when nearly off top of screen
         onEnter: () => console.log(`Scroll-right element ${i} triggered`),
         onLeave: () => console.log(`Scroll-right element ${i} left`),
         toggleActions: 'play reverse play reverse', // Reversible animation
@@ -312,6 +321,7 @@ export function initAnimations() {
       scrollTrigger: {
         trigger: el,
         start: 'top 85%',
+        end: 'bottom 5%', // Only reverse when nearly off top of screen
         onEnter: () => console.log(`Scroll-scale element ${i} triggered`),
         onLeave: () => console.log(`Scroll-scale element ${i} left`),
         toggleActions: 'play reverse play reverse', // Reversible animation
