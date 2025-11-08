@@ -690,21 +690,30 @@
 </style>
 
 <script>
-  // Removed anime.js dependency - using instant display instead
+  // Using GSAP instead of anime.js for animations
   console.log('RiskVisualization script loaded');
 
   // Global function for toggling visualization details
-  window.toggleVisualizationDetails = function() {
+  (window as any).toggleVisualizationDetails = function() {
     const details = document.getElementById('viz-details');
-    const toggle = document.querySelector('.details-toggle');
-    const icon = toggle.querySelector('.toggle-icon');
-    const text = toggle.querySelector('.toggle-text');
+    const toggle = document.querySelector('.details-toggle') as HTMLElement | null;
+    const icon = toggle?.querySelector('.toggle-icon') as HTMLElement | null;
+    const text = toggle?.querySelector('.toggle-text') as HTMLElement | null;
+    
+    if (!details || !toggle || !icon || !text) return;
     
     if (details.classList.contains('expanded')) {
       // Collapse
       details.classList.remove('expanded');
       icon.classList.remove('expanded');
       text.textContent = 'View detailed breakdown';
+      
+      // Refresh ScrollTrigger after collapse animation completes
+      setTimeout(() => {
+        if (typeof (window as any).ScrollTrigger !== 'undefined') {
+          (window as any).ScrollTrigger.refresh();
+        }
+      }, 500); // Wait for collapse animation to complete
     } else {
       // Expand
       details.classList.add('expanded');
@@ -715,11 +724,18 @@
       setTimeout(() => {
         animateDetailedContent();
       }, 100);
+      
+      // Refresh ScrollTrigger after expand animation completes
+      setTimeout(() => {
+        if (typeof (window as any).ScrollTrigger !== 'undefined') {
+          (window as any).ScrollTrigger.refresh();
+        }
+      }, 600); // Wait for expand animation to complete
     }
   };
 
   // Clinical data based on peer-reviewed medical evidence
-  const clinicalData = {
+  const clinicalData: any = {
     mri: {
       accuracy: {
         value: '96%',
@@ -787,7 +803,7 @@
   let hasInitialized = false;
 
   // Create icon grid visualization with clustering and Material Symbols
-  function createIconGrid(containerId, data) {
+  function createIconGrid(containerId: string, data: any) {
     const container = document.getElementById(containerId);
     if (!container) {
       console.warn('Container not found:', containerId);
@@ -837,7 +853,7 @@
       
       // Create span with inline style to force color
       icon.innerHTML = `<span class="material-symbols-outlined" style="color: ${iconColor} !important;">${iconData.icon}</span>`;
-      icon.setAttribute('data-index', index);
+      icon.setAttribute('data-index', String(index));
       icon.setAttribute('data-type', iconData.type);
       
       container.appendChild(icon);
@@ -845,22 +861,26 @@
 
     // Instantly show icons without animation
     console.log(`Showing ${containerId} icons`);
-    anime({
-      targets: `#${containerId} .grid-icon-spacious`,
-      opacity: [0, 1],
-      scale: [1, 1],
-      duration: 0,
-      easing: 'linear'
-    });
+    // Using GSAP instead of anime.js
+    if (typeof (window as any).gsap !== 'undefined') {
+      (window as any).gsap.set(`#${containerId} .grid-icon-spacious`, { opacity: 1, scale: 1 });
+    } else {
+      // Fallback to direct DOM manipulation
+      const icons = document.querySelectorAll(`#${containerId} .grid-icon-spacious`);
+      icons.forEach(icon => {
+        (icon as HTMLElement).style.opacity = '1';
+        (icon as HTMLElement).style.transform = 'scale(1)';
+      });
+    }
   }
 
   // Animate detailed content when expanded
   function animateDetailedContent() {
-    // Animation removed - cards appear instantly
+    // Cards appear instantly - no animation needed
   }
 
   // Update legend text to match current data
-  function updateLegends(data) {
+  function updateLegends(data: any) {
     // Update accuracy legends
     const accuracySuccess = document.getElementById('accuracy-legend-success');
     const accuracyDanger = document.getElementById('accuracy-legend-danger');
@@ -886,8 +906,8 @@
     }
   }
 
-  // Update visualization with anime.js transitions
-  function updateVisualization(method) {
+  // Update visualization without anime.js - using direct DOM updates
+  function updateVisualization(method: string) {
     if (isAnimating) {
       console.log('Animation already in progress, skipping...');
       return;
@@ -900,143 +920,81 @@
     
     isAnimating = true;
     currentMethod = method;
-    const data = clinicalData[method];
+    const data = (clinicalData as any)[method];
     
-    // Animate metric values in summary cards
+    // Update metric values in summary cards instantly
     const accuracyValue = document.getElementById('accuracy-value');
     const complicationValue = document.getElementById('complication-value');
     const unnecessaryValue = document.getElementById('unnecessary-value');
     
-    // Anime.js value animation - opacity only to prevent card collapse
-    anime({
-      targets: [accuracyValue, complicationValue, unnecessaryValue],
-      opacity: [1, 0],
-      duration: 200,
-      easing: 'easeInQuad',
-      complete: () => {
-        accuracyValue.textContent = data.accuracy.value;
-        complicationValue.textContent = data.complications.value;
-        unnecessaryValue.textContent = data.unnecessary.value;
-        
-        anime({
-          targets: [accuracyValue, complicationValue, unnecessaryValue],
-          opacity: [0, 1],
-          duration: 250,
-          easing: 'easeOutQuad'
-        });
-      }
-    });
+    if (accuracyValue) accuracyValue.textContent = data.accuracy.value;
+    if (complicationValue) complicationValue.textContent = data.complications.value;
+    if (unnecessaryValue) unnecessaryValue.textContent = data.unnecessary.value;
 
-    // Update detailed percentage displays
+    // Update detailed percentage displays instantly
     const detailAccuracy = document.getElementById('detail-accuracy');
     const detailComplications = document.getElementById('detail-complications');
     const detailUnnecessary = document.getElementById('detail-unnecessary');
     
-    if (detailAccuracy && detailComplications && detailUnnecessary) {
-      anime({
-        targets: [detailAccuracy, detailComplications, detailUnnecessary],
-        opacity: [1, 0],
-        duration: 200,
-        easing: 'easeInQuad',
-        complete: () => {
-          detailAccuracy.textContent = data.accuracy.value;
-          detailComplications.textContent = data.complications.value;
-          detailUnnecessary.textContent = data.unnecessary.value;
-          
-          anime({
-            targets: [detailAccuracy, detailComplications, detailUnnecessary],
-            opacity: [0, 1],
-            duration: 250,
-            easing: 'easeOutQuad'
-          });
-        }
-      });
-    }
+    if (detailAccuracy) detailAccuracy.textContent = data.accuracy.value;
+    if (detailComplications) detailComplications.textContent = data.complications.value;
+    if (detailUnnecessary) detailUnnecessary.textContent = data.unnecessary.value;
     
-    // Animate summary text - opacity only to prevent layout shift
+    // Update summary text instantly
     const summaryText = document.getElementById('summary-text');
-    anime({
-      targets: summaryText,
-      opacity: [1, 0],
-      duration: 200,
-      easing: 'easeInQuad',
-      complete: () => {
-        summaryText.textContent = data.summary;
-        anime({
-          targets: summaryText,
-          opacity: [0, 1],
-          duration: 250,
-          easing: 'easeOutQuad'
-        });
-      }
-    });
+    if (summaryText) summaryText.textContent = data.summary;
     
-    // Animate out existing icons - FAST exit, no stagger
+    // Update icon grids
     const existingIcons = document.querySelectorAll('.grid-icon-spacious');
     if (existingIcons.length > 0 && hasInitialized) {
       console.log(`Exiting ${existingIcons.length} icons`);
       
-      // First stop any running animations on these icons
-      anime.remove(existingIcons);
+      // Clear grids and immediately create new ones
+      const accuracyGrid = document.getElementById('accuracy-grid');
+      const complicationGrid = document.getElementById('complication-grid');
+      const unnecessaryGrid = document.getElementById('unnecessary-grid');
       
-      // Fade out and remove old icons WHILE keeping grid structure
-      anime({
-        targets: existingIcons,
-        opacity: [1, 0],
-        duration: 200,
-        easing: 'easeInQuad',
-        complete: () => {
-          console.log('Exit complete, creating new grids');
-          
-          // Clear grids and immediately create new ones to maintain size
-          document.getElementById('accuracy-grid').innerHTML = '';
-          document.getElementById('complication-grid').innerHTML = '';
-          document.getElementById('unnecessary-grid').innerHTML = '';
-          
-          // Create new grids immediately - no delays to prevent size changes
-          createIconGrid('accuracy-grid', data.accuracy);
-          createIconGrid('complication-grid', data.complications);
-          createIconGrid('unnecessary-grid', data.unnecessary);
+      if (accuracyGrid) accuracyGrid.innerHTML = '';
+      if (complicationGrid) complicationGrid.innerHTML = '';
+      if (unnecessaryGrid) unnecessaryGrid.innerHTML = '';
+      
+      // Create new grids immediately
+      createIconGrid('accuracy-grid', data.accuracy);
+      createIconGrid('complication-grid', data.complications);
+      createIconGrid('unnecessary-grid', data.unnecessary);
 
-          // Update legend text to match the new data
-          updateLegends(data);
+      // Update legend text to match the new data
+      updateLegends(data);
 
-          setTimeout(() => {
-            console.log('Animation complete, unlocking');
-            isAnimating = false;
-          }, 1200);
-        }
-      });
+      setTimeout(() => {
+        console.log('Animation complete, unlocking');
+        isAnimating = false;
+      }, 100);
     } else {
       // First time initialization
       console.log('First time init');
 
-      setTimeout(() => createIconGrid('accuracy-grid', data.accuracy), 0);
-      setTimeout(() => createIconGrid('complication-grid', data.complications), 200);
-      setTimeout(() => createIconGrid('unnecessary-grid', data.unnecessary), 400);
+      createIconGrid('accuracy-grid', data.accuracy);
+      createIconGrid('complication-grid', data.complications);
+      createIconGrid('unnecessary-grid', data.unnecessary);
 
       // Update legend text for initial display
-      setTimeout(() => updateLegends(data), 400);
+      updateLegends(data);
 
       hasInitialized = true;
 
       setTimeout(() => {
         isAnimating = false;
-      }, 2500);
+      }, 100);
     }
     
-    // Update button states with subtle animation
+    // Update button states
     document.querySelectorAll('.method-btn-minimal').forEach(btn => {
-      if (btn.dataset.method === method) {
-        btn.classList.add('active');
-        anime({
-          targets: btn,
-          scale: [0.98, 1],
-          duration: 200,
-          easing: 'easeOutQuad'
-        });
+      const methodBtn = btn as HTMLElement;
+      if ((methodBtn as any).dataset.method === method) {
+        methodBtn.classList.add('active');
       } else {
-        btn.classList.remove('active');
+        methodBtn.classList.remove('active');
       }
     });
   }
@@ -1046,12 +1004,12 @@
     // Set up button handlers
     document.querySelectorAll('.method-btn-minimal').forEach(btn => {
       btn.addEventListener('click', () => {
-        updateVisualization(btn.dataset.method);
+        updateVisualization((btn as any).dataset.method);
       });
     });
     
     // Use Intersection Observer to trigger animation when in view
-    const vizContainer = document.getElementById('clinical-viz');
+    const vizContainer = document.getElementById('clinical-viz') as Element | null;
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1062,7 +1020,9 @@
             updateVisualization('mri');
           }, 200);
           // Stop observing after first trigger
-          observer.unobserve(vizContainer);
+          if (vizContainer) {
+            observer.unobserve(vizContainer);
+          }
         }
       });
     }, {
@@ -1077,14 +1037,18 @@
     // Add subtle pulse animation to metric sections on hover
     document.querySelectorAll('.metric-summary-card').forEach(section => {
       section.addEventListener('mouseenter', () => {
-        const icon = section.querySelector('.metric-icon-minimal');
+        const icon = section.querySelector('.metric-icon-minimal') as HTMLElement;
         if (icon) {
-          anime({
-            targets: icon,
-            scale: [1, 1.05, 1],
-            duration: 400,
-            easing: 'easeInOutQuad'
-          });
+          // Using GSAP instead of anime.js
+          if (typeof (window as any).gsap !== 'undefined') {
+            (window as any).gsap.to(icon, {
+              scale: 1.05,
+              duration: 0.2,
+              ease: 'power2.out',
+              yoyo: true,
+              repeat: 1
+            });
+          }
         }
       });
     });

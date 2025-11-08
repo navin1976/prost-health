@@ -876,22 +876,24 @@ div,
   z-index: 3;
   height: 0;
   transition: height 0.3s ease;
-  box-shadow: 0 0 20px rgba(91, 159, 216, 0.6),
-              0 0 40px rgba(91, 159, 216, 0.4);
+  box-shadow:
+    0 0 20px rgba(91, 159, 216, 0.6),
+    0 0 40px rgba(91, 159, 216, 0.4);
 }
 
 .process-timeline-line {
   position: absolute;
   left: 50%;
-  top: -50px;
+  top: 0;
   width: 3px;
   background: var(--color-timeline);
   transform: translateX(-50%);
   z-index: 3;
   height: 0;
   transition: height 0.3s ease;
-  box-shadow: 0 0 20px rgba(91, 159, 216, 0.6),
-              0 0 40px rgba(91, 159, 216, 0.4);
+  box-shadow:
+    0 0 20px rgba(91, 159, 216, 0.6),
+    0 0 40px rgba(91, 159, 216, 0.4);
 }
 
 .process-step {
@@ -973,7 +975,7 @@ div,
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-teal) 100%);
+  background: var(--color-navy-dark); /* Darker navy for better contrast */
   color: var(--color-white);
   border-radius: var(--radius-md);
   display: flex;
@@ -982,8 +984,21 @@ div,
   font-weight: 700;
   font-size: 1.125rem;
   z-index: 2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 16px rgba(21, 40, 56, 0.4); /* Enhanced shadow for depth */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Slightly stronger border */
+  position: relative;
+  overflow: hidden;
+}
+
+.step-number::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .step-text {
@@ -1304,89 +1319,9 @@ div,
   border-color: var(--color-white);
 }
 
-/* Scroll Animations - Visible by default for graceful degradation */
-.scroll-animate {
-  opacity: 1; /* Visible by default */
-  transform: translateY(0); /* No transform by default */
-  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
-              transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+/* Scroll Animations - GSAP will handle these, no CSS transitions */
 
-.scroll-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-animate-left {
-  opacity: 1; /* Visible by default */
-  transform: translateX(0); /* No transform by default */
-  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
-              transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.scroll-animate-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scroll-animate-right {
-  opacity: 1; /* Visible by default */
-  transform: translateX(0); /* No transform by default */
-  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
-              transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.scroll-animate-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scroll-animate-scale {
-  opacity: 1; /* Visible by default */
-  transform: scale(1); /* No transform by default */
-  transition: opacity 0.9s cubic-bezier(0.215, 0.61, 0.355, 1),
-              transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.scroll-animate-scale.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.scroll-animate-stagger {
-  opacity: 1; /* Visible by default */
-  transform: translateY(0) scale(1); /* No transform by default */
-  transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1),
-              transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.scroll-animate-stagger.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Enhanced stagger delays for more formal feel */
-.scroll-animate-stagger:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.scroll-animate-stagger:nth-child(2) {
-  transition-delay: 0.2s;
-}
-.scroll-animate-stagger:nth-child(3) {
-  transition-delay: 0.3s;
-}
-.scroll-animate-stagger:nth-child(4) {
-  transition-delay: 0.4s;
-}
-.scroll-animate-stagger:nth-child(5) {
-  transition-delay: 0.5s;
-}
-.scroll-animate-stagger:nth-child(6) {
-  transition-delay: 0.6s;
-}
-.scroll-animate-stagger:nth-child(7) {
-  transition-delay: 0.7s;
-}
+/* GSAP will handle stagger delays */
 
 /* Parallax images */
 .parallax-image {
@@ -1399,29 +1334,7 @@ div,
   border-radius: var(--radius-lg);
 }
 
-/* Formal scale animation for hero elements */
-.scroll-animate-scale {
-  opacity: 1;
-  transform: scale(1);
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.scroll-animate-scale.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Formal fade-in with subtle movement */
-.scroll-animate-fade {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 1.2s ease-out;
-}
-
-.scroll-animate-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* GSAP animations - no CSS transitions to avoid conflicts */
 
 /* Formal decorative elements */
 .formal-divider {
@@ -1573,7 +1486,8 @@ div,
   right: 0;
   width: 50%;
   height: 100%;
-  background: linear-gradient(to right,
+  background: linear-gradient(
+    to right,
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 0.75) 30%,
     rgba(255, 255, 255, 0.92) 60%,
@@ -1589,7 +1503,8 @@ div,
   left: 0;
   width: 100%;
   height: 200px;
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+    to bottom,
     rgba(255, 255, 255, 0.4) 0%,
     rgba(255, 255, 255, 0.2) 50%,
     rgba(255, 255, 255, 0) 100%
@@ -1741,7 +1656,8 @@ div,
 
   .hero-overlay-gradient {
     width: 100%;
-    background: linear-gradient(to bottom,
+    background: linear-gradient(
+      to bottom,
       rgba(255, 255, 255, 0) 0%,
       rgba(255, 255, 255, 0.5) 40%,
       rgba(255, 255, 255, 0.75) 70%,
@@ -2368,48 +2284,4 @@ html.lenis {
   }
 }
 
-/* Enhanced scroll reveal animations */
-.scroll-animate-left {
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.scroll-animate-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scroll-animate-right {
-  opacity: 0;
-  transform: translateX(60px);
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.scroll-animate-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Refined scroll animations for sections */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.scroll-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-animate-scale {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.scroll-animate-scale.visible {
-  opacity: 1;
-  transform: scale(1);
-}
+/* GSAP animations - elements start visible, GSAP handles the animation */
