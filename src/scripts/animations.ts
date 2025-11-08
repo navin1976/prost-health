@@ -52,20 +52,30 @@ export function initAnimations() {
     });
   }
 
-  // Hero text fade-in
+  // Hero text fade-in with reversible animation
   const heroContent = document.querySelector('.hero-content-overlay');
   if (heroContent) {
-    gsap.from(heroContent, { opacity: 0, y: 30, duration: 0.8, ease: 'power2.out' });
+    gsap.from(heroContent, {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: heroContent,
+        start: 'top 95%',
+        toggleActions: 'play none none reverse', // Reversible but no re-play on enter back
+      },
+    });
   }
 
-  // Stats counter animation - ensure elements are visible
+  // Stats items animation - reversible (but countup numbers stay)
   const statItems = document.querySelectorAll('.stat-item');
   console.log('Found stat items:', statItems.length);
 
   // First ensure stat items are properly initialized
   gsap.set(statItems, { opacity: 1, y: 0 }); // Reset any previous animation state
 
-  // Then animate them in
+  // Then animate them in with reversible toggle
   gsap.from(statItems, {
     scrollTrigger: {
       trigger: '.stats-grid',
@@ -74,6 +84,7 @@ export function initAnimations() {
       onLeave: () => console.log('Stats animation left'),
       onEnterBack: () => console.log('Stats animation entered back'),
       onLeaveBack: () => console.log('Stats animation left back'),
+      toggleActions: 'play reverse play reverse', // Reversible animation
     },
     opacity: 0,
     y: 40,
@@ -135,7 +146,7 @@ export function initAnimations() {
 
   processSteps.forEach((step, index) => {
     const element = step;
-    // Set initial state first, then animate
+    // Set initial state first, then animate with reversible toggle actions
     if (isMobile) {
       gsap.set(element, { x: 100, opacity: 0 });
       gsap.to(element, {
@@ -143,6 +154,7 @@ export function initAnimations() {
           trigger: element,
           start: 'top 85%',
           onEnter: () => console.log(`Process step ${index} animation triggered`),
+          toggleActions: 'play reverse play reverse', // Reversible animation
         },
         x: 0,
         opacity: 1,
@@ -158,12 +170,13 @@ export function initAnimations() {
         opacity: 0,
       });
 
-      // Animate to final state - faster and earlier unblur
+      // Animate to final state - faster and earlier unblur with reversible toggle
       gsap.to(element, {
         scrollTrigger: {
           trigger: element,
           start: index >= processSteps.length - 2 ? 'top 90%' : 'top 80%',
           onEnter: () => console.log(`Process step ${index} animation triggered`),
+          toggleActions: 'play reverse play reverse', // Reversible animation
         },
         x: 0,
         rotationY: 0,
@@ -184,7 +197,7 @@ export function initAnimations() {
     }
   });
 
-  // Card grids entrance
+  // Card grids entrance with reversible animations
   const cardGrids = ['.benefits-grid', '.advantage-grid'];
   cardGrids.forEach((gridSelector) => {
     const cards = document.querySelectorAll(`${gridSelector} > *`);
@@ -192,7 +205,11 @@ export function initAnimations() {
       const element = card;
       if (isMobile) {
         gsap.from(element, {
-          scrollTrigger: { trigger: element, start: 'top 90%' },
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 90%',
+            toggleActions: 'play reverse play reverse', // Reversible animation
+          },
           y: 40,
           opacity: 0,
           duration: 0.6,
@@ -203,7 +220,11 @@ export function initAnimations() {
         const col = index % 3;
         const delay = (row + col) * 0.1;
         gsap.from(element, {
-          scrollTrigger: { trigger: element, start: 'top 85%' },
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+            toggleActions: 'play reverse play reverse', // Reversible animation
+          },
           rotationX: 15,
           scale: 0.7,
           filter: 'blur(8px)',
@@ -226,13 +247,14 @@ export function initAnimations() {
     console.log(`Scroll-animate element ${i}:`, el);
     // Set initial state first
     gsap.set(el, { opacity: 0, y: 40 });
-    // Then create the animation
+    // Then create the animation with reversible toggle actions
     gsap.to(el, {
       scrollTrigger: {
         trigger: el,
         start: 'top 85%',
         onEnter: () => console.log(`Scroll-animate element ${i} triggered`),
         onLeave: () => console.log(`Scroll-animate element ${i} left`),
+        toggleActions: 'play reverse play reverse', // Reversible animation
       },
       opacity: 1,
       y: 0,
@@ -251,6 +273,7 @@ export function initAnimations() {
         start: 'top 85%',
         onEnter: () => console.log(`Scroll-left element ${i} triggered`),
         onLeave: () => console.log(`Scroll-left element ${i} left`),
+        toggleActions: 'play reverse play reverse', // Reversible animation
       },
       opacity: 0,
       x: -40,
@@ -269,6 +292,7 @@ export function initAnimations() {
         start: 'top 85%',
         onEnter: () => console.log(`Scroll-right element ${i} triggered`),
         onLeave: () => console.log(`Scroll-right element ${i} left`),
+        toggleActions: 'play reverse play reverse', // Reversible animation
       },
       opacity: 0,
       x: 40,
@@ -283,13 +307,14 @@ export function initAnimations() {
     console.log(`Scroll-scale element ${i}:`, el);
     // Set initial state first
     gsap.set(el, { opacity: 0, scale: 0.9 });
-    // Then create the animation
+    // Then create the animation with reversible toggle actions
     gsap.to(el, {
       scrollTrigger: {
         trigger: el,
         start: 'top 85%',
         onEnter: () => console.log(`Scroll-scale element ${i} triggered`),
         onLeave: () => console.log(`Scroll-scale element ${i} left`),
+        toggleActions: 'play reverse play reverse', // Reversible animation
       },
       opacity: 1,
       scale: 1,
