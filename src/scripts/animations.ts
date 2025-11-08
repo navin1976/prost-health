@@ -17,14 +17,7 @@ export function initAnimations() {
     smoothTouch: false, // Always disable on touch for native scroll
   });
 
-  function raf(time: number) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-
-  // Integrate Lenis with ScrollTrigger
+  // Integrate Lenis with ScrollTrigger using GSAP ticker (recommended method)
   lenis.on('scroll', ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
@@ -72,19 +65,20 @@ export function initAnimations() {
   statNumbers.forEach((stat) => {
     const text = stat.textContent || '';
     const targetValue = parseInt(text.replace(/[^0-9]/g, '')) || 0;
+    const suffix = text.replace(/[0-9]/g, ''); // Extract %, etc.
 
     ScrollTrigger.create({
       trigger: stat,
       start: 'top 80%',
       onEnter: () => {
-        gsap.from(stat, {
-          textContent: 0,
+        // Create a temporary object to animate
+        const counter = { value: 0 };
+        gsap.to(counter, {
+          value: targetValue,
           duration: 2,
           ease: 'power1.out',
-          snap: { textContent: 1 },
           onUpdate: function() {
-            const currentValue = Math.round(Number(this.targets()[0].textContent));
-            stat.textContent = text.replace(/[0-9]+/, currentValue.toString());
+            stat.textContent = Math.round(counter.value) + suffix;
           },
         });
       },
@@ -390,5 +384,14 @@ export function initAnimations() {
     });
   }
 
-  console.log('Dramatic scroll animations initialized');
+  // Refresh ScrollTrigger to ensure all triggers are calculated correctly
+  ScrollTrigger.refresh();
+
+  console.log('Dramatic scroll animations initialized', {
+    isDesktop,
+    isMobile,
+    statNumbers: statNumbers.length,
+    processSteps: document.querySelectorAll('.process-step').length,
+    scrollTriggers: ScrollTrigger.getAll().length,
+  });
 }
