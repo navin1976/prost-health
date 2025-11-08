@@ -1,5 +1,6 @@
 ---
 import { NAV_ITEMS, CONTACT_EMAIL, EXTERNAL_RESOURCES } from '../../lib/constants';
+import Logo from '../Logo.astro';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -9,7 +10,7 @@ const currentYear = new Date().getFullYear();
     <div class="footer-content">
       <!-- Brand Section -->
       <div class="footer-brand">
-        <h3 class="footer-brand-title">Prost Health</h3>
+        <Logo />
         <p class="footer-brand-description">
           The definitive approach to prostate health. MRI-first screening for clarity, not chance.
         </p>
@@ -89,9 +90,10 @@ const currentYear = new Date().getFullYear();
 
 <style>
   .footer-minimal {
-    background: var(--color-charcoal);
-    color: white;
+    background: var(--color-white);
+    color: var(--color-primary);
     margin-top: auto;
+    border-top: 1px solid var(--color-gray-200);
   }
 
   .footer-container {
@@ -111,18 +113,11 @@ const currentYear = new Date().getFullYear();
     max-width: 300px;
   }
 
-  .footer-brand-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0 0 1rem 0;
-    color: white;
-  }
-
   .footer-brand-description {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
+    color: var(--color-gray-600);
+    margin: var(--space-md) 0 0 0;
   }
 
   .footer-links {
@@ -136,7 +131,7 @@ const currentYear = new Date().getFullYear();
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-gray-500);
     margin: 0 0 1.5rem 0;
   }
 
@@ -151,17 +146,17 @@ const currentYear = new Date().getFullYear();
 
   .footer-link {
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-gray-700);
     text-decoration: none;
     transition: color 0.3s ease;
   }
 
   .footer-link:hover {
-    color: var(--color-accent-light);
+    color: var(--color-navy);
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--color-gray-200);
     padding-top: 2rem;
   }
 
@@ -175,7 +170,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-copyright {
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-gray-500);
     margin: 0;
   }
 
@@ -186,13 +181,13 @@ const currentYear = new Date().getFullYear();
 
   .footer-legal-link {
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-gray-500);
     text-decoration: none;
     transition: color 0.3s ease;
   }
 
   .footer-legal-link:hover {
-    color: var(--color-accent-light);
+    color: var(--color-navy);
   }
 
   /* Responsive Design */

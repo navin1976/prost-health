@@ -4,42 +4,31 @@ import RiskVisualization from '../components/RiskVisualization.astro';
 ---
 
 <BaseLayout>
-  <!-- Full-Screen Hero Section - Brighton College Style -->
-  <section class="hero-fullscreen">
-    <div class="hero-background">
-      <img
-        src="/images/alex-kirkham.jpg"
-        alt="Professional medical imaging consultation for prostate health"
-        class="hero-bg-image"
-      />
-      <div class="hero-overlay"></div>
+  <!-- Full-Width Hero with Overlay - Brighton College Style -->
+  <section class="hero-overlay-style">
+    <div class="hero-background-image">
+      <img src="/images/family1.webp" alt="Family healthcare consultation" class="hero-bg-img" />
     </div>
-    
-    <div class="hero-content-fullscreen">
-      <div class="container">
-        <div class="hero-text-content scroll-animate-scale">
-          <div class="hero-eyebrow formal-eyebrow">Advanced Medical Imaging</div>
-          
-          <h1 class="hero-title-fullscreen">
-            Accurate, Non-Invasive
-            <span class="hero-title-break">Prostate Cancer Screening</span>
-          </h1>
-          
-          <div class="formal-divider"></div>
-          
-          <p class="hero-description-fullscreen formal-lead">
-            Advanced bi-parametric MRI technology provides precise prostate cancer 
-            detection without radiation exposure or invasive procedures.
-          </p>
-          
-          <div class="hero-actions-fullscreen">
-            <a href="/book-mri" class="btn-primary btn-large">
-              Schedule Your Screening
-            </a>
-            <a href="/consultation" class="btn-secondary btn-large">
-              Learn More
-            </a>
-          </div>
+    <div class="hero-overlay-gradient"></div>
+    <div class="container hero-content-container">
+      <div class="hero-content-overlay">
+        <h1 class="hero-title-dark">
+          Accurate, Non-Invasive
+          <span class="hero-title-break-dark">Prostate Cancer Screening</span>
+        </h1>
+
+        <p class="hero-description-dark">
+          Advanced bi-parametric MRI technology provides precise prostate cancer
+          detection without radiation exposure or invasive procedures.
+        </p>
+
+        <div class="hero-actions-dark">
+          <a href="/book-mri" class="btn-primary btn-large">
+            Schedule Your Screening
+          </a>
+          <a href="/consultation" class="btn-secondary-dark btn-large">
+            Learn More
+          </a>
         </div>
       </div>
     </div>
@@ -48,6 +37,7 @@ import RiskVisualization from '../components/RiskVisualization.astro';
   <!-- Formal Statistics Section -->
   <section class="stats formal-section">
     <div class="container">
+      <h2 class="stats-header">Biparametric MRI</h2>
       <div class="stats-grid scroll-animate-stagger">
         <div class="stat-item formal-card">
           <div class="stat-number">96%</div>
@@ -61,10 +51,6 @@ import RiskVisualization from '../components/RiskVisualization.astro';
           <div class="stat-number">20</div>
           <div class="stat-label">Minute Procedure</div>
         </div>
-        <div class="stat-item formal-card">
-          <div class="stat-number">< 2%</div>
-          <div class="stat-label">Complication Rate</div>
-        </div>
       </div>
     </div>
   </section>
@@ -77,7 +63,6 @@ import RiskVisualization from '../components/RiskVisualization.astro';
         <h2 class="section-title">
           PSA Testing Has Significant Drawbacks
         </h2>
-        <div class="formal-divider"></div>
         <p class="section-subtitle formal-lead">
           Prostate-Specific Antigen (PSA) testing suffers from poor specificity and sensitivity, 
           leading to unnecessary procedures and missed diagnoses.
@@ -85,43 +70,39 @@ import RiskVisualization from '../components/RiskVisualization.astro';
       </div>
       
       <div class="content-grid">
-        <div class="content-text">
-          <div class="data-points">
-            <div class="data-point">
-              <div class="data-value">75%</div>
-              <div class="data-label">False positive rate</div>
-            </div>
-            <div class="data-point">
-              <div class="data-value">20%</div>
-              <div class="data-label">Cancers missed</div>
-            </div>
-            <div class="data-point">
-              <div class="data-value">25%</div>
-              <div class="data-label">Biopsy complications</div>
-            </div>
-          </div>
+        <div class="content-image">
+          <img src="/images/bloodtest.webp" alt="Elderly patient receiving blood draw for PSA testing" class="psa-limitations-img" />
         </div>
-        
+
         <div class="content-cards">
           <div class="card formal-card scroll-animate-left">
-            <div class="card-number">01</div>
+            <div class="card-header">
+              <div class="card-number">01</div>
+              <div class="card-stat">75%</div>
+            </div>
             <h3 class="card-title">Poor Specificity</h3>
             <p class="card-description">
-              PSA elevation occurs in benign conditions, leading to unnecessary interventions.
+              PSA elevation occurs in benign conditions, leading to unnecessary interventions. 75% false positive rate means most elevated PSA results don't indicate cancer.
             </p>
           </div>
           <div class="card formal-card scroll-animate-right">
-            <div class="card-number">02</div>
+            <div class="card-header">
+              <div class="card-number">02</div>
+              <div class="card-stat">20%</div>
+            </div>
             <h3 class="card-title">Limited Sensitivity</h3>
             <p class="card-description">
-              Normal PSA levels can mask clinically significant cancers.
+              Normal PSA levels can mask clinically significant cancers. 20% of cancers are missed with normal PSA readings.
             </p>
           </div>
           <div class="card formal-card scroll-animate-left">
-            <div class="card-number">03</div>
+            <div class="card-header">
+              <div class="card-number">03</div>
+              <div class="card-stat">25%</div>
+            </div>
             <h3 class="card-title">Unnecessary Procedures</h3>
             <p class="card-description">
-              Blind biopsies carry risks and often detect insignificant disease.
+              Blind biopsies carry risks and often detect insignificant disease. 25% complication rate from invasive procedures.
             </p>
           </div>
         </div>
@@ -130,38 +111,38 @@ import RiskVisualization from '../components/RiskVisualization.astro';
   </section>
 
   <!-- Image Feature Section - Brighton College Style -->
-  <section class="content-section image-feature-section">
+  <section class="content-section image-feature-section alt-bg">
     <div class="container">
-      <div class="image-feature-grid">
-        <div class="image-feature-content scroll-animate-left">
-          <div class="formal-eyebrow">State-of-the-Art Technology</div>
-          <h2 class="section-title">Advanced Imaging Excellence</h2>
-          <div class="formal-divider" style="margin-left: 0;"></div>
-          <p class="formal-lead" style="color: var(--color-gray-700);">
-            Our cutting-edge MRI technology provides unparalleled clarity and precision,
-            enabling our specialists to detect and assess prostate conditions with exceptional accuracy.
-          </p>
-          <p style="color: var(--color-gray-600); font-size: 1.125rem; line-height: 1.7;">
-            We utilize the latest bi-parametric MRI systems, specifically calibrated for prostate imaging,
-            ensuring optimal diagnostic quality while maintaining patient comfort throughout the procedure.
-          </p>
-        </div>
-        <div class="image-feature-image scroll-animate-right">
-          <img src="/images/mri-scanner-modern.jpg" alt="Modern MRI scanner technology" class="feature-img" />
+      <div class="scroll-animate-scale">
+        <div class="image-feature-grid">
+          <div class="image-feature-content scroll-animate-left">
+            <div class="formal-eyebrow">State-of-the-Art Technology</div>
+            <h2 class="section-title">Advanced Imaging Excellence</h2>
+            <p class="formal-lead" style="color: var(--color-gray-700);">
+              Our cutting-edge MRI technology provides unparalleled clarity and precision,
+              enabling our specialists to detect and assess prostate conditions with exceptional accuracy.
+            </p>
+            <p style="color: var(--color-gray-600); font-size: 1.125rem; line-height: 1.7;">
+              We utilize the latest bi-parametric MRI systems, specifically calibrated for prostate imaging,
+              ensuring optimal diagnostic quality while maintaining patient comfort throughout the procedure.
+            </p>
+          </div>
+          <div class="image-feature-image scroll-animate-right">
+            <img src="/images/mri-scanner-modern.jpg" alt="Modern MRI scanner technology" class="feature-img parallax-image" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Formal bpMRI Advantages Section -->
-  <section class="content-section alt-bg formal-section">
+  <!-- Formal bpMRI Advantages Section - Navy Background -->
+  <section class="content-section section-navy formal-section">
     <div class="container">
       <div class="section-header scroll-animate">
         <div class="section-eyebrow formal-eyebrow">Advanced Technology</div>
         <h2 class="section-title">
           Bi-parametric MRI Superior Diagnostic Accuracy
         </h2>
-        <div class="formal-divider"></div>
         <p class="section-subtitle formal-lead">
           Advanced imaging technology that overcomes PSA testing limitations through precise
           anatomical and functional assessment of prostate tissue.
@@ -170,49 +151,49 @@ import RiskVisualization from '../components/RiskVisualization.astro';
       
       <div class="advantage-grid">
         <div class="advantage-card">
-          <div class="advantage-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
-            </svg>
-          </div>
-          <div class="advantage-content">
+          <div class="advantage-header">
+            <div class="advantage-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+              </svg>
+            </div>
             <h3 class="advantage-title">T2-Weighted Imaging</h3>
-            <p class="advantage-description">
-              High-resolution anatomical visualization enables precise identification of suspicious 
-              lesions and assessment of prostate gland architecture.
-            </p>
           </div>
+          <p class="advantage-description">
+            High-resolution anatomical visualization enables precise identification of suspicious
+            lesions and assessment of prostate gland architecture.
+          </p>
         </div>
-        
+
         <div class="advantage-card">
-          <div class="advantage-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-          </div>
-          <div class="advantage-content">
+          <div class="advantage-header">
+            <div class="advantage-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
             <h3 class="advantage-title">Diffusion-Weighted Imaging</h3>
-            <p class="advantage-description">
-              Functional imaging detects cellular density changes characteristic of malignancy, 
-              providing biochemical information invisible to conventional testing.
-            </p>
           </div>
+          <p class="advantage-description">
+            Functional imaging detects cellular density changes characteristic of malignancy,
+            providing biochemical information invisible to conventional testing.
+          </p>
         </div>
-        
+
         <div class="advantage-card">
-          <div class="advantage-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <div class="advantage-content">
+          <div class="advantage-header">
+            <div class="advantage-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
             <h3 class="advantage-title">No Contrast Required</h3>
-            <p class="advantage-description">
-              Eliminates gadolinium injection risks while maintaining diagnostic accuracy, 
-              making the procedure safer and more comfortable.
-            </p>
           </div>
+          <p class="advantage-description">
+            Eliminates gadolinium injection risks while maintaining diagnostic accuracy,
+            making the procedure safer and more comfortable.
+          </p>
         </div>
       </div>
     </div>
@@ -221,7 +202,7 @@ import RiskVisualization from '../components/RiskVisualization.astro';
   <!-- Interactive Risk Visualization -->
   <section class="content-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header scroll-animate">
         <div class="section-eyebrow">Clinical Evidence</div>
         <h2 class="section-title">
           See the Data
@@ -231,14 +212,17 @@ import RiskVisualization from '../components/RiskVisualization.astro';
           Compare screening outcomes and understand the bpMRI advantage
         </p>
       </div>
-      <RiskVisualization />
+      <div class="scroll-animate-scale">
+        <RiskVisualization />
+      </div>
     </div>
   </section>
 
   <!-- Clean Process Timeline Section -->
-  <section class="content-section">
+  <section class="content-section timeline-section" id="timeline-section">
+    <div class="timeline-background-overlay"></div>
     <div class="container">
-      <div class="section-header">
+      <div class="section-header scroll-animate">
         <div class="section-eyebrow">Screening Process</div>
         <h2 class="section-title">
           Your Journey to Accurate Results
@@ -247,7 +231,7 @@ import RiskVisualization from '../components/RiskVisualization.astro';
           A streamlined process from consultation to results delivery
         </p>
       </div>
-      
+
       <div class="process-timeline">
         <div class="process-timeline-line"></div>
         <div class="process-step">
@@ -344,91 +328,100 @@ import RiskVisualization from '../components/RiskVisualization.astro';
   </section>
 
   <!-- Clean Clinical Benefits Section -->
-  <section class="content-section alt-bg">
+  <section class="content-section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">Clinical Advantages</div>
-        <h2 class="section-title">
-          Evidence-Based Medical Benefits
-        </h2>
-      </div>
-      
-      <div class="benefits-grid">
+      <div class="scroll-animate-scale">
+        <div class="section-header scroll-animate">
+          <div class="section-eyebrow">Clinical Advantages</div>
+          <h2 class="section-title">
+            Evidence-Based Medical Benefits
+          </h2>
+        </div>
+
+        <div class="benefits-grid">
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="6"/>
-              <circle cx="12" cy="12" r="2"/>
-            </svg>
+          <div class="benefit-header">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Targeted Detection</h3>
           </div>
-          <h3 class="benefit-title">Targeted Detection</h3>
           <p class="benefit-description">
-            Distinguishes clinically significant cancers from indolent disease, 
+            Distinguishes clinically significant cancers from indolent disease,
             reducing over-diagnosis while ensuring appropriate treatment.
           </p>
         </div>
-        
+
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 12l2 2 4-4"/>
-              <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-              <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-              <path d="M13 12h3"/>
-              <path d="M8 12H5"/>
-            </svg>
+          <div class="benefit-header">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 12l2 2 4-4"/>
+                <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                <path d="M13 12h3"/>
+                <path d="M8 12H5"/>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Non-Invasive Safety</h3>
           </div>
-          <h3 class="benefit-title">Non-Invasive Safety</h3>
           <p class="benefit-description">
-            Eliminates procedure-related complications associated with biopsies 
+            Eliminates procedure-related complications associated with biopsies
             while providing superior diagnostic information.
           </p>
         </div>
-        
+
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 3v18h18"/>
-              <path d="M18 17V9"/>
-              <path d="M13 17V5"/>
-              <path d="M8 17v-3"/>
-            </svg>
+          <div class="benefit-header">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"/>
+                <path d="M18 17V9"/>
+                <path d="M13 17V5"/>
+                <path d="M8 17v-3"/>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Quantitative Results</h3>
           </div>
-          <h3 class="benefit-title">Quantitative Results</h3>
           <p class="benefit-description">
-            Provides objective, reproducible measurements that support 
+            Provides objective, reproducible measurements that support
             evidence-based clinical decision making.
           </p>
         </div>
-        
+
         <div class="benefit-card">
-          <div class="benefit-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
+          <div class="benefit-header">
+            <div class="benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="benefit-title">Reliable Reassurance</h3>
           </div>
-          <h3 class="benefit-title">Reliable Reassurance</h3>
           <p class="benefit-description">
-            Normal results provide high-confidence reassurance, eliminating 
+            Normal results provide high-confidence reassurance, eliminating
             unnecessary anxiety and follow-up procedures.
           </p>
         </div>
+      </div>
       </div>
     </div>
   </section>
 
   <!-- Patient Care Section - Brighton College Style -->
-  <section class="content-section patient-care-section">
+  <section class="content-section patient-care-section alt-bg">
     <div class="container">
       <div class="patient-care-grid">
         <div class="patient-care-image scroll-animate-left">
-          <img src="/images/doctor-patient-consultation.jpg" alt="Doctor consulting with patient" class="care-img" />
+          <img src="/images/consult.webp" alt="Healthcare provider consulting with elderly patient in modern office" class="care-img" />
         </div>
         <div class="patient-care-content scroll-animate-right">
           <div class="formal-eyebrow">Personalized Care</div>
           <h2 class="section-title">Expert Guidance at Every Step</h2>
-          <div class="formal-divider" style="margin-left: 0;"></div>
           <p class="formal-lead" style="color: var(--color-gray-700);">
             Our dedicated specialists provide comprehensive support throughout your screening journey,
             ensuring you understand every aspect of your prostate health assessment.
@@ -492,52 +485,55 @@ import RiskVisualization from '../components/RiskVisualization.astro';
     const sections = document.querySelectorAll('.process-step');
     const timeline = document.querySelector('.process-timeline');
     const line = document.querySelector('.process-timeline-line');
-
     let prevScrollY = window.scrollY;
-    let up, down;
-    let full = false;
-    let set = 0;
-    const targetY = window.innerHeight * 0.8;
+    let ticking = false;
 
     function scrollHandler() {
       const { scrollY } = window;
+      const up = scrollY < prevScrollY;
 
-      up = scrollY < prevScrollY;
-      down = !up;
-
-      if (timeline) {
+      if (timeline && line) {
         const timelineRect = timeline.getBoundingClientRect();
-        const dist = targetY - timelineRect.top;
+        const timelineTop = timelineRect.top + scrollY;
+        const timelineHeight = timeline.offsetHeight;
+        const viewportHeight = window.innerHeight;
 
-        // Handle line growth animation
-        if (down && !full && line) {
-          set = Math.max(set, dist);
-          line.style.height = `${set}px`;
-        }
+        // Start growing when timeline enters viewport
+        const scrollTriggerStart = timelineTop - viewportHeight + 300;
+        // Complete when timeline bottom reaches middle of viewport
+        const scrollTriggerEnd = timelineTop + timelineHeight - (viewportHeight / 2);
 
-        // Handle full line extension
-        if (dist > timeline.offsetHeight + 50 && !full && line) {
-          full = true;
-          line.style.height = `calc(100% + 50px)`;
-        } else if (up && full && line) {
-          // Reset when scrolling up
-          full = false;
-          line.style.height = '0px';
-        }
+        // Calculate progress (0 to 1)
+        const scrollProgress = (scrollY - scrollTriggerStart) / (scrollTriggerEnd - scrollTriggerStart);
+        const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
+
+        // Set line height based on progress - extend to full height plus padding
+        const lineHeight = clampedProgress * (timelineHeight + 100); // Extra 100px for top/bottom padding
+        line.style.height = `${lineHeight}px`;
       }
 
       // Handle section animations
+      const targetY = window.innerHeight * 0.8;
       sections.forEach(item => {
         const rect = item.getBoundingClientRect();
 
         if (rect.top + item.offsetHeight / 5 < targetY) {
           item.classList.add('show-me');
-        } else if (up) {
+        } else if (up && rect.top > targetY) {
           item.classList.remove('show-me');
         }
       });
 
-      prevScrollY = window.scrollY;
+      prevScrollY = scrollY;
+      ticking = false;
+    }
+
+    // Use requestAnimationFrame for smooth performance
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(scrollHandler);
+        ticking = true;
+      }
     }
 
     // General scroll animations for all elements
@@ -550,9 +546,24 @@ import RiskVisualization from '../components/RiskVisualization.astro';
         const rect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        // Trigger animation when element is 20% into viewport
-        if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+        // Trigger animation when element enters viewport from bottom
+        // Remove when element exits viewport from top (scrolling up past it)
+        if (rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2) {
           element.classList.add('visible');
+        } else {
+          element.classList.remove('visible');
+        }
+      });
+
+      // Parallax effect for images
+      const parallaxImages = document.querySelectorAll('.parallax-image');
+      parallaxImages.forEach(image => {
+        const rect = image.getBoundingClientRect();
+        const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const translateY = (scrollPercent - 0.5) * 30; // Subtle movement
+
+        if (scrollPercent >= 0 && scrollPercent <= 1) {
+          image.style.transform = `translateY(${translateY}px) scale(1.05)`;
         }
       });
     }
@@ -562,9 +573,9 @@ import RiskVisualization from '../components/RiskVisualization.astro';
     handleScrollAnimations();
 
     window.addEventListener('scroll', () => {
-      scrollHandler();
+      requestTick();
       handleScrollAnimations();
-    });
+    }, { passive: true });
 
     // Add hover effects for timeline
     sections.forEach(step => {

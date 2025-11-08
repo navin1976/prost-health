@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prost Health Logo Preview</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .preview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        
+        .logo-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .logo-element-top,
+        .logo-element-bottom {
+            width: 40px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        
+        .logo-text {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #2c3e50;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        /* Large variant */
+        .logo-wrapper.logo-large .logo-element-top,
+        .logo-wrapper.logo-large .logo-element-bottom {
+            width: 60px;
+            height: 30px;
+        }
+        
+        .logo-wrapper.logo-large .logo-text {
+            font-size: 2rem;
+        }
+        
+        /* Small variant */
+        .logo-wrapper.logo-small .logo-element-top,
+        .logo-wrapper.logo-small .logo-element-bottom {
+            width: 30px;
+            height: 15px;
+        }
+        
+        .logo-wrapper.logo-small .logo-text {
+            font-size: 1.2rem;
+        }
+        
+        .color-variants {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .color-variant {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .dark {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .light {
+            background: #f8f9fa;
+            color: #2c3e50;
+        }
+        
+        .accent {
+            background: #1a5f3f;
+            color: white;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-weight: 400;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <div class="logo-section">
+            <h1>Prost Health Logo</h1>
+            <h2>Inspired by The Welbeck Hotel's elegant luxury aesthetic</h2>
+            <p class="description">
+                This sophisticated medical cross design features elegant curves and refined details that capture the "quiet luxury" aesthetic. 
+                The design balances medical authority with premium wellness, using clean lines and subtle corner accents that evoke precision and care.
+            </p>
+            
+            <div class="logo-wrapper">
+                <div class="logo-vertical">
+                    <!-- Top ornate cornice element -->
+                    <svg class="logo-element-top" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Central ornate flourish -->
+                            <path d="M24 2 Q22 4, 20 6 Q18 8, 16 10 Q14 12, 12 14" stroke-width="1.2" opacity="0.8"/>
+                            <path d="M24 2 Q26 4, 28 6 Q30 8, 32 10 Q34 12, 36 14" stroke-width="1.2" opacity="0.8"/>
+                            <!-- Decorative central motif -->
+                            <circle cx="24" cy="4" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <path d="M24 5.2 Q24 7, 24 8.8" stroke-width="1.5"/>
+                            <!-- Flowing corner scrolls -->
+                            <path d="M8 12 Q10 10, 12 8 Q14 6, 16 4 Q18 2, 20 2" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M40 12 Q38 10, 36 8 Q34 6, 32 4 Q30 2, 28 2" stroke-width="1.3" opacity="0.7"/>
+                            <!-- Ornate end details -->
+                            <path d="M6 14 Q8 12, 10 10 Q12 8, 14 6" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M42 14 Q40 12, 38 10 Q36 8, 34 6" stroke-width="1.1" opacity="0.6"/>
+                            <!-- Subtle connecting lines -->
+                            <path d="M4 16 Q24 14, 44 16" stroke-width="0.8" opacity="0.4"/>
+                        </g>
+                    </svg>
+                    
+                    <!-- Logo text -->
+                    <span class="logo-text">Prost Health</span>
+                    
+                    <!-- Bottom ornate cornice element -->
+                    <svg class="logo-element-bottom" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Central inverted flourish -->
+                            <path d="M24 22 Q22 20, 20 18 Q18 16, 16 14 Q14 12, 12 10" stroke-width="1.2" opacity="0.8"/>
+                            <path d="M24 22 Q26 20, 28 18 Q30 16, 32 14 Q34 12, 36 10" stroke-width="1.2" opacity="0.8"/>
+                            <!-- Decorative central motif -->
+                            <circle cx="24" cy="20" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <path d="M24 18.8 Q24 17, 24 15.2" stroke-width="1.5"/>
+                            <!-- Flowing corner scrolls -->
+                            <path d="M8 10 Q10 12, 12 14 Q14 16, 16 18 Q18 20, 20 22" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M40 10 Q38 12, 36 14 Q34 16, 32 18 Q30 20, 28 22" stroke-width="1.3" opacity="0.7"/>
+                            <!-- Ornate end details -->
+                            <path d="M6 8 Q8 10, 10 12 Q12 14, 14 16" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M42 8 Q40 10, 38 12 Q36 14, 34 16" stroke-width="1.1" opacity="0.6"/>
+                            <!-- Subtle connecting lines -->
+                            <path d="M4 6 Q24 8, 44 6" stroke-width="0.8" opacity="0.4"/>
+                            <!-- Additional ornate details -->
+                            <path d="M16 20 Q18 18, 20 16" stroke-width="0.9" opacity="0.5"/>
+                            <path d="M32 20 Q30 18, 28 16" stroke-width="0.9" opacity="0.5"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            
+            <h2>Size Variants</h2>
+            <div class="logo-wrapper logo-small">
+                <div class="logo-vertical">
+                    <!-- Top ornate cornice element -->
+                    <svg class="logo-element-top" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M24 2 Q22 4, 20 6 Q18 8, 16 10 Q14 12, 12 14" stroke-width="1.2" opacity="0.8"/>
+                            <path d="M24 2 Q26 4, 28 6 Q30 8, 32 10 Q34 12, 36 14" stroke-width="1.2" opacity="0.8"/>
+                            <circle cx="24" cy="4" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <path d="M24 5.2 Q24 7, 24 8.8" stroke-width="1.5"/>
+                            <path d="M8 12 Q10 10, 12 8 Q14 6, 16 4 Q18 2, 20 2" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M40 12 Q38 10, 36 8 Q34 6, 32 4 Q30 2, 28 2" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M6 14 Q8 12, 10 10 Q12 8, 14 6" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M42 14 Q40 12, 38 10 Q36 8, 34 6" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M4 16 Q24 14, 44 16" stroke-width="0.8" opacity="0.4"/>
+                        </g>
+                    </svg>
+                    
+                    <span class="logo-text">Prost Health</span>
+                    
+                    <!-- Bottom ornate cornice element -->
+                    <svg class="logo-element-bottom" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M24 22 Q22 20, 20 18 Q18 16, 16 14 Q14 12, 12 10" stroke-width="1.2" opacity="0.8"/>
+                            <path d="M24 22 Q26 20, 28 18 Q30 16, 32 14 Q34 12, 36 10" stroke-width="1.2" opacity="0.8"/>
+                            <circle cx="24" cy="20" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <path d="M24 18.8 Q24 17, 24 15.2" stroke-width="1.5"/>
+                            <path d="M8 10 Q10 12, 12 14 Q14 16, 16 18 Q18 20, 20 22" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M40 10 Q38 12, 36 14 Q34 16, 32 18 Q30 20, 28 22" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M6 8 Q8 10, 10 12 Q12 14, 14 16" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M42 8 Q40 10, 38 12 Q36 14, 34 16" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M4 6 Q24 8, 44 6" stroke-width="0.8" opacity="0.4"/>
+                            <path d="M16 20 Q18 18, 20 16" stroke-width="0.9" opacity="0.5"/>
+                            <path d="M32 20 Q30 18, 28 16" stroke-width="0.9" opacity="0.5"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="logo-wrapper logo-large">
+                <div class="logo-vertical">
+                    <!-- Top ornate cornice element -->
+                    <svg class="logo-element-top" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M24 2 Q22 4, 20 6 Q18 8, 16 10 Q14 12, 12 14" stroke-width="1.2" opacity="0.8"/>
+                            <path d="M24 2 Q26 4, 28 6 Q30 8, 32 10 Q34 12, 36 14" stroke-width="1.2" opacity="0.8"/>
+                            <circle cx="24" cy="4" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <path d="M24 5.2 Q24 7, 24 8.8" stroke-width="1.5"/>
+                            <path d="M8 12 Q10 10, 12 8 Q14 6, 16 4 Q18 2, 20 2" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M40 12 Q38 10, 36 8 Q34 6, 32 4 Q30 2, 28 2" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M6 14 Q8 12, 10 10 Q12 8, 14 6" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M42 14 Q40 12, 38 10 Q36 8, 34 6" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M4 16 Q24 14, 44 16" stroke-width="0.8" opacity="0.4"/>
+                        </g>
+                    </svg>
+                    
+                    <span class="logo-text">Prost Health</span>
+                    
+                    <!-- Bottom ornate cornice element -->
+                    <svg class="logo-element-bottom" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M24 22 Q22 20, 20 18 Q18 16, 16 14 Q14 12, 12 10" stroke-width="1.2" opacity="0.8"/>
+                            <path d="M24 22 Q26 20, 28 18 Q30 16, 32 14 Q34 12, 36 10" stroke-width="1.2" opacity="0.8"/>
+                            <circle cx="24" cy="20" r="1.2" fill="currentColor" opacity="0.9"/>
+                            <path d="M24 18.8 Q24 17, 24 15.2" stroke-width="1.5"/>
+                            <path d="M8 10 Q10 12, 12 14 Q14 16, 16 18 Q18 20, 20 22" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M40 10 Q38 12, 36 14 Q34 16, 32 18 Q30 20, 28 22" stroke-width="1.3" opacity="0.7"/>
+                            <path d="M6 8 Q8 10, 10 12 Q12 14, 14 16" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M42 8 Q40 10, 38 12 Q36 14, 34 16" stroke-width="1.1" opacity="0.6"/>
+                            <path d="M4 6 Q24 8, 44 6" stroke-width="0.8" opacity="0.4"/>
+                            <path d="M16 20 Q18 18, 20 16" stroke-width="0.9" opacity="0.5"/>
+                            <path d="M32 20 Q30 18, 28 16" stroke-width="0.9" opacity="0.5"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="color-variants">
+                <div class="color-variant light">
+                    <div class="logo-wrapper">
+                        <div class="logo-vertical">
+                            <!-- Top ornate cornice element -->
+                            <svg class="logo-element-top" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M24 2 Q22 4, 20 6 Q18 8, 16 10 Q14 12, 12 14" stroke-width="1.2" opacity="0.8"/>
+                                    <path d="M24 2 Q26 4, 28 6 Q30 8, 32 10 Q34 12, 36 14" stroke-width="1.2" opacity="0.8"/>
+                                    <circle cx="24" cy="4" r="1.2" fill="currentColor" opacity="0.9"/>
+                                    <path d="M24 5.2 Q24 7, 24 8.8" stroke-width="1.5"/>
+                                    <path d="M8 12 Q10 10, 12 8 Q14 6, 16 4 Q18 2, 20 2" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M40 12 Q38 10, 36 8 Q34 6, 32 4 Q30 2, 28 2" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M6 14 Q8 12, 10 10 Q12 8, 14 6" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M42 14 Q40 12, 38 10 Q36 8, 34 6" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M4 16 Q24 14, 44 16" stroke-width="0.8" opacity="0.4"/>
+                                </g>
+                            </svg>
+                            
+                            <span class="logo-text">Prost Health</span>
+                            
+                            <!-- Bottom ornate cornice element -->
+                            <svg class="logo-element-bottom" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M24 22 Q22 20, 20 18 Q18 16, 16 14 Q14 12, 12 10" stroke-width="1.2" opacity="0.8"/>
+                                    <path d="M24 22 Q26 20, 28 18 Q30 16, 32 14 Q34 12, 36 10" stroke-width="1.2" opacity="0.8"/>
+                                    <circle cx="24" cy="20" r="1.2" fill="currentColor" opacity="0.9"/>
+                                    <path d="M24 18.8 Q24 17, 24 15.2" stroke-width="1.5"/>
+                                    <path d="M8 10 Q10 12, 12 14 Q14 16, 16 18 Q18 20, 20 22" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M40 10 Q38 12, 36 14 Q34 16, 32 18 Q30 20, 28 22" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M6 8 Q8 10, 10 12 Q12 14, 14 16" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M42 8 Q40 10, 38 12 Q36 14, 34 16" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M4 6 Q24 8, 44 6" stroke-width="0.8" opacity="0.4"/>
+                                    <path d="M16 20 Q18 18, 20 16" stroke-width="0.9" opacity="0.5"/>
+                                    <path d="M32 20 Q30 18, 28 16" stroke-width="0.9" opacity="0.5"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <p>Light Background</p>
+                </div>
+                
+                <div class="color-variant dark">
+                    <div class="logo-wrapper">
+                        <div class="logo-vertical">
+                            <!-- Top ornate cornice element -->
+                            <svg class="logo-element-top" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M24 2 Q22 4, 20 6 Q18 8, 16 10 Q14 12, 12 14" stroke-width="1.2" opacity="0.8"/>
+                                    <path d="M24 2 Q26 4, 28 6 Q30 8, 32 10 Q34 12, 36 14" stroke-width="1.2" opacity="0.8"/>
+                                    <circle cx="24" cy="4" r="1.2" fill="currentColor" opacity="0.9"/>
+                                    <path d="M24 5.2 Q24 7, 24 8.8" stroke-width="1.5"/>
+                                    <path d="M8 12 Q10 10, 12 8 Q14 6, 16 4 Q18 2, 20 2" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M40 12 Q38 10, 36 8 Q34 6, 32 4 Q30 2, 28 2" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M6 14 Q8 12, 10 10 Q12 8, 14 6" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M42 14 Q40 12, 38 10 Q36 8, 34 6" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M4 16 Q24 14, 44 16" stroke-width="0.8" opacity="0.4"/>
+                                </g>
+                            </svg>
+                            
+                            <span class="logo-text">Prost Health</span>
+                            
+                            <!-- Bottom ornate cornice element -->
+                            <svg class="logo-element-bottom" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M24 22 Q22 20, 20 18 Q18 16, 16 14 Q14 12, 12 10" stroke-width="1.2" opacity="0.8"/>
+                                    <path d="M24 22 Q26 20, 28 18 Q30 16, 32 14 Q34 12, 36 10" stroke-width="1.2" opacity="0.8"/>
+                                    <circle cx="24" cy="20" r="1.2" fill="currentColor" opacity="0.9"/>
+                                    <path d="M24 18.8 Q24 17, 24 15.2" stroke-width="1.5"/>
+                                    <path d="M8 10 Q10 12, 12 14 Q14 16, 16 18 Q18 20, 20 22" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M40 10 Q38 12, 36 14 Q34 16, 32 18 Q30 20, 28 22" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M6 8 Q8 10, 10 12 Q12 14, 14 16" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M42 8 Q40 10, 38 12 Q36 14, 34 16" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M4 6 Q24 8, 44 6" stroke-width="0.8" opacity="0.4"/>
+                                    <path d="M16 20 Q18 18, 20 16" stroke-width="0.9" opacity="0.5"/>
+                                    <path d="M32 20 Q30 18, 28 16" stroke-width="0.9" opacity="0.5"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <p>Dark Background</p>
+                </div>
+                
+                <div class="color-variant accent">
+                    <div class="logo-wrapper">
+                        <div class="logo-vertical">
+                            <!-- Top ornate cornice element -->
+                            <svg class="logo-element-top" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M24 2 Q22 4, 20 6 Q18 8, 16 10 Q14 12, 12 14" stroke-width="1.2" opacity="0.8"/>
+                                    <path d="M24 2 Q26 4, 28 6 Q30 8, 32 10 Q34 12, 36 14" stroke-width="1.2" opacity="0.8"/>
+                                    <circle cx="24" cy="4" r="1.2" fill="currentColor" opacity="0.9"/>
+                                    <path d="M24 5.2 Q24 7, 24 8.8" stroke-width="1.5"/>
+                                    <path d="M8 12 Q10 10, 12 8 Q14 6, 16 4 Q18 2, 20 2" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M40 12 Q38 10, 36 8 Q34 6, 32 4 Q30 2, 28 2" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M6 14 Q8 12, 10 10 Q12 8, 14 6" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M42 14 Q40 12, 38 10 Q36 8, 34 6" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M4 16 Q24 14, 44 16" stroke-width="0.8" opacity="0.4"/>
+                                </g>
+                            </svg>
+                            
+                            <span class="logo-text">Prost Health</span>
+                            
+                            <!-- Bottom ornate cornice element -->
+                            <svg class="logo-element-bottom" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M24 22 Q22 20, 20 18 Q18 16, 16 14 Q14 12, 12 10" stroke-width="1.2" opacity="0.8"/>
+                                    <path d="M24 22 Q26 20, 28 18 Q30 16, 32 14 Q34 12, 36 10" stroke-width="1.2" opacity="0.8"/>
+                                    <circle cx="24" cy="20" r="1.2" fill="currentColor" opacity="0.9"/>
+                                    <path d="M24 18.8 Q24 17, 24 15.2" stroke-width="1.5"/>
+                                    <path d="M8 10 Q10 12, 12 14 Q14 16, 16 18 Q18 20, 20 22" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M40 10 Q38 12, 36 14 Q34 16, 32 18 Q30 20, 28 22" stroke-width="1.3" opacity="0.7"/>
+                                    <path d="M6 8 Q8 10, 10 12 Q12 14, 14 16" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M42 8 Q40 10, 38 12 Q36 14, 34 16" stroke-width="1.1" opacity="0.6"/>
+                                    <path d="M4 6 Q24 8, 44 6" stroke-width="0.8" opacity="0.4"/>
+                                    <path d="M16 20 Q18 18, 20 16" stroke-width="0.9" opacity="0.5"/>
+                                    <path d="M32 20 Q30 18, 28 16" stroke-width="0.9" opacity="0.5"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <p>Accent Color</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
