@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://prosthealth.com', // Update with actual domain
+  site: 'https://c95cd4c4.prost-health.pages.dev',
   vite: {
     plugins: [tailwindcss()],
   },
