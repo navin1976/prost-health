@@ -17,7 +17,9 @@
   --color-accent-light: #2a5080; /* Lighter navy for hover */
   --color-accent-warm: #c9945f; /* Warm gold - complementary to navy */
   --color-accent-teal: #2d8a8e; /* Teal - analogous harmony */
-  --color-timeline: #5b9fd8; /* Soft blue - harmonious with navy */
+  --color-timeline: #ff8c42; /* Vibrant orange - complementary to navy */
+  /* Alternative: #ffd700 for bright gold/yellow */
+  /* Original blue: #5b9fd8 */
   --color-muted: #9ca3af; /* Muted text */
 
   /* Neutral Palette - Clean like reference sites */
@@ -877,8 +879,9 @@ div,
   height: 0;
   transition: height 0.3s ease;
   box-shadow:
-    0 0 20px rgba(91, 159, 216, 0.6),
-    0 0 40px rgba(91, 159, 216, 0.4);
+    0 0 20px rgba(255, 140, 66, 0.6),
+    0 0 40px rgba(255, 140, 66, 0.4);
+  /* Orange glow - use rgba(255, 215, 0, 0.6) and rgba(255, 215, 0, 0.4) for yellow */
 }
 
 .process-timeline-line {
@@ -892,8 +895,10 @@ div,
   height: 0;
   transition: height 0.3s ease;
   box-shadow:
-    0 0 20px rgba(91, 159, 216, 0.6),
-    0 0 40px rgba(91, 159, 216, 0.4);
+    0 0 20px rgba(255, 140, 66, 0.6),
+    0 0 40px rgba(255, 140, 66, 0.4);
+  /* Orange glow - use rgba(255, 215, 0, 0.6) and rgba(255, 215, 0, 0.4) for yellow */
+  /* Original blue: rgba(91, 159, 216, 0.6) and rgba(91, 159, 216, 0.4) */
 }
 
 .process-step {
