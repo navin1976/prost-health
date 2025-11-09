@@ -55,56 +55,66 @@ import RiskVisualization from '../components/RiskVisualization.astro';
     </div>
   </section>
 
-  <!-- Formal PSA Limitations Section -->
-  <section class="content-section formal-section">
+  <!-- Patient Care Section - Brighton College Style -->
+  <section class="content-section patient-care-section alt-bg">
     <div class="container">
-      <div class="section-header scroll-animate">
-        <div class="section-eyebrow formal-eyebrow">Clinical Limitations</div>
-        <h2 class="section-title">
-          PSA Testing Has Significant Drawbacks
-        </h2>
-        <p class="section-subtitle formal-lead">
-          Prostate-Specific Antigen (PSA) testing suffers from poor specificity and sensitivity, 
-          leading to unnecessary procedures and missed diagnoses.
-        </p>
-      </div>
-      
-      <div class="content-grid">
-        <div class="content-image">
-          <img src="/images/bloodtest.webp" alt="Elderly patient receiving blood draw for PSA testing" class="psa-limitations-img" />
+      <div class="patient-care-grid">
+        <div class="patient-care-image scroll-animate-left">
+          <img src="/images/consult.webp" alt="Healthcare provider consulting with elderly patient in modern office" class="care-img" />
         </div>
+        <div class="patient-care-content scroll-animate-right">
+          <div class="formal-eyebrow">Personalized Care</div>
+          <h2 class="section-title">Expert Guidance at Every Step</h2>
+          <p class="formal-lead" style="color: var(--color-gray-700);">
+            Our dedicated specialists provide comprehensive support throughout your screening journey,
+            ensuring you understand every aspect of your prostate health assessment.
+          </p>
+          <div class="care-features">
+            <div class="care-feature-item">
+              <div class="care-feature-number">01</div>
+              <div class="care-feature-text">
+                <h4>Individual Consultation</h4>
+                <p>Detailed discussion of your medical history and screening objectives with experienced specialists.</p>
+              </div>
+            </div>
+            <div class="care-feature-item">
+              <div class="care-feature-number">02</div>
+              <div class="care-feature-text">
+                <h4>Results Interpretation</h4>
+                <p>Clear explanation of findings and personalized recommendations for your ongoing health management.</p>
+              </div>
+            </div>
+            <div class="care-feature-item">
+              <div class="care-feature-number">03</div>
+              <div class="care-feature-text">
+                <h4>Continuous Support</h4>
+                <p>Ongoing access to our medical team for questions and guidance throughout your care journey.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="content-cards">
-          <div class="card formal-card scroll-animate-left">
-            <div class="card-header">
-              <div class="card-number">01</div>
-              <div class="card-stat">75%</div>
-            </div>
-            <h3 class="card-title">Poor Specificity</h3>
-            <p class="card-description">
-              PSA elevation occurs in benign conditions, leading to unnecessary interventions. 75% false positive rate means most elevated PSA results don't indicate cancer.
-            </p>
-          </div>
-          <div class="card formal-card scroll-animate-right">
-            <div class="card-header">
-              <div class="card-number">02</div>
-              <div class="card-stat">20%</div>
-            </div>
-            <h3 class="card-title">Limited Sensitivity</h3>
-            <p class="card-description">
-              Normal PSA levels can mask clinically significant cancers. 20% of cancers are missed with normal PSA readings.
-            </p>
-          </div>
-          <div class="card formal-card scroll-animate-left">
-            <div class="card-header">
-              <div class="card-number">03</div>
-              <div class="card-stat">25%</div>
-            </div>
-            <h3 class="card-title">Unnecessary Procedures</h3>
-            <p class="card-description">
-              Blind biopsies carry risks and often detect insignificant disease. 25% complication rate from invasive procedures.
-            </p>
-          </div>
+  <!-- Clean CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">
+          Advanced Screening Expert Care
+        </h2>
+        <p class="cta-description">
+          Take the proactive step toward accurate prostate health assessment.
+          Our specialized team provides comprehensive screening with immediate results consultation.
+        </p>
+        <div class="cta-actions">
+          <a href="/book-mri" class="btn-primary btn-large">
+            Schedule Your Screening
+          </a>
+          <a href="/consultation" class="btn-secondary btn-large">
+            Speak with Our Team
+          </a>
         </div>
       </div>
     </div>
@@ -194,6 +204,61 @@ import RiskVisualization from '../components/RiskVisualization.astro';
             Eliminates gadolinium injection risks while maintaining diagnostic accuracy,
             making the procedure safer and more comfortable.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formal PSA Limitations Section -->
+  <section class="content-section formal-section">
+    <div class="container">
+      <div class="section-header scroll-animate">
+        <div class="section-eyebrow formal-eyebrow">Clinical Limitations</div>
+        <h2 class="section-title">
+          PSA Testing Has Significant Drawbacks
+        </h2>
+        <p class="section-subtitle formal-lead">
+          Prostate-Specific Antigen (PSA) testing suffers from poor specificity and sensitivity,
+          leading to unnecessary procedures and missed diagnoses.
+        </p>
+      </div>
+
+      <div class="content-grid">
+        <div class="content-image">
+          <img src="/images/bloodtest.webp" alt="Elderly patient receiving blood draw for PSA testing" class="psa-limitations-img" />
+        </div>
+
+        <div class="content-cards">
+          <div class="card formal-card scroll-animate-left">
+            <div class="card-header">
+              <div class="card-number">01</div>
+              <div class="card-stat">75%</div>
+            </div>
+            <h3 class="card-title">Poor Specificity</h3>
+            <p class="card-description">
+              PSA elevation occurs in benign conditions, leading to unnecessary interventions. 75% false positive rate means most elevated PSA results don't indicate cancer.
+            </p>
+          </div>
+          <div class="card formal-card scroll-animate-right">
+            <div class="card-header">
+              <div class="card-number">02</div>
+              <div class="card-stat">20%</div>
+            </div>
+            <h3 class="card-title">Limited Sensitivity</h3>
+            <p class="card-description">
+              Normal PSA levels can mask clinically significant cancers. 20% of cancers are missed with normal PSA readings.
+            </p>
+          </div>
+          <div class="card formal-card scroll-animate-left">
+            <div class="card-header">
+              <div class="card-number">03</div>
+              <div class="card-stat">25%</div>
+            </div>
+            <h3 class="card-title">Unnecessary Procedures</h3>
+            <p class="card-description">
+              Blind biopsies carry risks and often detect insignificant disease. 25% complication rate from invasive procedures.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -408,71 +473,6 @@ import RiskVisualization from '../components/RiskVisualization.astro';
           </p>
         </div>
       </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Patient Care Section - Brighton College Style -->
-  <section class="content-section patient-care-section alt-bg">
-    <div class="container">
-      <div class="patient-care-grid">
-        <div class="patient-care-image scroll-animate-left">
-          <img src="/images/consult.webp" alt="Healthcare provider consulting with elderly patient in modern office" class="care-img" />
-        </div>
-        <div class="patient-care-content scroll-animate-right">
-          <div class="formal-eyebrow">Personalized Care</div>
-          <h2 class="section-title">Expert Guidance at Every Step</h2>
-          <p class="formal-lead" style="color: var(--color-gray-700);">
-            Our dedicated specialists provide comprehensive support throughout your screening journey,
-            ensuring you understand every aspect of your prostate health assessment.
-          </p>
-          <div class="care-features">
-            <div class="care-feature-item">
-              <div class="care-feature-number">01</div>
-              <div class="care-feature-text">
-                <h4>Individual Consultation</h4>
-                <p>Detailed discussion of your medical history and screening objectives with experienced specialists.</p>
-              </div>
-            </div>
-            <div class="care-feature-item">
-              <div class="care-feature-number">02</div>
-              <div class="care-feature-text">
-                <h4>Results Interpretation</h4>
-                <p>Clear explanation of findings and personalized recommendations for your ongoing health management.</p>
-              </div>
-            </div>
-            <div class="care-feature-item">
-              <div class="care-feature-number">03</div>
-              <div class="care-feature-text">
-                <h4>Continuous Support</h4>
-                <p>Ongoing access to our medical team for questions and guidance throughout your care journey.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Clean CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-content">
-        <h2 class="cta-title">
-          Advanced Screening Expert Care
-        </h2>
-        <p class="cta-description">
-          Take the proactive step toward accurate prostate health assessment.
-          Our specialized team provides comprehensive screening with immediate results consultation.
-        </p>
-        <div class="cta-actions">
-          <a href="/book-mri" class="btn-primary btn-large">
-            Schedule Your Screening
-          </a>
-          <a href="/consultation" class="btn-secondary btn-large">
-            Speak with Our Team
-          </a>
-        </div>
       </div>
     </div>
   </section>
