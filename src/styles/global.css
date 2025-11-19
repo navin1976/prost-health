@@ -1,28 +1,41 @@
-/* Artistic / Photography / Trustable Design System */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+/* Modern High-Tech / Trustworthy Medical Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Typography - Editorial Style */
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'Inter', sans-serif;
+  /* Typography - Clean, Humanist Sans for Trust & Tech */
+  --font-display: 'Manrope', sans-serif; /* Modern, geometric but friendly */
+  --font-body: 'Inter', sans-serif; /* The standard for legibility */
 
-  /* Color Palette - High Contrast & Sophisticated */
-  --color-black: #0a0a0a;
+  /* Color Palette - "Medical Trust" & "Imaging Tech" */
+  --color-navy: #0f172a; /* Slate 900 - Deep, authoritative */
+  --color-navy-light: #1e293b; /* Slate 800 */
+  --color-blue: #0284c7; /* Sky 600 - Primary Action, Trust */
+  --color-blue-hover: #0369a1; /* Sky 700 */
+  --color-teal: #06b6d4; /* Cyan 500 - High Tech/Imaging Accent */
+
+  /* Neutrals */
+  --color-black: #0f172a;
   --color-white: #ffffff;
-  --color-off-white: #f8f8f8;
-  --color-charcoal: #1c1c1e;
-  --color-gold: #c6a87c; /* Muted Gold for accents */
-  --color-gold-dim: #a38a63;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-500: #64748b;
+  --color-slate-900: #0f172a;
 
-  /* Semantic Colors */
-  --color-text-primary: var(--color-black);
-  --color-text-secondary: #4a4a4a;
+  /* Semantic Mapping */
+  --color-text-primary: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
   --color-text-inverse: var(--color-white);
-  --color-background: var(--color-white);
-  --color-surface: var(--color-off-white);
-  --color-border: #e5e5e5;
 
-  /* Spacing System - More breathing room */
+  --color-primary: var(--color-navy);
+  --color-accent: var(--color-blue);
+  --color-highlight: var(--color-teal);
+
+  --color-background: var(--color-white);
+  --color-surface: var(--color-slate-50);
+  --color-border: var(--color-slate-200);
+
+  /* Spacing System - Structured & Precise */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 2rem;
@@ -31,13 +44,15 @@
   --space-2xl: 12rem;
 
   /* Layout */
-  --container-max: 1600px; /* Wider for imagery */
-  --container-padding: 2rem;
-  --header-height: 90px;
+  --container-max: 1280px; /* Standard dashboard/SaaS width */
+  --container-padding: clamp(1.5rem, 4vw, 3rem);
+  --header-height: 80px;
 
-  /* Transitions */
-  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-base: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Transitions & Radius */
+  --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
 }
 
 /* Reset & Base */
@@ -59,9 +74,10 @@ body {
   color: var(--color-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  padding-top: var(--header-height);
 }
 
-/* Typography - Artistic Scale */
+/* Typography */
 h1,
 h2,
 h3,
@@ -69,43 +85,45 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.1;
+  font-weight: 700; /* Bolder, more confident */
   color: var(--color-text-primary);
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.02em; /* Tight tracking for modern feel */
+  margin-bottom: 1.5rem;
 }
 
 h1 {
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  font-weight: 500;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
 }
 
 h3 {
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 p {
   font-size: 1.125rem;
-  font-weight: 300;
-  max-width: 65ch;
+  color: var(--color-text-secondary);
+  max-width: 70ch;
   margin-bottom: 1.5rem;
 }
 
 .text-lead {
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 1.4;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
 }
 
 .text-caption {
   font-size: 0.875rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-text-secondary);
+  color: var(--color-accent); /* Use blue for captions */
 }
 
 /* Layout Utilities */
@@ -116,12 +134,12 @@ p {
 }
 
 .section-padding {
-  padding: var(--space-xl) 0;
+  padding: 6rem 0;
 }
 
 .grid {
   display: grid;
-  gap: var(--space-md);
+  gap: 2rem;
 }
 
 .grid-2 {
@@ -148,112 +166,89 @@ p {
     grid-template-columns: 1fr;
   }
   .section-padding {
-    padding: var(--space-lg) 0;
+    padding: 4rem 0;
   }
 }
 
-/* Artistic Elements */
-.divider-line {
-  width: 100%;
-  height: 1px;
-  background-color: var(--color-border);
-  margin: var(--space-lg) 0;
-}
-
-.image-wrapper {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--color-surface);
-}
-
-.image-wrapper img,
-.image-wrapper video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-slow);
-}
-
-.image-wrapper:hover img {
-  transform: scale(1.03);
-}
-
-/* Buttons - Minimalist */
+/* Buttons - Modern Tech Style */
 .btn {
-  display: inline-block;
-  padding: 1rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 1rem;
+  font-weight: 600;
   text-decoration: none;
+  border-radius: var(--radius-md);
   transition: all var(--transition-base);
-  border: 1px solid transparent;
   cursor: pointer;
+  line-height: 1;
 }
 
 .btn-primary {
-  background-color: var(--color-black);
+  background-color: var(--color-blue);
   color: var(--color-white);
-  border-color: var(--color-black);
+  border: 1px solid var(--color-blue);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:hover {
-  background-color: transparent;
-  color: var(--color-black);
+  background-color: var(--color-blue-hover);
+  border-color: var(--color-blue-hover);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--color-black);
-  border-color: var(--color-black);
+  background-color: var(--color-white);
+  color: var(--color-slate-900);
+  border: 1px solid var(--color-slate-200);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-black);
-  color: var(--color-white);
+  border-color: var(--color-slate-300);
+  background-color: var(--color-slate-50);
 }
 
 .btn-gold {
-  background-color: var(--color-gold);
+  /* Rebranding to 'Accent' style */
+  background-color: var(--color-navy);
   color: var(--color-white);
-  border-color: var(--color-gold);
+  border: 1px solid var(--color-navy);
 }
+
 .btn-gold:hover {
-  background-color: var(--color-gold-dim);
-  border-color: var(--color-gold-dim);
+  background-color: var(--color-navy-light);
+  border-color: var(--color-navy-light);
 }
 
 /* Forms - Unified Design System */
 .form-group {
-  margin-bottom: 3rem; /* Increased spacing */
+  margin-bottom: 2rem;
   position: relative;
 }
 
 .form-label {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.9rem; /* Slightly larger */
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-black); /* Darkest color for max contrast */
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.02em;
-  text-transform: none; /* Sentence case for readability */
+  color: var(--color-slate-900);
+  margin-bottom: 0.5rem;
 }
 
 .form-input,
 .form-select {
   display: block;
   width: 100%;
-  padding: 1rem 0;
-  border: none;
-  border-bottom: 1px solid #ccc; /* Slightly darker border */
-  background: transparent;
-  font-family: var(--font-display);
-  font-size: 1.6rem; /* Larger text */
-  color: var(--color-black);
-  transition: border-color 0.3s ease;
-  border-radius: 0;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-slate-900);
+  transition: all var(--transition-base);
   margin-top: 0;
   scroll-margin-top: 140px;
 }
@@ -261,51 +256,34 @@ p {
 .form-input:focus,
 .form-select:focus {
   outline: none;
-  box-shadow: none;
-  border-bottom-color: var(--color-black);
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1); /* Focus ring */
 }
 
-/* Unified Placeholder Styling */
 .form-input::placeholder {
-  color: #d1d5db; /* Even lighter grey (gray-300) */
+  color: var(--color-slate-500);
   opacity: 1;
-  font-family: var(--font-body);
-  font-size: 1.2rem;
-  font-weight: 400;
 }
 
 /* Date Input Standardization */
 input[type='date'] {
   font-family: var(--font-body);
-  font-size: 1.2rem;
-  color: #d1d5db; /* Match new lighter placeholder */
-
+  font-size: 1rem;
+  color: var(--color-slate-500);
   text-align: left;
-  padding: 1rem 0;
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  background: transparent;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
   width: 100%;
-  min-height: 3.5rem; /* Match text input height */
+  min-height: 3rem;
 }
 
 input[type='date']:focus,
 input[type='date']:valid,
 input[type='date'].has-value {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--color-black);
-  border-bottom-color: var(--color-black);
-}
-
-input[type='date']::-webkit-calendar-picker-indicator {
-  opacity: 0.3;
-  cursor: pointer;
-  filter: grayscale(1);
-}
-
-input[type='date']::-webkit-calendar-picker-indicator:hover {
-  opacity: 0.7;
+  color: var(--color-slate-900);
+  border-color: var(--color-blue);
 }
 
 /* Global Radio & Checkbox System */
@@ -313,8 +291,8 @@ input[type='date']::-webkit-calendar-picker-indicator:hover {
 .checkbox-options {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .radio-card,
@@ -338,25 +316,26 @@ input[type='date']::-webkit-calendar-picker-indicator:hover {
 .checkbox-content {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
-  border: none;
-  background: transparent;
-  transition: opacity 0.2s ease;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  transition: all var(--transition-base);
   font-family: var(--font-body);
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: var(--color-black);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-slate-900);
 }
 
 .radio-content::before,
 .checkbox-content::before {
   content: '';
   display: inline-block;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #6b7280; /* Darker border as requested */
-  background: transparent;
-  margin-right: 1.5rem;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-slate-300);
+  background: var(--color-white);
+  margin-right: 1rem;
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
@@ -370,16 +349,26 @@ input[type='date']::-webkit-calendar-picker-indicator:hover {
 
 .radio-card:hover .radio-content,
 .checkbox-card:hover .checkbox-content {
-  opacity: 0.7;
+  border-color: var(--color-blue);
+  background-color: var(--color-slate-50);
 }
 
-.radio-card input:checked + .radio-content::before,
-.checkbox-card input:checked + .checkbox-content::before {
-  border-color: var(--color-black);
-  background-color: var(--color-black);
+.radio-card input:checked + .radio-content,
+.checkbox-card input:checked + .checkbox-content {
+  border-color: var(--color-blue);
+  background-color: #f0f9ff; /* Light blue bg */
+  color: var(--color-blue-hover);
+}
+
+.radio-card input:checked + .radio-content::before {
+  border-color: var(--color-blue);
+  background-color: var(--color-white);
+  box-shadow: inset 0 0 0 4px var(--color-blue);
 }
 
 .checkbox-card input:checked + .checkbox-content::before {
+  border-color: var(--color-blue);
+  background-color: var(--color-blue);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
   background-size: 70%;
   background-position: center;
@@ -387,6 +376,8 @@ input[type='date']::-webkit-calendar-picker-indicator:hover {
 }
 
 /* Navigation (Header) */
+/* ... (rest of header styles, adapted for new colors in component) */
+
 .header {
   position: fixed;
   top: 0;
