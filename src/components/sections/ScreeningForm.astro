@@ -8,7 +8,7 @@
      <div class="progress-indicator">
          <span class="progress-text">Step <span id="currentStepNum">1</span> of 3</span>
          <div class="progress-bar-bg">
-             <div class="progress-bar-fill" style="width: 33%"></div>
+             <div class="progress-bar-fill" data-width="33%"></div>
          </div>
      </div>
   </div>
@@ -24,156 +24,160 @@
       </div>
 
       <!-- Consent Section -->
-      <div class="form-group" style="background: #f9f9f9; padding: 1.5rem; border-radius: 8px; border: 1px solid #eee; margin-bottom: 3rem;">
-        <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem;">Data Consent</h3>
-        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
+      <div class="form-group consent-section">
+        <h3 class="consent-title">Data Consent</h3>
+        <p class="consent-description">
             We need your permission to process your personal and medical data to generate your screening report. 
             Your data is processed locally in your browser to generate the PDF and is not stored on our servers.
         </p>
         <div class="form-consent">
-            <label class="checkbox-card">
+            <label class="checkbox-card" for="dataConsent">
               <input type="checkbox" name="consent" id="dataConsent" required />
               <span class="checkbox-content">I consent to processing my data for this assessment.</span>
             </label>
         </div>
       </div>
       
-      <!-- Personal Details -->
-      <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Personal Details</h3>
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="firstName" class="form-label">1. First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-input" required placeholder="Enter your first name" />
-          <span class="form-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="lastName" class="form-label">2. Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-input" required placeholder="Enter your last name" />
-          <span class="form-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="dateOfBirth" class="form-label">3. Date of Birth</label>
-          <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-input" required />
-          <span class="form-error"></span>
-        </div>
-        <div class="form-group">
-          <label for="email" class="form-label">4. Email Address</label>
-          <input type="email" id="email" name="email" class="form-input" required placeholder="name@example.com" />
-          <span class="form-error"></span>
-        </div>
-      </div>
-
-      <!-- Medical History -->
-      <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Medical History</h3>
-      <div class="form-group">
-        <label class="form-label">5. Have you ever had a PSA test?</label>
-        <div class="radio-options">
-          <label class="radio-card">
-            <input type="radio" name="previousPSA" value="yes" required />
-            <span class="radio-content">Yes</span>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="previousPSA" value="no" required />
-            <span class="radio-content">No</span>
-          </label>
-        </div>
-      </div>
-
-      <div id="psaDetails" class="conditional-section" style="display: none;">
-        <div class="form-grid">
+      <!-- Gated Assessment Fields (Hidden until consent) -->
+      <div id="assessment-fields" class="assessment-fields">
+          <!-- Personal Details -->
+          <h3 class="section-title">Personal Details</h3>
+          <div class="form-grid">
             <div class="form-group">
-              <label for="lastPSADate" class="form-label">Date of last PSA test</label>
-              <input type="date" id="lastPSADate" name="lastPSADate" class="form-input" />
+              <label for="firstName" class="form-label">1. First Name</label>
+              <input type="text" id="firstName" name="firstName" class="form-input" required placeholder="Enter your first name" />
+              <span class="form-error"></span>
             </div>
             <div class="form-group">
-              <label for="lastPSAResult" class="form-label">Last PSA result (ng/mL)</label>
-              <input type="number" id="lastPSAResult" name="lastPSAResult" class="form-input" step="0.1" min="0" placeholder="0.0" />
+              <label for="lastName" class="form-label">2. Last Name</label>
+              <input type="text" id="lastName" name="lastName" class="form-input" required placeholder="Enter your last name" />
+              <span class="form-error"></span>
             </div>
-        </div>
-      </div>
+            <div class="form-group">
+              <label for="dateOfBirth" class="form-label">3. Date of Birth</label>
+              <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+              <span class="form-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">4. Email Address</label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="name@example.com" />
+              <span class="form-error"></span>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label class="form-label">6. Have you ever had a prostate biopsy?</label>
-        <div class="radio-options">
-          <label class="radio-card">
-            <input type="radio" name="previousBiopsy" value="yes" required />
-            <span class="radio-content">Yes</span>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="previousBiopsy" value="no" required />
-            <span class="radio-content">No</span>
-          </label>
-        </div>
-      </div>
+          <!-- Medical History -->
+          <h3 class="section-title">Medical History</h3>
+          <div class="form-group">
+            <label class="form-label">5. Have you ever had a PSA test?</label>
+            <div class="radio-options">
+              <label class="radio-card">
+                <input type="radio" name="previousPSA" value="yes" required />
+                <span class="radio-content">Yes</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="previousPSA" value="no" required />
+                <span class="radio-content">No</span>
+              </label>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label class="form-label">7. Have you ever had prostate MRI?</label>
-        <div class="radio-options">
-           <label class="radio-card">
-            <input type="radio" name="previousMRI" value="yes" required />
-            <span class="radio-content">Yes</span>
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="previousMRI" value="no" required />
-            <span class="radio-content">No</span>
-          </label>
-        </div>
-      </div>
+          <div id="psaDetails" class="conditional-section">
+            <div class="form-grid">
+                <div class="form-group">
+                  <label for="lastPSADate" class="form-label">Date of last PSA test</label>
+                  <input type="date" id="lastPSADate" name="lastPSADate" placeholder="Select date" />
+                </div>
+                <div class="form-group">
+                  <label for="lastPSAResult" class="form-label">Last PSA result (ng/mL)</label>
+                  <input type="number" id="lastPSAResult" name="lastPSAResult" class="form-input" step="0.1" min="0" placeholder="0.0" />
+                </div>
+            </div>
+          </div>
 
-      <!-- Risk Profile -->
-      <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Risk Factors</h3>
-      <div class="form-group">
-        <label class="form-label">8. Family History (Check all that apply)</label>
-        <div class="checkbox-options">
-          <label class="checkbox-card">
-            <input type="checkbox" name="familyHistory" value="father" />
-            <span class="checkbox-content">Father with prostate cancer</span>
-          </label>
-          <label class="checkbox-card">
-            <input type="checkbox" name="familyHistory" value="brother" />
-            <span class="checkbox-content">Brother with prostate cancer</span>
-          </label>
-          <label class="checkbox-card">
-            <input type="checkbox" name="familyHistory" value="grandfather" />
-            <span class="checkbox-content">Grandfather with prostate cancer</span>
-          </label>
-        </div>
-      </div>
+          <div class="form-group">
+            <label class="form-label">6. Have you ever had a prostate biopsy?</label>
+            <div class="radio-options">
+              <label class="radio-card">
+                <input type="radio" name="previousBiopsy" value="yes" required />
+                <span class="radio-content">Yes</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="previousBiopsy" value="no" required />
+                <span class="radio-content">No</span>
+              </label>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label class="form-label">9. Symptoms (Check all that apply)</label>
-        <div class="checkbox-options">
-          <label class="checkbox-card">
-            <input type="checkbox" name="symptoms" value="urinary" />
-            <span class="checkbox-content">Urinary changes (frequency, urgency, weak flow)</span>
-          </label>
-          <label class="checkbox-card">
-            <input type="checkbox" name="symptoms" value="blood" />
-            <span class="checkbox-content">Blood in urine or semen</span>
-          </label>
-          <label class="checkbox-card">
-            <input type="checkbox" name="symptoms" value="pain" />
-            <span class="checkbox-content">Pain in hips, back, or pelvis</span>
-          </label>
-           <label class="checkbox-card">
-            <input type="checkbox" name="symptoms" value="none" />
-            <span class="checkbox-content">No symptoms</span>
-          </label>
-        </div>
-      </div>
+          <div class="form-group">
+            <label class="form-label">7. Have you ever had prostate MRI?</label>
+            <div class="radio-options">
+               <label class="radio-card">
+                <input type="radio" name="previousMRI" value="yes" required />
+                <span class="radio-content">Yes</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="previousMRI" value="no" required />
+                <span class="radio-content">No</span>
+              </label>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label class="form-label">10. Ethnicity</label>
-        <select name="ethnicity" class="form-select" required>
-          <option value="">Select your ethnicity</option>
-          <option value="white">White</option>
-          <option value="black-african">Black African</option>
-          <option value="black-caribbean">Black Caribbean</option>
-          <option value="asian">Asian</option>
-          <option value="other">Other</option>
-        </select>
-        <p class="form-hint">Black men have a higher risk of developing prostate cancer.</p>
+          <!-- Risk Profile -->
+          <h3 class="section-title">Risk Factors</h3>
+          <div class="form-group">
+            <label class="form-label">8. Family History (Check all that apply)</label>
+            <div class="checkbox-options">
+              <label class="checkbox-card">
+                <input type="checkbox" name="familyHistory" value="father" />
+                <span class="checkbox-content">Father with prostate cancer</span>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" name="familyHistory" value="brother" />
+                <span class="checkbox-content">Brother with prostate cancer</span>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" name="familyHistory" value="grandfather" />
+                <span class="checkbox-content">Grandfather with prostate cancer</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">9. Symptoms (Check all that apply)</label>
+            <div class="checkbox-options">
+              <label class="checkbox-card">
+                <input type="checkbox" name="symptoms" value="urinary" />
+                <span class="checkbox-content">Urinary changes (frequency, urgency, weak flow)</span>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" name="symptoms" value="blood" />
+                <span class="checkbox-content">Blood in urine or semen</span>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" name="symptoms" value="pain" />
+                <span class="checkbox-content">Pain in hips, back, or pelvis</span>
+              </label>
+               <label class="checkbox-card">
+                <input type="checkbox" name="symptoms" value="none" />
+                <span class="checkbox-content">No symptoms</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">10. Ethnicity</label>
+            <select name="ethnicity" class="form-select" required>
+              <option value="">Select your ethnicity</option>
+              <option value="white">White</option>
+              <option value="black-african">Black African</option>
+              <option value="black-caribbean">Black Caribbean</option>
+              <option value="asian">Asian</option>
+              <option value="other">Other</option>
+            </select>
+            <p class="form-hint">Black men have a higher risk of developing prostate cancer.</p>
+          </div>
       </div>
+      <!-- End Gated Content -->
     </div>
 
     <!-- Step 2: MRI Safety -->
@@ -289,28 +293,30 @@
     </div>
 
     <!-- Form Navigation -->
-    <div class="form-navigation">
-      <button type="button" id="prevBtn" class="btn btn-secondary" style="display: none;">Back</button>
+    <div class="form-navigation form-navigation-hidden"> <!-- Hidden by default -->
+      <button type="button" id="prevBtn" class="btn btn-secondary button-hidden">Back</button>
       <button type="button" id="nextBtn" class="btn btn-primary">Continue</button>
-      <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">Generate PDF Report</button>
+      <button type="submit" id="submitBtn" class="btn btn-primary button-hidden">Generate Report</button>
     </div>
   </form>
 
   <!-- Success Message -->
-  <div id="successMessage" class="success-message" style="display: none;">
+  <div id="successMessage" class="success-message success-message-hidden">
     <div class="success-icon">✓</div>
     <h3>Assessment Complete</h3>
     <p>
-      Your personalized risk report has been generated and is downloading now.
+      Your personalized risk report has been generated and opened in a new window.
     </p>
     <p>
-      Please share this PDF with your healthcare provider.
+      Use your browser's print function (Ctrl+P) to save as PDF or share with your healthcare provider.
     </p>
-    <a href="/" class="btn btn-secondary" style="margin-top: 2rem;">Return Home</a>
+    <a href="/" class="btn btn-secondary return-home-link">Return Home</a>
   </div>
 </div>
 
 <style>
+  /* Layout & Animation Styles */
+  
   .screening-form-container {
     max-width: 100%;
     margin: 0 auto;
@@ -319,7 +325,7 @@
   }
 
   .form-header {
-      margin-bottom: 5rem;
+      margin-bottom: 4rem;
       padding-bottom: 0;
       border-bottom: none;
   }
@@ -327,46 +333,44 @@
   .progress-indicator {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
   }
 
   .progress-text {
-      font-family: var(--font-secondary);
-      font-size: 0.8rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.05em;
       color: var(--color-text-secondary);
       font-weight: 600;
-      opacity: 0.6;
   }
   
   .progress-text span {
-      color: var(--color-black);
+      color: var(--color-text-primary);
       font-weight: 700;
-      opacity: 1;
   }
 
   .progress-bar-bg {
       width: 100%;
-      height: 4px;
-      background: #f0f0f0;
-      border-radius: 2px;
+      height: 6px;
+      background: var(--color-surface);
+      border-radius: 3px;
   }
 
   .progress-bar-fill {
       height: 100%;
       background: var(--color-black);
-      border-radius: 2px;
-      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 3px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .step-title {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
       font-weight: 300;
-      color: var(--color-black);
+      color: var(--color-text-primary);
       text-align: center;
   }
   
@@ -374,8 +378,8 @@
       font-family: var(--font-body);
       font-size: 1.125rem;
       color: var(--color-text-secondary);
-      margin-bottom: 4rem;
-      font-weight: 300;
+      margin-bottom: 3rem;
+      font-weight: 400;
       line-height: 1.6;
       max-width: 60ch;
       margin-left: auto;
@@ -383,7 +387,7 @@
       text-align: center;
   }
 
-  .form-step { display: none; animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .form-step { display: none; animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
   .form-step.active { display: block; }
 
   @keyframes fadeIn {
@@ -393,46 +397,146 @@
 
   .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
   }
   
   .form-hint {
       font-size: 0.875rem;
       color: var(--color-text-secondary);
-      margin-top: 1rem;
-      font-style: normal;
-      opacity: 0.7;
+      margin-top: 0.5rem;
+      font-style: italic;
+  }
+  
+  .section-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+  }
+  
+  .consent-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+  }
+  
+  .consent-section {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      margin-bottom: 3rem;
+  }
+  
+  .consent-description {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+  }
+  
+  .assessment-fields {
+      display: none;
+  }
+  
+  .conditional-section {
+      display: none;
+  }
+  
+  .form-navigation-hidden {
+      display: none;
+  }
+  
+  .button-hidden {
+      display: none;
+  }
+  
+  .success-message-hidden {
+      display: none;
+  }
+  
+  .return-home-link {
+      margin-top: 2rem;
   }
 
-  /* Ensure consent visibility - keeps its specific border */
+  /* Consent Box Specifics - Simplified */
   .form-consent .checkbox-card {
-      display: block;
+      display: flex; /* Flex to align input and content if needed, but block is fine */
+      cursor: pointer;
+      position: relative;
+  }
+  
+  /* Hide the default checkbox and create a custom one */
+  .form-consent .checkbox-card {
+      position: relative;
+  }
+  
+  .form-consent input[type="checkbox"] {
+      opacity: 0 !important;
+      position: absolute !important;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+      z-index: 1 !important;
+      clip: auto !important;
+      cursor: pointer !important;
   }
   
   .form-consent .checkbox-content {
-      font-size: 1rem;
-      padding: 1rem;
-      justify-content: center;
+      font-size: 1.1rem;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
       border: 1px solid var(--color-border);
-      border-radius: 8px;
-      background-color: #fff;
-      color: var(--color-black);
+      border-radius: var(--radius-md);
+      background-color: var(--color-white);
+      color: var(--color-text-primary);
+      font-weight: 500;
+      transition: all 0.2s ease;
+      width: 100%; /* Ensure full width */
+      position: relative;
+      z-index: 0;
   }
-  
+
+  /* Create a custom checkbox icon */
   .form-consent .checkbox-content::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-right: 0.75rem;
+      border: 2px solid #6b7280;
       border-radius: 4px;
-      border-color: #6b7280;
+      background-color: var(--color-white);
+      flex-shrink: 0;
+  }
+
+  .form-consent input:checked + .checkbox-content {
+      background-color: #eff6ff; /* Explicit light blue hex (blue-50) */
+      border-color: var(--color-blue);
+      color: var(--color-slate-900);
+  }
+
+  /* Add checked state styling for the checkbox */
+  .form-consent input:checked + .checkbox-content::before {
+      background-color: var(--color-black);
+      border-color: var(--color-black);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+      background-size: 70%;
+      background-position: center;
+      background-repeat: no-repeat;
   }
 
   /* Summary Card */
   .summary-card {
-      border: none;
-      padding: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
       margin-bottom: 3rem;
-      background: transparent;
-      border-top: 1px solid var(--color-border);
-      padding-top: 2rem;
+      background: var(--color-white);
+      box-shadow: none;
   }
 
   .risk-section {
@@ -448,32 +552,36 @@
   .risk-label {
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: var(--color-text-secondary);
       margin-bottom: 0.5rem;
+      font-weight: 600;
   }
 
   .risk-value {
       font-family: var(--font-display);
-      font-size: 2.5rem;
-      color: var(--color-black);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--color-text-primary);
       margin-bottom: 1rem;
+      line-height: 1;
   }
   
-  .risk-value.high { color: #d32f2f; }
-  .risk-value.medium { color: #f57c00; }
-  .risk-value.low { color: #388e3c; }
+  .risk-value.high { color: #ef4444; } /* Red 500 */
+  .risk-value.medium { color: #f59e0b; } /* Amber 500 */
+  .risk-value.low { color: #10b981; } /* Emerald 500 */
 
   .risk-desc {
       max-width: 600px;
       margin: 0 auto;
       text-align: center;
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
   }
 
   .summary-details {
      text-align: left;
-     max-width: 600px;
-     margin: 0 auto;
+     max-width: 100%;
   }
 
   .form-navigation {
@@ -486,15 +594,775 @@
   
   .success-message {
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 6rem 2rem;
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
   }
   
   .success-icon {
       font-size: 4rem;
       color: var(--color-gold);
+      margin-bottom: 1.5rem;
+      display: block;
+  }
+  
+  .success-message h3 {
       margin-bottom: 1rem;
+  }
+
+  /* Fix for PSA date input styling - Using is:global to override Astro's scoping */
+  :global(input[type="date"]#lastPSADate) {
+      font-family: var(--font-body) !important;
+      font-size: 1.2rem !important;
+      color: #d1d5db !important;
+      text-align: left !important;
+      padding: 1rem 0 !important;
+      border: none !important;
+      border-bottom: 1px solid #ccc !important;
+      background: transparent !important;
+      width: 100% !important;
+  }
+
+  :global(input[type="date"]#lastPSADate:focus),
+  :global(input[type="date"]#lastPSADate:valid),
+  :global(input[type="date"]#lastPSADate.has-value) {
+      font-family: var(--font-display) !important;
+      font-size: 1.6rem !important;
+      color: var(--color-black) !important;
+      border-bottom-color: var(--color-black) !important;
   }
 
 </style>
 
-<script type="module" is:inline src="/scripts/screening-form-browser.js"></script>
+<script type="module">
+  // Inlined browser-compatible screening form logic to ensure loading
+  (function () {
+    const init = () => {
+      const form = document.getElementById('multiStepForm');
+      if (!form) return;
+
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const submitBtn = document.getElementById('submitBtn');
+      const successMessage = document.getElementById('successMessage');
+      const consentCheckbox = document.getElementById('dataConsent');
+      const assessmentFields = document.getElementById('assessment-fields');
+      const navButtons = document.querySelector('.form-navigation');
+
+      let currentStep = 1;
+      const totalSteps = 3;
+      let formData = {};
+
+      // Initialize form
+      initializeForm();
+
+      function initializeForm() {
+        // Initialize form visibility
+        const steps = document.querySelectorAll('.form-step');
+        steps.forEach((step, index) => {
+          if (index === 0) {
+            step.classList.add('active');
+            step.style.display = 'block';
+          } else {
+            step.classList.remove('active');
+            step.style.display = 'none';
+          }
+        });
+
+        // Consent Logic
+        if (consentCheckbox && assessmentFields && navButtons) {
+            // Force uncheck on load to match hidden state, or respect browser state
+            // Better UX: Reset to unchecked so they explicitly consent each time
+            consentCheckbox.checked = false; 
+            
+            assessmentFields.style.display = 'none';
+            navButtons.style.display = 'none';
+
+            consentCheckbox.addEventListener('change', function() {
+                console.log('Consent changed:', this.checked); // Debug
+                if (this.checked) {
+                    assessmentFields.style.display = 'block';
+                    assessmentFields.style.opacity = 0;
+                    setTimeout(() => {
+                        assessmentFields.style.opacity = 1;
+                        assessmentFields.style.transition = 'opacity 0.5s ease';
+                    }, 10);
+                    navButtons.style.display = 'flex';
+                } else {
+                    assessmentFields.style.display = 'none';
+                    navButtons.style.display = 'none';
+                }
+            });
+        } else {
+            console.error('Consent elements not found', { consentCheckbox, assessmentFields, navButtons });
+        }
+
+        // Re-implementing key parts for self-containment
+
+        // Radio Logic
+        const previousPSARadios = document.querySelectorAll('input[name="previousPSA"]');
+        previousPSARadios.forEach((radio) => {
+          radio.addEventListener('change', function () {
+            const psaDetails = document.getElementById('psaDetails');
+            if (this.value === 'yes') {
+              psaDetails.style.display = 'block';
+            } else {
+              psaDetails.style.display = 'none';
+            }
+          });
+        });
+
+        // Validation Listeners
+        const inputs = form.querySelectorAll('input, select');
+        inputs.forEach((input) => {
+          input.addEventListener('blur', function () {
+            validateField(this);
+          });
+        });
+
+        // Fix PSA date input styling
+        const lastPSADateInput = document.getElementById('lastPSADate');
+        if (lastPSADateInput) {
+          lastPSADateInput.style.setProperty('font-family', 'var(--font-body)', 'important');
+          lastPSADateInput.style.setProperty('font-size', '1.2rem', 'important');
+          lastPSADateInput.style.setProperty('color', '#d1d5db', 'important');
+          lastPSADateInput.style.setProperty('text-align', 'left', 'important');
+          lastPSADateInput.style.setProperty('padding', '1rem 0', 'important');
+          lastPSADateInput.style.setProperty('border', 'none', 'important');
+          lastPSADateInput.style.setProperty('border-bottom', '1px solid #ccc', 'important');
+          lastPSADateInput.style.setProperty('background', 'transparent', 'important');
+          lastPSADateInput.style.setProperty('width', '100%', 'important');
+          
+          // Add focus/valid style handlers
+          const updateStyleForValue = () => {
+            if (lastPSADateInput.value || document.activeElement === lastPSADateInput) {
+              lastPSADateInput.style.setProperty('font-family', 'var(--font-display)', 'important');
+              lastPSADateInput.style.setProperty('font-size', '1.6rem', 'important');
+              lastPSADateInput.style.setProperty('color', 'var(--color-black)', 'important');
+              lastPSADateInput.style.setProperty('border-bottom', '1px solid var(--color-black)', 'important');
+            } else {
+              lastPSADateInput.style.setProperty('font-family', 'var(--font-body)', 'important');
+              lastPSADateInput.style.setProperty('font-size', '1.2rem', 'important');
+              lastPSADateInput.style.setProperty('color', '#d1d5db', 'important');
+              lastPSADateInput.style.setProperty('border-bottom', '1px solid #ccc', 'important');
+            }
+          };
+          
+          lastPSADateInput.addEventListener('focus', updateStyleForValue);
+          lastPSADateInput.addEventListener('blur', updateStyleForValue);
+          lastPSADateInput.addEventListener('change', updateStyleForValue);
+        }
+
+        
+
+        // Navigation
+        if(prevBtn) prevBtn.addEventListener('click', previousStep);
+        if(nextBtn) nextBtn.addEventListener('click', nextStep);
+        form.addEventListener('submit', handleSubmit);
+
+        // Date Max
+        const dobInput = document.getElementById('dateOfBirth');
+        if(dobInput) {
+            const today = new Date();
+            const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+            dobInput.max = maxDate.toISOString().split('T')[0];
+        }
+
+        // Symptom Logic
+        const symptomCheckboxes = document.querySelectorAll('input[name="symptoms"]');
+        const noneCheckbox = document.querySelector('input[name="symptoms"][value="none"]');
+        if(symptomCheckboxes.length && noneCheckbox) {
+            symptomCheckboxes.forEach((checkbox) => {
+              checkbox.addEventListener('change', function () {
+                if (this.value === 'none' && this.checked) {
+                  symptomCheckboxes.forEach((cb) => {
+                    if (cb.value !== 'none') {
+                      cb.checked = false;
+                      cb.disabled = true;
+                    }
+                  });
+                } else if (this.checked && noneCheckbox.checked) {
+                  noneCheckbox.checked = false;
+                } else if (this.value !== 'none' && !this.checked) {
+                  symptomCheckboxes.forEach((cb) => {
+                    if (cb.value !== 'none') {
+                      cb.disabled = false;
+                    }
+                  });
+                }
+              });
+            });
+        }
+      }
+
+      // Validation Functions
+      function validateField(field) {
+          if (field.disabled) return true;
+          if (field.hasAttribute('required') && !field.value.trim()) {
+             if (field.type === 'checkbox' && !field.checked) {
+                 showError(field.closest('.form-group'), 'This field is required');
+                 return false;
+             } else if (field.type !== 'checkbox') {
+                 showError(field, 'This field is required');
+                 return false;
+             }
+          }
+          clearError(field);
+          return true;
+      }
+
+      function validateStep(step) {
+        const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+        const requiredFields = currentStepElement.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach((field) => {
+            if (field.id === 'dataConsent') {
+                 if(!field.checked) {
+                     alert('You must consent to data processing to proceed.');
+                     isValid = false;
+                 }
+            } else {
+                if (!validateField(field)) isValid = false;
+            }
+        });
+        
+        // Step Specific Validation (Groups)
+        if (step === 1) {
+             const previousPSA = document.querySelector('input[name="previousPSA"]:checked');
+             if (!previousPSA) { isValid = false; showError(document.querySelector('input[name="previousPSA"]'), 'Please select an option'); }
+             const previousBiopsy = document.querySelector('input[name="previousBiopsy"]:checked');
+             if (!previousBiopsy) { isValid = false; showError(document.querySelector('input[name="previousBiopsy"]'), 'Please select an option'); }
+             const previousMRI = document.querySelector('input[name="previousMRI"]:checked');
+             if (!previousMRI) { isValid = false; showError(document.querySelector('input[name="previousMRI"]'), 'Please select an option'); }
+        }
+        return isValid;
+      }
+
+      function showError(field, message) {
+        let errorElement = field.parentElement.querySelector('.form-error'); 
+        if (!errorElement) {
+            const group = field.closest('.form-group');
+            if(group) errorElement = group.querySelector('.form-error');
+        }
+        if(errorElement) { errorElement.textContent = message; errorElement.style.display = 'block'; errorElement.style.color = '#d32f2f'; }
+      }
+
+      function clearError(field) {
+         const group = field.closest('.form-group');
+         const errorElement = group ? group.querySelector('.form-error') : null;
+         if(errorElement) { errorElement.style.display = 'none'; }
+      }
+
+      function nextStep() {
+        if (!validateStep(currentStep)) return;
+        saveStepData(currentStep);
+        currentStep++;
+        showStep(currentStep);
+      }
+
+      function previousStep() {
+        currentStep--;
+        showStep(currentStep);
+      }
+
+      function showStep(step) {
+          document.querySelectorAll('.form-step').forEach(el => {
+             el.classList.remove('active'); el.style.display = 'none';
+          });
+          const nextStepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+          if(nextStepEl) {
+              nextStepEl.classList.add('active'); nextStepEl.style.display = 'block';
+          }
+          
+          // Scroll logic
+          const formContainer = document.querySelector('.screening-form-container');
+          if (formContainer) {
+             const headerOffset = 140;
+             const elementPosition = formContainer.getBoundingClientRect().top;
+             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+             window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }
+
+          if(prevBtn) prevBtn.style.display = step === 1 ? 'none' : 'inline-block';
+          if(nextBtn) nextBtn.style.display = step === totalSteps ? 'none' : 'inline-block';
+          if(submitBtn) submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
+
+          // Update progress bar and step number
+          const progressFill = document.querySelector('.progress-bar-fill');
+          const currentStepNum = document.getElementById('currentStepNum');
+          
+          if (progressFill) {
+              const progressPercentage = (currentStep / totalSteps) * 100;
+              progressFill.style.width = `${progressPercentage}%`;
+          }
+          
+          if (currentStepNum) {
+              currentStepNum.textContent = currentStep;
+          }
+          
+          if (step === 3) { 
+            console.log('Entering step 3 - populating summary and calculating risk');
+            console.log('Form data:', formData);
+            populateSummary(); 
+            calculateRisk();  
+          }
+      }
+
+      function saveStepData(step) {
+          // Collect all form data
+          const inputs = document.querySelectorAll('input, select'); // Collect all
+          inputs.forEach(input => {
+              if(input.type === 'radio' && input.checked) {
+                  formData[input.name] = input.value;
+              }
+              else if(input.type === 'checkbox' && input.checked) {
+                  if(input.name === 'consent') {
+                      formData[input.name] = true;
+                  } else {
+                      // Always reinitialize checkbox arrays to avoid duplicates
+                      if(!formData[input.name]) formData[input.name] = [];
+                      // Get all checked checkboxes for this name
+                      const checkedBoxes = document.querySelectorAll(`input[name="${input.name}"]:checked`);
+                      formData[input.name] = Array.from(checkedBoxes).map(cb => cb.value);
+                  }
+              }
+              else if(input.type !== 'radio' && input.type !== 'checkbox') {
+                  formData[input.name] = input.value;
+              }
+          });
+      }
+
+      // calculateRisk, populateSummary, handleSubmit, generateClientPDF functions
+      
+      function calculateAge(dateOfBirth) {
+          const today = new Date();
+          const dob = new Date(dateOfBirth);
+          let age = today.getFullYear() - dob.getFullYear();
+          const monthDiff = today.getMonth() - dob.getMonth();
+
+          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+              age--;
+          }
+
+          return age;
+      }
+
+      function calculateRisk() {
+          // Calculate based on NICE NG131 guidelines
+          let riskScore = 0;
+          let riskFactors = [];
+          const age = calculateAge(formData.dateOfBirth);
+
+          // Age risk factor
+          if (age >= 50) {
+              riskScore += 2;
+              riskFactors.push(`Age ${age}+`);
+          } else if (age >= 45) {
+              riskScore += 1;
+              riskFactors.push(`Age ${age}+`);
+          }
+
+          // Family history risk factor
+          if (formData.familyHistory && formData.familyHistory.length > 0) {
+              riskScore += formData.familyHistory.includes('father') ? 3 : 2;
+              riskFactors.push('Family History');
+          }
+
+          // Ethnicity risk factor
+          if (formData.ethnicity &&
+              (formData.ethnicity === 'black-african' || formData.ethnicity === 'black-caribbean')) {
+              riskScore += 2;
+              riskFactors.push('Ethnicity Risk');
+          }
+
+          // PSA history
+          if (formData.previousPSA === 'yes' && formData.lastPSAResult) {
+              const psa = parseFloat(formData.lastPSAResult);
+              if (psa > 3.0) {
+                  riskScore += 2;
+                  riskFactors.push(`Elevated PSA (${psa})`);
+              }
+          }
+
+          // Symptoms
+          if (formData.symptoms &&
+              !formData.symptoms.includes('none') &&
+              formData.symptoms.length > 0) {
+              riskScore += 1;
+              riskFactors.push('Symptoms Present');
+          }
+
+          // Determine risk level
+          let riskLevel, riskExplanation;
+
+          if (riskScore >= 5) {
+              riskLevel = 'high';
+              riskExplanation = `Your profile suggests higher risk factors. Advanced MRI screening is strongly recommended to rule out significant disease.`;
+          } else if (riskScore >= 3) {
+              riskLevel = 'medium';
+              riskExplanation = `You have some risk factors. MRI screening can provide definitive clarity and peace of mind.`;
+          } else {
+              riskLevel = 'low';
+              riskExplanation = `Your risk appears low, but a baseline MRI can confirm a healthy prostate and serve as a valuable reference for the future.`;
+          }
+
+          // Update risk assessment display
+          const riskLevelElement = document.getElementById('riskLevel');
+          const riskExplanationElement = document.getElementById('riskExplanation');
+
+          if (riskLevelElement) {
+              riskLevelElement.className = `risk-value ${riskLevel}`;
+              riskLevelElement.textContent = riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1) + ' Risk';
+          }
+
+          if (riskExplanationElement) {
+              riskExplanationElement.textContent = riskExplanation;
+          }
+      }
+
+      function populateSummary() {
+          const summaryElement = document.getElementById('summary');
+
+          // Helper to format lists
+          const formatList = (arr) => {
+            if (!arr || arr.length === 0) return 'None';
+            
+            // Convert each item to title case
+            return arr.map(item => {
+              if (!item) return '';
+              
+              // Split by hyphens, capitalize each part
+              return item.split('-').map(part => {
+                // Split by spaces, capitalize each word
+                return part.split(' ').map(word => {
+                  if (!word) return '';
+                  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                }).join(' ');
+              }).join('-');
+            }).join(', ');
+          };
+          const formatYesNo = (val) => (val === 'yes' ? 'Yes' : 'No');
+          
+          // Helper to format single string to title case
+          const formatString = (str) => {
+            if (!str) return '';
+            
+            // Split by hyphens, capitalize each part
+            return str.split('-').map(part => {
+              // Split by spaces, capitalize each word
+              return part.split(' ').map(word => {
+                if (!word) return '';
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+              }).join(' ');
+            }).join('-');
+          };
+          
+          // Format date to "31 May 1976" format
+          const formatDate = (dateStr) => {
+            if (!dateStr) return 'Not provided';
+            
+            // Handle YYYY-MM-DD format
+            if (dateStr.includes('-')) {
+              const date = new Date(dateStr);
+              const options = { day: 'numeric', month: 'long', year: 'numeric' };
+              return date.toLocaleDateString('en-GB', options);
+            }
+            
+            return dateStr;
+          };
+
+          // Personal details
+          const personalDetails = `
+          <div style="margin-bottom: 1.5rem;">
+            <h5 style="margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.75rem; color: #666;">Personal Details</h5>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <div><strong>Name:</strong> ${formData.firstName || ''} ${formData.lastName || ''}</div>
+                <div><strong>DOB:</strong> ${formatDate(formData.dateOfBirth)}</div>
+                <div><strong>Email:</strong> ${formData.email || ''}</div>
+            </div>
+          </div>
+        `;
+
+          // Medical history
+          const medicalHistory = `
+          <div style="margin-bottom: 1.5rem;">
+            <h5 style="margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.75rem; color: #666;">Medical History</h5>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <div><strong>PSA Test:</strong> ${formatYesNo(formData.previousPSA)}</div>
+                <div><strong>Biopsy:</strong> ${formatYesNo(formData.previousBiopsy)}</div>
+                <div><strong>MRI:</strong> ${formatYesNo(formData.previousMRI)}</div>
+            </div>
+          </div>
+        `;
+
+          // Risk factors
+          const riskFactors = `
+          <div style="margin-bottom: 1.5rem;">
+            <h5 style="margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.75rem; color: #666;">Risk Factors</h5>
+            <div><strong>Family History:</strong> ${formatList(formData.familyHistory)}</div>
+            <div><strong>Symptoms:</strong> ${formatList(formData.symptoms)}</div>
+            <div><strong>Ethnicity:</strong> ${formatString(formData.ethnicity) || 'Not provided'}</div>
+          </div>
+        `;
+
+          // Safety
+          const safetyInfo = `
+          <div style="margin-bottom: 1.5rem;">
+            <h5 style="margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.75rem; color: #666;">MRI Safety</h5>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <div><strong>Pacemaker:</strong> ${formatYesNo(formData.safetyPacemaker)}</div>
+                <div><strong>Clips:</strong> ${formatYesNo(formData.safetyClips)}</div>
+                <div><strong>Implants:</strong> ${formatYesNo(formData.safetyImplants)}</div>
+                <div><strong>Metal in Eyes:</strong> ${formatYesNo(formData.safetyMetal)}</div>
+                <div><strong>Kidney:</strong> ${formatYesNo(formData.safetyKidney)}</div>
+                <div><strong>Claustrophobia:</strong> ${formatYesNo(formData.safetyClaustrophobia)}</div>
+            </div>
+          </div>
+        `;
+
+          summaryElement.innerHTML = `
+          ${personalDetails}
+          <hr style="border: 0; border-top: 1px solid #eee; margin: 1rem 0;">
+          ${medicalHistory}
+          <hr style="border: 0; border-top: 1px solid #eee; margin: 1rem 0;">
+          ${riskFactors}
+          <hr style="border: 0; border-top: 1px solid #eee; margin: 1rem 0;">
+          ${safetyInfo}
+        `;
+      }
+
+      async function handleSubmit(event) {
+          event.preventDefault();
+
+          // Double check consent just in case (though Step 1 validation should cover it if we go back/forth)
+          const consentCheckbox = document.getElementById('dataConsent');
+          if (!consentCheckbox.checked) {
+              alert('Please consent to the processing of your data to continue.');
+              return;
+          }
+
+          // Show loading state
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Generating Report...';
+
+          try {
+              // Save final step data
+              saveStepData(currentStep);
+
+              // Add metadata
+              formData.submissionDate = new Date().toISOString();
+              formData.riskLevel = document.getElementById('riskLevel').textContent;
+
+              // Generate PDF on client side
+              await generateClientPDF(formData);
+
+              // Show success message
+              form.style.display = 'none';
+              successMessage.style.display = 'block';
+
+              // Scroll to success message
+              successMessage.scrollIntoView({ behavior: 'smooth' });
+          } catch (error) {
+              console.error('Error generating PDF:', error);
+              let errorMessage = 'There was an error generating your report. Please try again or contact us for assistance.';
+              
+              try {
+                  const errorData = JSON.parse(error.message.split(' - ')[1]);
+                  if (errorData && errorData.details) {
+                      errorMessage = `Failed to generate report: ${errorData.details}`;
+                  }
+              } catch (e) {
+                  errorMessage = `Failed to generate report: ${error.message}`;
+              }
+              
+              alert(errorMessage);
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Generate Report';
+          }
+      }
+
+      async function generateClientPDF(data) {
+          try {
+              // Format arrays properly
+              const formatArray = (arr) => {
+                  if (!arr || !Array.isArray(arr)) return '';
+                  return arr.map(item => String(item)).join(', ');
+              };
+
+              // Format yes/no values
+              const formatYesNo = (val) => (val === 'yes' ? 'Yes' : 'No');
+
+              // Create HTML content directly in the browser
+              const html = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prost Health - Screening Request</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            margin: 2cm;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            font-size: 16pt;
+            margin-bottom: 1cm;
+        }
+        h2 {
+            font-size: 14pt;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5pt;
+            margin-top: 1.5cm;
+            margin-bottom: 0.5cm;
+        }
+        .field {
+            margin-bottom: 8pt;
+            display: flex;
+        }
+        .field-label {
+            font-weight: bold;
+            width: 200px;
+            flex-shrink: 0;
+        }
+        .field-value {
+            flex-grow: 1;
+        }
+        .generated-date {
+            text-align: center;
+            font-style: italic;
+            margin-top: 1cm;
+            font-size: 9pt;
+        }
+        @media print {
+            body {
+                margin: 0 auto;
+                max-width: 21cm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Prost Health - Screening Request</h1>
+    <h2>Personal Details</h2>
+    <div class="field">
+        <span class="field-label">Full Name:</span>
+        <span class="field-value">${data.firstName || ''} ${data.lastName || ''}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Date of Birth:</span>
+        <span class="field-value">${data.dateOfBirth || ''}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Email:</span>
+        <span class="field-value">${data.email || ''}</span>
+    </div>
+    
+    <h2>Medical History</h2>
+    <div class="field">
+        <span class="field-label">Previous PSA Test:</span>
+        <span class="field-value">${formatYesNo(data.previousPSA || '')}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Last PSA Date:</span>
+        <span class="field-value">${data.lastPSADate || 'N/A'}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Last PSA Result:</span>
+        <span class="field-value">${data.lastPSAResult ? data.lastPSAResult + ' ng/mL' : 'N/A'}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Previous Prostate Biopsy:</span>
+        <span class="field-value">${formatYesNo(data.previousBiopsy || '')}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Previous Prostate MRI:</span>
+        <span class="field-value">${formatYesNo(data.previousMRI || '')}</span>
+    </div>
+    
+    <h2>Risk Profile</h2>
+    <div class="field">
+        <span class="field-label">Family History:</span>
+        <span class="field-value">${formatArray(data.familyHistory)}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Symptoms:</span>
+        <span class="field-value">${formatArray(data.symptoms)}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Ethnicity:</span>
+        <span class="field-value">${data.ethnicity || 'Not specified'}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Risk Assessment:</span>
+        <span class="field-value">${data.riskLevel || 'Not calculated'}</span>
+    </div>
+    
+    <h2>MRI Safety Screening</h2>
+    <div class="field">
+        <span class="field-label">Cardiac Pacemaker:</span>
+        <span class="field-value">${formatYesNo(data.safetyPacemaker || '')}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Aneurysm Clips:</span>
+        <span class="field-value">${formatYesNo(data.safetyClips || '')}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Cochlear Implants:</span>
+        <span class="field-value">${formatYesNo(data.safetyImplants || '')}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Metal Fragments in Eyes:</span>
+        <span class="field-value">${formatYesNo(data.safetyMetal || '')}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Kidney Problems:</span>
+        <span class="field-value">${formatYesNo(data.safetyKidney || '')}</span>
+    </div>
+    <div class="field">
+        <span class="field-label">Claustrophobia:</span>
+        <span class="field-value">${formatYesNo(data.safetyClaustrophobia || '')}</span>
+    </div>
+    
+    <div class="generated-date">Generated on: ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+
+</body>
+</html>
+              `;
+              
+              console.log('Generating report HTML...');
+              
+              // Create a blob from the HTML content
+              const blob = new Blob([html], { type: 'text/html' });
+              
+              // Open in a new window with print dialog
+              const printWindow = window.open(URL.createObjectURL(blob), '_blank');
+              
+              // Set up event listeners
+              printWindow.onload = function() {
+                setTimeout(() => {
+                  printWindow.print();
+                  setTimeout(() => {
+                    printWindow.close();
+                  }, 100);
+                }, 500);
+              };
+          } catch (error) {
+              console.error('Error generating report:', error);
+              throw error; // Re-throw to be caught by the caller
+          }
+      }
+
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>

@@ -71,23 +71,21 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
         <!-- Expert 1 -->
         <div class="expert-card scroll-animate">
           <div class="image-wrapper expert-img">
-            <img src="/images/alex-kirkham.jpg" alt="Dr. Alex Kirkham" />
-          </div>
-          <div class="expert-info">
-            <h3>Dr. Alex Kirkham</h3>
-            <p class="text-caption">Expert Radiologist</p>
-          </div>
-        </div>
-
-        <!-- Expert 2 -->
-        <div class="expert-card scroll-animate" style="transition-delay: 0.1s">
-             <div class="image-wrapper expert-img">
             <!-- Placeholder if image missing, referencing known files or placeholders -->
             <img src="/images/doctor-patient-consultation.jpg" alt="Dr. Clare Allen" style="filter: grayscale(100%); opacity: 0.8;" />
           </div>
           <div class="expert-info">
             <h3>Dr. Clare Allen</h3>
-            <p class="text-caption">Expert Radiologist</p>
+          </div>
+        </div>
+
+        <!-- Expert 2 -->
+        <div class="expert-card scroll-animate" style="transition-delay: 0.1s">
+          <div class="image-wrapper expert-img">
+            <img src="/images/alex-kirkham.jpg" alt="Dr. Alex Kirkham" />
+          </div>
+          <div class="expert-info">
+            <h3>Dr. Alex Kirkham</h3>
           </div>
         </div>
 
@@ -98,7 +96,6 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
           </div>
           <div class="expert-info">
             <h3>Dr. Navin Ramachandran</h3>
-            <p class="text-caption">Expert Radiologist</p>
           </div>
         </div>
 
@@ -109,7 +106,6 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
           </div>
           <div class="expert-info">
             <h3>Dr. Miles Walkden</h3>
-            <p class="text-caption">Expert Radiologist</p>
           </div>
         </div>
       </div>
@@ -123,7 +119,7 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
   <!-- Process Section -->
   <section class="section-padding">
     <div class="container">
-        <div class="section-header text-center scroll-animate">
+        <div class="section-header text-center scroll-animate" style="margin-bottom: 4rem;">
             <span class="text-caption">The Journey</span>
             <h2>From Uncertainty to Clarity.</h2>
         </div>
@@ -202,7 +198,7 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
 
   .text-gold {
     color: var(--color-gold);
-    font-style: italic;
+    font-style: normal; /* Removed italic */
   }
 
   .hero-actions {
