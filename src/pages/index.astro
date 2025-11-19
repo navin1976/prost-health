@@ -1,492 +1,282 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
-import RiskVisualization from '../components/RiskVisualization.astro';
 ---
 
-<BaseLayout>
-  <!-- Full-Width Hero with Overlay - Brighton College Style -->
-  <section class="hero-overlay-style">
-    <div class="hero-background-image">
-      <img src="/images/family1.webp" alt="Family healthcare consultation" class="hero-bg-img" />
+<BaseLayout
+  title="Prost Health | Clarity, Not Chance"
+  description="The definitive, MRI-first approach to prostate health."
+  transparentHeader={true}
+>
+  <!-- Hero Section: Full Screen Video/Image Background -->
+  <section class="hero theme-dark">
+    <div class="image-wrapper hero-bg">
+        <!-- Using an existing image as placeholder for video -->
+      <img src="/images/mri-scanner-modern.jpg" alt="Modern MRI Scanner" class="parallax-image" />
+      <div class="hero-overlay"></div>
     </div>
-    <div class="hero-overlay-gradient"></div>
-    <div class="container hero-content-container">
-      <div class="hero-content-overlay">
-        <h1 class="hero-title-dark">
-          Accurate, Non-Invasive
-          <span class="hero-title-break-dark">Prostate Cancer Screening</span>
+
+    <div class="container hero-container">
+      <div class="hero-content scroll-animate">
+        <h1 class="hero-title">
+          Clarity, <br />
+          <span class="text-gold">Not Chance.</span>
         </h1>
-
-        <p class="hero-description-dark">
-          Advanced bi-parametric MRI technology provides precise prostate cancer
-          detection without radiation exposure or invasive procedures.
+        <p class="hero-lead">
+          The definitive approach to prostate health. An MRI-first pathway delivering 
+          precise diagnostics to avoid unnecessary procedures.
         </p>
-
-        <div class="hero-actions-dark">
-          <a href="/book-mri" class="btn-primary btn-large">
-            Schedule Your Screening
-          </a>
-          <a href="/consultation" class="btn-secondary-dark btn-large">
-            Learn More
-          </a>
+        <div class="hero-actions">
+          <a href="/request-screening" class="btn btn-gold">Request Screening</a>
+          <a href="#approach" class="btn btn-secondary">Our Approach</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Formal Statistics Section -->
-  <section class="stats formal-section">
+  <!-- Introduction / Philosophy -->
+  <section id="approach" class="section-padding">
     <div class="container">
-      <h2 class="stats-header">Biparametric MRI</h2>
-      <div class="stats-grid scroll-animate-stagger">
-        <div class="stat-item formal-card">
-          <div class="stat-number">96%</div>
-          <div class="stat-label">Clinical Accuracy</div>
-        </div>
-        <div class="stat-item formal-card">
-          <div class="stat-number">0</div>
-          <div class="stat-label">Radiation Exposure</div>
-        </div>
-        <div class="stat-item formal-card">
-          <div class="stat-number">20</div>
-          <div class="stat-label">Minute Procedure</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Patient Care Section - Brighton College Style -->
-  <section class="content-section patient-care-section alt-bg">
-    <div class="container">
-      <div class="patient-care-grid">
-        <div class="patient-care-image scroll-animate-left">
-          <img src="/images/consult.webp" alt="Healthcare provider consulting with elderly patient in modern office" class="care-img" />
-        </div>
-        <div class="patient-care-content scroll-animate-right">
-          <div class="formal-eyebrow">Personalized Care</div>
-          <h2 class="section-title">Expert Guidance at Every Step</h2>
-          <p class="formal-lead" style="color: var(--color-gray-700);">
-            Our dedicated specialists provide comprehensive support throughout your screening journey,
-            ensuring you understand every aspect of your prostate health assessment.
+      <div class="grid grid-2">
+        <div class="content-text scroll-animate">
+          <span class="text-caption">The Philosophy</span>
+          <h2>Precision Medicine for Men's Health.</h2>
+          <p class="text-lead">
+            Traditional screening relies on chance. We rely on clarity.
           </p>
-          <div class="care-features">
-            <div class="care-feature-item">
-              <div class="care-feature-number">01</div>
-              <div class="care-feature-text">
-                <h4>Individual Consultation</h4>
-                <p>Detailed discussion of your medical history and screening objectives with experienced specialists.</p>
-              </div>
-            </div>
-            <div class="care-feature-item">
-              <div class="care-feature-number">02</div>
-              <div class="care-feature-text">
-                <h4>Results Interpretation</h4>
-                <p>Clear explanation of findings and personalized recommendations for your ongoing health management.</p>
-              </div>
-            </div>
-            <div class="care-feature-item">
-              <div class="care-feature-number">03</div>
-              <div class="care-feature-text">
-                <h4>Continuous Support</h4>
-                <p>Ongoing access to our medical team for questions and guidance throughout your care journey.</p>
-              </div>
-            </div>
-          </div>
+          <p>
+            By utilizing advanced Biparametric and Multiparametric MRI technologies *before* any invasive procedures, 
+            we can rule out cancer with 97% confidence or precisely target it. No more blind biopsies.
+          </p>
+           <a href="/mri-info" class="btn btn-primary">Learn about MRI</a>
+        </div>
+        <div class="image-wrapper scroll-animate-right">
+           <img src="/images/consult.webp" alt="Doctor consultation" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Clean CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-content">
-        <h2 class="cta-title">
-          Advanced Screening Expert Care
-        </h2>
-        <p class="cta-description">
-          Take the proactive step toward accurate prostate health assessment.
-          Our specialized team provides comprehensive screening with immediate results consultation.
-        </p>
-        <div class="cta-actions">
-          <a href="/book-mri" class="btn-primary btn-large">
-            Schedule Your Screening
-          </a>
-          <a href="/consultation" class="btn-secondary btn-large">
-            Speak with Our Team
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Image Feature Section - Brighton College Style -->
-  <section class="content-section image-feature-section alt-bg">
-    <div class="container">
-      <div class="scroll-animate-scale">
-        <div class="image-feature-grid">
-          <div class="image-feature-content scroll-animate-left">
-            <div class="formal-eyebrow">State-of-the-Art Technology</div>
-            <h2 class="section-title">Advanced Imaging Excellence</h2>
-            <p class="formal-lead" style="color: var(--color-gray-700);">
-              Our cutting-edge MRI technology provides unparalleled clarity and precision,
-              enabling our specialists to detect and assess prostate conditions with exceptional accuracy.
-            </p>
-            <p style="color: var(--color-gray-600); font-size: 1.125rem; line-height: 1.7;">
-              We utilize the latest bi-parametric MRI systems, specifically calibrated for prostate imaging,
-              ensuring optimal diagnostic quality while maintaining patient comfort throughout the procedure.
-            </p>
-          </div>
-          <div class="image-feature-image scroll-animate-right">
-            <img src="/images/mri-scanner-modern.jpg" alt="Modern MRI scanner technology" class="feature-img parallax-image" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Formal bpMRI Advantages Section - Navy Background -->
-  <section class="content-section section-navy formal-section">
+  <!-- Experts Section: The Core Team -->
+  <section class="section-padding theme-dark">
     <div class="container">
       <div class="section-header scroll-animate">
-        <div class="section-eyebrow formal-eyebrow">Advanced Technology</div>
-        <h2 class="section-title">
-          Bi-parametric MRI Superior Diagnostic Accuracy
-        </h2>
-        <p class="section-subtitle formal-lead">
-          Advanced imaging technology that overcomes PSA testing limitations through precise
-          anatomical and functional assessment of prostate tissue.
+        <span class="text-caption text-gold">World-Class Radiologists</span>
+        <h2>Expertise is our Product.</h2>
+        <p>
+            An MRI is only as good as the eyes interpreting it. Meet the leading uroradiologists behind Prost Health.
         </p>
+      </div>
+
+      <div class="grid grid-4 experts-grid">
+        <!-- Expert 1 -->
+        <div class="expert-card scroll-animate">
+          <div class="image-wrapper expert-img">
+            <img src="/images/alex-kirkham.jpg" alt="Dr. Alex Kirkham" />
+          </div>
+          <div class="expert-info">
+            <h3>Dr. Alex Kirkham</h3>
+            <p class="text-caption">Expert Radiologist</p>
+          </div>
+        </div>
+
+        <!-- Expert 2 -->
+        <div class="expert-card scroll-animate" style="transition-delay: 0.1s">
+             <div class="image-wrapper expert-img">
+            <!-- Placeholder if image missing, referencing known files or placeholders -->
+            <img src="/images/doctor-patient-consultation.jpg" alt="Dr. Clare Allen" style="filter: grayscale(100%); opacity: 0.8;" />
+          </div>
+          <div class="expert-info">
+            <h3>Dr. Clare Allen</h3>
+            <p class="text-caption">Expert Radiologist</p>
+          </div>
+        </div>
+
+        <!-- Expert 3 -->
+        <div class="expert-card scroll-animate" style="transition-delay: 0.2s">
+             <div class="image-wrapper expert-img">
+             <img src="/images/medical-scanner-equipment.jpg" alt="Dr. Navin Ramachandran" style="filter: grayscale(100%); opacity: 0.8;" />
+          </div>
+          <div class="expert-info">
+            <h3>Dr. Navin Ramachandran</h3>
+            <p class="text-caption">Expert Radiologist</p>
+          </div>
+        </div>
+
+        <!-- Expert 4 -->
+        <div class="expert-card scroll-animate" style="transition-delay: 0.3s">
+            <div class="image-wrapper expert-img">
+            <img src="/images/miles-walkden.jpg" alt="Dr. Miles Walkden" />
+          </div>
+          <div class="expert-info">
+            <h3>Dr. Miles Walkden</h3>
+            <p class="text-caption">Expert Radiologist</p>
+          </div>
+        </div>
       </div>
       
-      <div class="advantage-grid">
-        <div class="advantage-card">
-          <div class="advantage-header">
-            <div class="advantage-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
-              </svg>
-            </div>
-            <h3 class="advantage-title">T2-Weighted Imaging</h3>
-          </div>
-          <p class="advantage-description">
-            High-resolution anatomical visualization enables precise identification of suspicious
-            lesions and assessment of prostate gland architecture.
-          </p>
-        </div>
-
-        <div class="advantage-card">
-          <div class="advantage-header">
-            <div class="advantage-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-              </svg>
-            </div>
-            <h3 class="advantage-title">Diffusion-Weighted Imaging</h3>
-          </div>
-          <p class="advantage-description">
-            Functional imaging detects cellular density changes characteristic of malignancy,
-            providing biochemical information invisible to conventional testing.
-          </p>
-        </div>
-
-        <div class="advantage-card">
-          <div class="advantage-header">
-            <div class="advantage-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3 class="advantage-title">No Contrast Required</h3>
-          </div>
-          <p class="advantage-description">
-            Eliminates gadolinium injection risks while maintaining diagnostic accuracy,
-            making the procedure safer and more comfortable.
-          </p>
-        </div>
+      <div class="text-center" style="margin-top: var(--space-lg);">
+        <a href="/experts" class="btn btn-gold">Read Full Profiles</a>
       </div>
     </div>
   </section>
 
-  <!-- Formal PSA Limitations Section -->
-  <section class="content-section formal-section">
+  <!-- Process Section -->
+  <section class="section-padding">
     <div class="container">
-      <div class="section-header scroll-animate">
-        <div class="section-eyebrow formal-eyebrow">Clinical Limitations</div>
-        <h2 class="section-title">
-          PSA Testing Has Significant Drawbacks
-        </h2>
-        <p class="section-subtitle formal-lead">
-          Prostate-Specific Antigen (PSA) testing suffers from poor specificity and sensitivity,
-          leading to unnecessary procedures and missed diagnoses.
-        </p>
-      </div>
-
-      <div class="content-grid">
-        <div class="content-image">
-          <img src="/images/bloodtest.webp" alt="Elderly patient receiving blood draw for PSA testing" class="psa-limitations-img" />
+        <div class="section-header text-center scroll-animate">
+            <span class="text-caption">The Journey</span>
+            <h2>From Uncertainty to Clarity.</h2>
         </div>
-
-        <div class="content-cards">
-          <div class="card formal-card scroll-animate-left">
-            <div class="card-header">
-              <div class="card-number">01</div>
-              <div class="card-stat">75%</div>
+        
+        <div class="grid grid-3 process-steps">
+            <div class="process-step scroll-animate">
+                <span class="step-num">01</span>
+                <h3>Request Screening</h3>
+                <p>Complete our secure, online assessment to determine your risk profile.</p>
             </div>
-            <h3 class="card-title">Poor Specificity</h3>
-            <p class="card-description">
-              PSA elevation occurs in benign conditions, leading to unnecessary interventions. 75% false positive rate means most elevated PSA results don't indicate cancer.
-            </p>
-          </div>
-          <div class="card formal-card scroll-animate-right">
-            <div class="card-header">
-              <div class="card-number">02</div>
-              <div class="card-stat">20%</div>
+            <div class="process-step scroll-animate" style="transition-delay: 0.2s">
+                <span class="step-num">02</span>
+                <h3>Expert MRI Scan</h3>
+                <p>Undergo a non-invasive, high-resolution MRI scan at a premier facility.</p>
             </div>
-            <h3 class="card-title">Limited Sensitivity</h3>
-            <p class="card-description">
-              Normal PSA levels can mask clinically significant cancers. 20% of cancers are missed with normal PSA readings.
-            </p>
-          </div>
-          <div class="card formal-card scroll-animate-left">
-            <div class="card-header">
-              <div class="card-number">03</div>
-              <div class="card-stat">25%</div>
+             <div class="process-step scroll-animate" style="transition-delay: 0.4s">
+                <span class="step-num">03</span>
+                <h3>Definitive Report</h3>
+                <p>Receive a comprehensive report from our top radiologists, guiding your next steps.</p>
             </div>
-            <h3 class="card-title">Unnecessary Procedures</h3>
-            <p class="card-description">
-              Blind biopsies carry risks and often detect insignificant disease. 25% complication rate from invasive procedures.
-            </p>
-          </div>
         </div>
-      </div>
     </div>
   </section>
 
-  <!-- Interactive Risk Visualization -->
-  <section class="content-section">
-    <div class="container">
-      <div class="section-header scroll-animate">
-        <div class="section-eyebrow">Clinical Evidence</div>
-        <h2 class="section-title">
-          See the Data
-          <span style="display: block;">Proven Results</span>
-        </h2>
-        <p class="section-subtitle">
-          Compare screening outcomes and understand the bpMRI advantage
-        </p>
+  <!-- CTA -->
+  <section class="section-padding theme-dark text-center">
+      <div class="container">
+          <h2 class="scroll-animate">Take Control of Your Health.</h2>
+          <div class="scroll-animate" style="margin-top: var(--space-md);">
+            <a href="/request-screening" class="btn btn-gold">Start Assessment</a>
+          </div>
       </div>
-      <div class="scroll-animate-scale">
-        <RiskVisualization />
-      </div>
-    </div>
   </section>
 
-  <!-- Clean Process Timeline Section -->
-  <section class="content-section timeline-section" id="timeline-section">
-    <div class="timeline-background-overlay"></div>
-    <div class="container">
-      <div class="section-header scroll-animate">
-        <div class="section-eyebrow">Screening Process</div>
-        <h2 class="section-title">
-          Your Journey to Accurate Results
-        </h2>
-        <p class="section-subtitle">
-          A streamlined process from consultation to results delivery
-        </p>
-      </div>
-
-      <div class="process-timeline">
-        <div class="process-timeline-line"></div>
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">01</div>
-            <div class="step-text">
-              <h3 class="step-title">Consultation</h3>
-              <p class="step-description">Medical history review and risk assessment with our specialist team</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">02</div>
-            <div class="step-text">
-              <h3 class="step-title">Assessment</h3>
-              <p class="step-description">Comprehensive evaluation of screening appropriateness and timing</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">03</div>
-            <div class="step-text">
-              <h3 class="step-title">Scheduling</h3>
-              <p class="step-description">Convenient appointment booking at our state-of-the-art facility</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">04</div>
-            <div class="step-text">
-              <h3 class="step-title">Preparation</h3>
-              <p class="step-description">Simple pre-procedure instructions and comfort optimization</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">05</div>
-            <div class="step-text">
-              <h3 class="step-title">bpMRI Scan</h3>
-              <p class="step-description">20-minute non-invasive imaging with advanced technology</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">06</div>
-            <div class="step-text">
-              <h3 class="step-title">Expert Review</h3>
-              <p class="step-description">Specialized prostate imaging radiologist analyzes your results</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">07</div>
-            <div class="step-text">
-              <h3 class="step-title">Results Report</h3>
-              <p class="step-description">Comprehensive report with detailed findings and recommendations</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">08</div>
-            <div class="step-text">
-              <h3 class="step-title">Consultation</h3>
-              <p class="step-description">Personal consultation to discuss results and next steps</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="process-step">
-          <div class="step-content">
-            <div class="step-number">09</div>
-            <div class="step-text">
-              <h3 class="step-title">Follow-Up</h3>
-              <p class="step-description">Personalized monitoring schedule or treatment referral if needed</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Clean Clinical Benefits Section -->
-  <section class="content-section">
-    <div class="container">
-      <div class="scroll-animate-scale">
-        <div class="section-header scroll-animate">
-          <div class="section-eyebrow">Clinical Advantages</div>
-          <h2 class="section-title">
-            Evidence-Based Medical Benefits
-          </h2>
-        </div>
-
-        <div class="benefits-grid">
-        <div class="benefit-card">
-          <div class="benefit-header">
-            <div class="benefit-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="6"/>
-                <circle cx="12" cy="12" r="2"/>
-              </svg>
-            </div>
-            <h3 class="benefit-title">Targeted Detection</h3>
-          </div>
-          <p class="benefit-description">
-            Distinguishes clinically significant cancers from indolent disease,
-            reducing over-diagnosis while ensuring appropriate treatment.
-          </p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-header">
-            <div class="benefit-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 12l2 2 4-4"/>
-                <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                <path d="M13 12h3"/>
-                <path d="M8 12H5"/>
-              </svg>
-            </div>
-            <h3 class="benefit-title">Non-Invasive Safety</h3>
-          </div>
-          <p class="benefit-description">
-            Eliminates procedure-related complications associated with biopsies
-            while providing superior diagnostic information.
-          </p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-header">
-            <div class="benefit-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"/>
-                <path d="M18 17V9"/>
-                <path d="M13 17V5"/>
-                <path d="M8 17v-3"/>
-              </svg>
-            </div>
-            <h3 class="benefit-title">Quantitative Results</h3>
-          </div>
-          <p class="benefit-description">
-            Provides objective, reproducible measurements that support
-            evidence-based clinical decision making.
-          </p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-header">
-            <div class="benefit-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3 class="benefit-title">Reliable Reassurance</h3>
-          </div>
-          <p class="benefit-description">
-            Normal results provide high-confidence reassurance, eliminating
-            unnecessary anxiety and follow-up procedures.
-          </p>
-        </div>
-      </div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
 
-
-<!-- Dramatic Scroll Animations -->
-<script>
-  import { initAnimations } from '../scripts/animations';
-
-  // Initialize animations when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAnimations);
-  } else {
-    initAnimations();
+<style>
+  .hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: calc(var(--header-height) * -1); /* Pull hero up behind header if header is transparent, but we made header white. Let's keep it simple for now. */
+    /* Actually, if we want the hero to be fully immersive, we might want the header transparent ON THIS PAGE ONLY.
+       But for consistency and "Trust", a solid header is safer. Let's stick to the solid header update I just made. 
+       So I will remove this negative margin hack if it was there, or ensure we don't need it. 
+       Wait, the user liked the "Artistic" aspect. Maybe transparent header IS better for Home.
+       
+       Let's modify the page specific style to override the header if needed? 
+       No, let's rely on the solid header for accessibility/trust first.
+    */
   }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4); /* Dark overlay for text readability */
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .text-gold {
+    color: var(--color-gold);
+    font-style: italic;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Expert Cards */
+  .expert-card {
+    text-align: left;
+  }
+
+  .expert-img {
+    aspect-ratio: 3/4;
+    margin-bottom: 1rem;
+  }
+  
+  .expert-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+  }
+
+  /* Process Steps */
+  .process-step {
+      padding: 2rem;
+      border-left: 1px solid var(--color-border);
+  }
+  
+  .step-num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+      line-height: 1;
+  }
+
+  /* Animation classes (using standard CSS transitions for now, enhanced by JS) */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .scroll-animate-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-in {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-animate, .scroll-animate-right').forEach((el) => {
+    observer.observe(el);
+  });
 </script>

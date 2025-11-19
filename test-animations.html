@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Animations</title>
+</head>
+<body>
+  <h1>Test Page</h1>
+  <p>Check console for GSAP loading...</p>
+  
+  <script type="module">
+    import gsap from 'https://cdn.skypack.dev/gsap';
+    import { ScrollTrigger } from 'https://cdn.skypack.dev/gsap/ScrollTrigger';
+    import Lenis from 'https://cdn.skypack.dev/@studio-freight/lenis';
+    
+    console.log('GSAP loaded:', gsap);
+    console.log('ScrollTrigger loaded:', ScrollTrigger);
+    console.log('Lenis loaded:', Lenis);
+    
+    gsap.registerPlugin(ScrollTrigger);
+    console.log('Plugins registered');
+    
+    // Add animation to verify working
+    gsap.to(document.body, {
+      backgroundColor: '#e0f2fe',
+      duration: 2,
+      repeat: -1,
+      yoyo: true
+    });
+  </script>
+</body>
+</html>

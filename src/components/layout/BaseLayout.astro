@@ -8,12 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  transparentHeader?: boolean;
 }
 
 const {
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
   image = '/og1.jpg',
+  transparentHeader = false,
 } = Astro.props;
 
 const fullTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
@@ -54,7 +56,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{fullTitle}</title>
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header />
+    <Header transparent={transparentHeader} />
     <main class="flex-1">
       <slot />
     </main>

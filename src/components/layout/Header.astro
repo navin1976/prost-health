@@ -2,10 +2,15 @@
 import { NAV_ITEMS } from '../../lib/constants';
 import Logo from '../Logo.astro';
 
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="header">
+<header class:list={['header', { 'transparent': transparent }]} id="main-header">
   <div class="header-container">
     <!-- Logo -->
     <a href="/" class="header-logo-link">
@@ -15,19 +20,23 @@ const currentPath = Astro.url.pathname;
     <!-- Desktop Navigation -->
     <nav class="header-nav" aria-label="Primary navigation">
       <ul>
-        {NAV_ITEMS.map(({ label, href }) => (
-          <li>
-            <a
-              href={href}
-              class={`header-link ${
-                currentPath.startsWith(href) ? 'active' : ''
-              }`}
-              aria-current={currentPath.startsWith(href) ? 'page' : undefined}
-            >
-              {label}
-            </a>
-          </li>
-        ))}
+        {NAV_ITEMS.map(({ label, href }) => {
+            const isActive = href === '/' 
+                ? currentPath === href 
+                : currentPath.startsWith(href);
+            
+            return (
+              <li>
+                <a
+                  href={href}
+                  class={`header-link ${isActive ? 'active' : ''}`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+        })}
         <li>
           <a
             href="/contact"
@@ -99,12 +108,26 @@ const currentPath = Astro.url.pathname;
     left: 0;
     right: 0;
     z-index: 100;
+    background: rgba(255, 255, 255, 0.98); /* Default solid white */
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    color: var(--color-black);
+    height: var(--header-height);
+  }
+
+  /* Transparent state for Hero pages */
+  .header.transparent {
     background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom: none;
-    transition: all var(--transition);
-    color: var(--color-primary);
+    border-bottom-color: transparent;
+    color: var(--color-white); /* Assuming dark hero bg */
+  }
+
+  /* Scrolled state (applied via JS) */
+  .header.scrolled {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-bottom-color: var(--color-border) !important;
+    color: var(--color-black) !important;
   }
 
   .header-container {
@@ -114,7 +137,7 @@ const currentPath = Astro.url.pathname;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 100%;
   }
 
   .header-logo-link {
@@ -127,7 +150,7 @@ const currentPath = Astro.url.pathname;
   .header-nav ul {
     display: flex;
     align-items: center;
-    gap: var(--space-xl);
+    gap: 3rem; /* Increased spacing */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -136,10 +159,13 @@ const currentPath = Astro.url.pathname;
   .header-link {
     font-size: 0.95rem;
     font-weight: 500;
-    color: inherit;
+    color: inherit; /* Inherit from header color */
     text-decoration: none;
     position: relative;
-    transition: color var(--transition);
+    transition: color var(--transition-base);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
   }
 
   .header-link::after {
@@ -148,13 +174,13 @@ const currentPath = Astro.url.pathname;
     bottom: -4px;
     left: 0;
     width: 0;
-    height: 2px;
-    background: var(--color-accent);
-    transition: width var(--transition);
+    height: 1px;
+    background: currentColor; /* Match text color */
+    transition: width var(--transition-base);
   }
 
   .header-link:hover {
-    color: var(--color-accent);
+    opacity: 1;
   }
 
   .header-link:hover::after {
@@ -162,8 +188,13 @@ const currentPath = Astro.url.pathname;
   }
 
   .header-link.active {
-    color: var(--color-accent);
+    opacity: 1;
+    font-weight: 600;
+    color: var(--color-black);
   }
+  
+  /* Ensure 'Home' isn't highlighted if we are on other pages, unless it's actually the home page */
+  /* We handle this logic in the component script now by checking exact match for home */
 
   .header-link.active::after {
     width: 100%;
@@ -172,17 +203,31 @@ const currentPath = Astro.url.pathname;
   .header-cta-nav {
     display: inline-flex;
     align-items: center;
-    padding: var(--space-sm) var(--space-lg);
-    background: var(--color-navy);
+    padding: 0.75rem 1.5rem;
+    background: var(--color-black);
     color: #ffffff;
-    border-radius: var(--radius-md);
     font-weight: 500;
     text-decoration: none;
-    transition: all var(--transition);
+    transition: all var(--transition-base);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust CTA for transparent header */
+  .header.transparent .header-cta-nav {
+      background: var(--color-white);
+      color: var(--color-black);
+  }
+  
+  .header.scrolled .header-cta-nav {
+      background: var(--color-black);
+      color: var(--color-white);
   }
 
   .header-cta-nav:hover {
-    background: var(--color-navy-dark);
+    background: var(--color-gold) !important;
+    color: var(--color-white) !important;
     transform: translateY(-1px);
   }
 
@@ -190,14 +235,14 @@ const currentPath = Astro.url.pathname;
     display: none;
     background: none;
     border: none;
-    color: var(--color-gray-700);
+    color: inherit;
     cursor: pointer;
     padding: var(--space-xs);
-    transition: color var(--transition);
+    transition: color var(--transition-base);
   }
 
   .mobile-menu-btn:hover {
-    color: var(--color-accent);
+    opacity: 0.8;
   }
 
   .menu-icon {
@@ -207,9 +252,19 @@ const currentPath = Astro.url.pathname;
 
   .mobile-menu {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     background: var(--color-white);
-    border-top: 1px solid var(--color-gray-200);
-    padding: var(--space-lg) var(--container-padding);
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem var(--container-padding);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    color: var(--color-black); /* Always dark text in mobile menu */
+  }
+  
+  .mobile-menu.show {
+      display: block;
   }
 
   .mobile-menu nav ul {
@@ -218,43 +273,44 @@ const currentPath = Astro.url.pathname;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: 1.5rem;
   }
 
   .mobile-nav-link {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--color-gray-700);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-black);
     text-decoration: none;
-    transition: color var(--transition);
+    transition: color var(--transition-base);
+    font-family: var(--font-display);
   }
 
   .mobile-nav-link:hover,
   .mobile-nav-link.active {
-    color: var(--color-accent);
+    color: var(--color-gold);
   }
 
   .mobile-nav-cta-nav {
-    display: inline-block;
-    padding: var(--space-md) var(--space-lg);
-    background: var(--color-navy);
+    display: block;
+    padding: 1rem;
+    background: var(--color-black);
     color: var(--color-white);
-    border-radius: var(--radius-md);
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
     text-align: center;
-    transition: all var(--transition);
-    margin-top: var(--space-sm);
+    transition: all var(--transition-base);
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .mobile-nav-cta-nav:hover {
-    background: var(--color-navy-dark);
-    transform: translateY(-1px);
+    background: var(--color-gold);
   }
 
   /* Responsive Design */
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .header-nav {
       display: none;
     }
@@ -262,68 +318,42 @@ const currentPath = Astro.url.pathname;
     .mobile-menu-btn {
       display: block;
     }
-
-    .mobile-menu.show {
-      display: block;
-    }
   }
 </style>
 
 <script>
-  // Mobile menu toggle
+  const header = document.getElementById('main-header');
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
 
-  menuButton?.addEventListener('click', () => {
-    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-    mobileMenu?.classList.toggle('show');
-  });
-
-  // Adaptive header based on scroll and section background
-  const header = document.querySelector('.header');
-
-  const updateHeader = () => {
-    const scrollPosition = window.scrollY;
-
-    if (scrollPosition > 50) {
-      // Scrolled - white background with shadow
-      header.style.background = 'rgba(255, 255, 255, 0.95)';
-      header.style.backdropFilter = 'blur(10px)';
-      header.style.boxShadow = '0 2px 12px rgba(0, 0, 0, 0.08)';
-      header.style.color = 'var(--color-primary)';
+  // Scroll Logic
+  const updateHeaderOnScroll = () => {
+    if (!header) return;
+    
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
     } else {
-      // At top - transparent, check if over dark section
-      const darkHeroSection = document.querySelector('.hero-fullscreen, .hero-navy, .hero-split');
-      const lightHeroSection = document.querySelector('.hero-overlay-style');
-      const darkHeroRect = darkHeroSection?.getBoundingClientRect();
-      const lightHeroRect = lightHeroSection?.getBoundingClientRect();
-
-      if (lightHeroRect && lightHeroRect.top <= 0 && lightHeroRect.bottom >= 80) {
-        // Over light overlay hero - dark text
-        header.style.background = 'transparent';
-        header.style.backdropFilter = 'none';
-        header.style.boxShadow = 'none';
-        header.style.color = 'var(--color-primary)';
-      } else if (darkHeroRect && darkHeroRect.top <= 0 && darkHeroRect.bottom >= 80) {
-        // Over dark hero section - white text
-        header.style.background = 'transparent';
-        header.style.backdropFilter = 'none';
-        header.style.boxShadow = 'none';
-        header.style.color = '#ffffff';
-      } else {
-        // Over other section - default dark text
-        header.style.background = 'transparent';
-        header.style.backdropFilter = 'none';
-        header.style.boxShadow = 'none';
-        header.style.color = 'var(--color-primary)';
-      }
+      header.classList.remove('scrolled');
     }
   };
 
+  window.addEventListener('scroll', updateHeaderOnScroll);
   // Initial check
-  updateHeader();
+  updateHeaderOnScroll();
 
-  // Listen for scroll events
-  window.addEventListener('scroll', updateHeader);
+  // Mobile Menu Logic
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu.classList.toggle('show');
+      
+      // Ensure header is solid when menu is open if on transparent page
+      if (!isExpanded) {
+          header?.classList.add('scrolled');
+      } else if (window.scrollY <= 50) {
+          header?.classList.remove('scrolled');
+      }
+    });
+  }
 </script>

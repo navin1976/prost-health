@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Our Experts | Prost Health"
+  description="Meet the world-leading radiologists behind our precise diagnostics."
+>
+  <section class="section-padding theme-dark">
+    <div class="container">
+      <h1 class="scroll-animate">The Experts.</h1>
+      <p class="text-lead scroll-animate" style="max-width: 800px;">
+        In prostate diagnostics, the machine is only half the equation. The other half is the radiologist. 
+        Our team comprises the UK's most respected uroradiologists, ensuring your scan is interpreted with unparalleled accuracy.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="grid experts-list">
+        
+        <!-- Clare Allen -->
+        <article class="expert-profile scroll-animate">
+          <div class="grid grid-2">
+            <div class="image-wrapper expert-portrait">
+              <img src="/images/doctor-patient-consultation.jpg" alt="Dr. Clare Allen" style="filter: grayscale(100%);" />
+            </div>
+            <div class="expert-details">
+              <h2>Dr. Clare Allen</h2>
+              <span class="text-caption">Consultant Radiologist</span>
+              <div class="divider-line"></div>
+              <p>
+                Dr. Clare Allen is a Consultant Radiologist at University College London Hospitals. She is a leading figure in prostate MRI and has played a pivotal role in developing and validating mpMRI as a triage test for men with suspected prostate cancer.
+              </p>
+              <p>
+                She was a lead investigator in the PROMIS trial, which revolutionized prostate cancer diagnosis guidelines globally.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Alex Kirkham -->
+        <article class="expert-profile scroll-animate">
+          <div class="grid grid-2">
+             <div class="expert-details">
+              <h2>Dr. Alex Kirkham</h2>
+              <span class="text-caption">Consultant Radiologist</span>
+              <div class="divider-line"></div>
+              <p>
+                Dr. Alex Kirkham is a Consultant Radiologist at University College London Hospitals. He specializes in urological imaging and has a particular interest in prostate cancer diagnosis and active surveillance.
+              </p>
+              <p>
+                His work focuses on optimizing MRI techniques to improve cancer detection rates while minimizing false positives, ensuring patients avoid unnecessary biopsies.
+              </p>
+            </div>
+            <div class="image-wrapper expert-portrait">
+              <img src="/images/alex-kirkham.jpg" alt="Dr. Alex Kirkham" />
+            </div>
+          </div>
+        </article>
+
+        <!-- Navin Ramachandran -->
+        <article class="expert-profile scroll-animate">
+          <div class="grid grid-2">
+            <div class="image-wrapper expert-portrait">
+              <img src="/images/medical-scanner-equipment.jpg" alt="Dr. Navin Ramachandran" style="filter: grayscale(100%);" />
+            </div>
+            <div class="expert-details">
+              <h2>Dr. Navin Ramachandran</h2>
+              <span class="text-caption">Consultant Radiologist</span>
+              <div class="divider-line"></div>
+              <p>
+                 Dr. Navin Ramachandran is a Consultant Radiologist at University College London Hospitals with a focus on healthcare innovation and digital health. He is an expert in uroradiology and has been instrumental in implementing advanced imaging protocols.
+              </p>
+              <p>
+                He combines clinical excellence with a drive to modernize patient pathways, making high-quality diagnostics more accessible.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Miles Walkden -->
+        <article class="expert-profile scroll-animate">
+          <div class="grid grid-2">
+             <div class="expert-details">
+              <h2>Dr. Miles Walkden</h2>
+              <span class="text-caption">Consultant Radiologist</span>
+              <div class="divider-line"></div>
+              <p>
+                Dr. Miles Walkden is a Consultant Radiologist at University College London Hospitals. He is a specialist in interventional uroradiology and prostate imaging.
+              </p>
+              <p>
+                Dr. Walkden is known for his expertise in complex cases and his contribution to teaching and training the next generation of radiologists in prostate MRI interpretation.
+              </p>
+            </div>
+            <div class="image-wrapper expert-portrait">
+              <img src="/images/miles-walkden.jpg" alt="Dr. Miles Walkden" />
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .experts-list {
+    gap: 8rem;
+  }
+
+  .expert-portrait {
+    aspect-ratio: 3/4;
+  }
+
+  .expert-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2rem;
+  }
+
+  /* Animation classes */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-in {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  
+  @media (max-width: 768px) {
+      .expert-profile .grid-2 {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 2rem;
+      }
+      
+      .expert-profile:nth-child(even) .grid-2 {
+          flex-direction: column-reverse;
+      }
+      
+      .expert-details {
+          padding: 0;
+      }
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-animate').forEach((el) => {
+    observer.observe(el);
+  });
+</script>

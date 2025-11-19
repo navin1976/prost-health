@@ -1,0 +1,500 @@
+---
+// Multi-step screening form component
+---
+
+<div class="screening-form-container" id="screeningForm">
+  <!-- Progress Indicator -->
+  <div class="form-header">
+     <div class="progress-indicator">
+         <span class="progress-text">Step <span id="currentStepNum">1</span> of 3</span>
+         <div class="progress-bar-bg">
+             <div class="progress-bar-fill" style="width: 33%"></div>
+         </div>
+     </div>
+  </div>
+
+  <!-- Form Content -->
+  <form id="multiStepForm" class="multi-step-form" novalidate>
+    
+    <!-- Step 1: Assessment & Consent -->
+    <div class="form-step active" data-step="1">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+          <h2 class="step-title">Assessment & Eligibility</h2>
+          <p class="step-subtitle">Please provide your details and consent to data processing so we can determine if an MRI is warranted.</p>
+      </div>
+
+      <!-- Consent Section -->
+      <div class="form-group" style="background: #f9f9f9; padding: 1.5rem; border-radius: 8px; border: 1px solid #eee; margin-bottom: 3rem;">
+        <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem;">Data Consent</h3>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">
+            We need your permission to process your personal and medical data to generate your screening report. 
+            Your data is processed locally in your browser to generate the PDF and is not stored on our servers.
+        </p>
+        <div class="form-consent">
+            <label class="checkbox-card">
+              <input type="checkbox" name="consent" id="dataConsent" required />
+              <span class="checkbox-content">I consent to processing my data for this assessment.</span>
+            </label>
+        </div>
+      </div>
+      
+      <!-- Personal Details -->
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Personal Details</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="firstName" class="form-label">1. First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-input" required placeholder="Enter your first name" />
+          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="lastName" class="form-label">2. Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-input" required placeholder="Enter your last name" />
+          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="dateOfBirth" class="form-label">3. Date of Birth</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-input" required />
+          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">4. Email Address</label>
+          <input type="email" id="email" name="email" class="form-input" required placeholder="name@example.com" />
+          <span class="form-error"></span>
+        </div>
+      </div>
+
+      <!-- Medical History -->
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Medical History</h3>
+      <div class="form-group">
+        <label class="form-label">5. Have you ever had a PSA test?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="previousPSA" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="previousPSA" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+
+      <div id="psaDetails" class="conditional-section" style="display: none;">
+        <div class="form-grid">
+            <div class="form-group">
+              <label for="lastPSADate" class="form-label">Date of last PSA test</label>
+              <input type="date" id="lastPSADate" name="lastPSADate" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="lastPSAResult" class="form-label">Last PSA result (ng/mL)</label>
+              <input type="number" id="lastPSAResult" name="lastPSAResult" class="form-input" step="0.1" min="0" placeholder="0.0" />
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">6. Have you ever had a prostate biopsy?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="previousBiopsy" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="previousBiopsy" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">7. Have you ever had prostate MRI?</label>
+        <div class="radio-options">
+           <label class="radio-card">
+            <input type="radio" name="previousMRI" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="previousMRI" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Risk Profile -->
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Risk Factors</h3>
+      <div class="form-group">
+        <label class="form-label">8. Family History (Check all that apply)</label>
+        <div class="checkbox-options">
+          <label class="checkbox-card">
+            <input type="checkbox" name="familyHistory" value="father" />
+            <span class="checkbox-content">Father with prostate cancer</span>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="familyHistory" value="brother" />
+            <span class="checkbox-content">Brother with prostate cancer</span>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="familyHistory" value="grandfather" />
+            <span class="checkbox-content">Grandfather with prostate cancer</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">9. Symptoms (Check all that apply)</label>
+        <div class="checkbox-options">
+          <label class="checkbox-card">
+            <input type="checkbox" name="symptoms" value="urinary" />
+            <span class="checkbox-content">Urinary changes (frequency, urgency, weak flow)</span>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="symptoms" value="blood" />
+            <span class="checkbox-content">Blood in urine or semen</span>
+          </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="symptoms" value="pain" />
+            <span class="checkbox-content">Pain in hips, back, or pelvis</span>
+          </label>
+           <label class="checkbox-card">
+            <input type="checkbox" name="symptoms" value="none" />
+            <span class="checkbox-content">No symptoms</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">10. Ethnicity</label>
+        <select name="ethnicity" class="form-select" required>
+          <option value="">Select your ethnicity</option>
+          <option value="white">White</option>
+          <option value="black-african">Black African</option>
+          <option value="black-caribbean">Black Caribbean</option>
+          <option value="asian">Asian</option>
+          <option value="other">Other</option>
+        </select>
+        <p class="form-hint">Black men have a higher risk of developing prostate cancer.</p>
+      </div>
+    </div>
+
+    <!-- Step 2: MRI Safety -->
+    <div class="form-step" data-step="2">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+          <h2 class="step-title">MRI Safety</h2>
+          <p class="step-subtitle">Please answer these safety questions for the imaging center.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">11. Do you have a cardiac pacemaker or defibrillator?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="safetyPacemaker" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="safetyPacemaker" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">12. Do you have any aneurysm clips?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="safetyClips" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="safetyClips" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">13. Do you have cochlear implants?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="safetyImplants" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="safetyImplants" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">14. Have you ever had metal fragments in your eyes?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="safetyMetal" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="safetyMetal" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">15. Do you have any kidney problems?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="safetyKidney" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="safetyKidney" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <label class="form-label">16. Do you suffer from claustrophobia?</label>
+        <div class="radio-options">
+          <label class="radio-card">
+            <input type="radio" name="safetyClaustrophobia" value="yes" required />
+            <span class="radio-content">Yes</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="safetyClaustrophobia" value="no" required />
+            <span class="radio-content">No</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Review & Submit -->
+    <div class="form-step" data-step="3">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+          <h2 class="step-title">Review Your Assessment</h2>
+          <p class="step-subtitle">Please review your details before generating your report.</p>
+      </div>
+      
+      <div class="summary-card">
+        <div id="riskAssessment" class="risk-section">
+          <div class="risk-label">Preliminary Risk Assessment</div>
+          <div id="riskLevel" class="risk-value">Calculating...</div>
+          <div id="riskExplanation" class="risk-desc">...</div>
+        </div>
+        
+        <div class="summary-details" id="summary">
+             <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Navigation -->
+    <div class="form-navigation">
+      <button type="button" id="prevBtn" class="btn btn-secondary" style="display: none;">Back</button>
+      <button type="button" id="nextBtn" class="btn btn-primary">Continue</button>
+      <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">Generate PDF Report</button>
+    </div>
+  </form>
+
+  <!-- Success Message -->
+  <div id="successMessage" class="success-message" style="display: none;">
+    <div class="success-icon">✓</div>
+    <h3>Assessment Complete</h3>
+    <p>
+      Your personalized risk report has been generated and is downloading now.
+    </p>
+    <p>
+      Please share this PDF with your healthcare provider.
+    </p>
+    <a href="/" class="btn btn-secondary" style="margin-top: 2rem;">Return Home</a>
+  </div>
+</div>
+
+<style>
+  .screening-form-container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: transparent;
+    border: none;
+  }
+
+  .form-header {
+      margin-bottom: 5rem;
+      padding-bottom: 0;
+      border-bottom: none;
+  }
+
+  .progress-indicator {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+  }
+
+  .progress-text {
+      font-family: var(--font-secondary);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-text-secondary);
+      font-weight: 600;
+      opacity: 0.6;
+  }
+  
+  .progress-text span {
+      color: var(--color-black);
+      font-weight: 700;
+      opacity: 1;
+  }
+
+  .progress-bar-bg {
+      width: 100%;
+      height: 4px;
+      background: #f0f0f0;
+      border-radius: 2px;
+  }
+
+  .progress-bar-fill {
+      height: 100%;
+      background: var(--color-black);
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .step-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      color: var(--color-black);
+      text-align: center;
+  }
+  
+  .step-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 4rem;
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 60ch;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+  }
+
+  .form-step { display: none; animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .form-step.active { display: block; }
+
+  @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+  }
+  
+  .form-hint {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-top: 1rem;
+      font-style: normal;
+      opacity: 0.7;
+  }
+
+  /* Ensure consent visibility - keeps its specific border */
+  .form-consent .checkbox-card {
+      display: block;
+  }
+  
+  .form-consent .checkbox-content {
+      font-size: 1rem;
+      padding: 1rem;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background-color: #fff;
+      color: var(--color-black);
+  }
+  
+  .form-consent .checkbox-content::before {
+      border-radius: 4px;
+      border-color: #6b7280;
+  }
+
+  /* Summary Card */
+  .summary-card {
+      border: none;
+      padding: 0;
+      margin-bottom: 3rem;
+      background: transparent;
+      border-top: 1px solid var(--color-border);
+      padding-top: 2rem;
+  }
+
+  .risk-section {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-border);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .risk-label {
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.5rem;
+  }
+
+  .risk-value {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--color-black);
+      margin-bottom: 1rem;
+  }
+  
+  .risk-value.high { color: #d32f2f; }
+  .risk-value.medium { color: #f57c00; }
+  .risk-value.low { color: #388e3c; }
+
+  .risk-desc {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+  }
+
+  .summary-details {
+     text-align: left;
+     max-width: 600px;
+     margin: 0 auto;
+  }
+
+  .form-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+  }
+  
+  .success-message {
+      text-align: center;
+      padding: 4rem 2rem;
+  }
+  
+  .success-icon {
+      font-size: 4rem;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+  }
+
+</style>
+
+<script type="module" is:inline src="/scripts/screening-form-browser.js"></script>

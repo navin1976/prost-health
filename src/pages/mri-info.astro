@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Prostate MRI | Prost Health"
+  description="Understanding Multiparametric and Biparametric MRI for prostate cancer screening."
+>
+  <section class="hero-simple theme-dark section-padding">
+    <div class="container">
+      <h1 class="scroll-animate">The MRI Advantage.</h1>
+      <p class="text-lead scroll-animate" style="max-width: 800px;">
+        Seeing is believing. Advanced Magnetic Resonance Imaging (MRI) allows us to visualize the prostate with unprecedented detail, distinguishing between aggressive cancer, indolent disease, and benign conditions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="content-text scroll-animate">
+          <h2>Multiparametric MRI (mpMRI)</h2>
+          <p>
+            Multiparametric MRI is the gold standard for prostate cancer diagnosis. It combines anatomical imaging (T2-weighted) with functional imaging (Diffusion Weighted Imaging and Dynamic Contrast Enhancement).
+          </p>
+          <ul class="feature-list">
+            <li><strong>High Sensitivity:</strong> Detects clinically significant cancers with >90% accuracy.</li>
+            <li><strong>Triage Test:</strong> Allows 27% of men to avoid a biopsy entirely.</li>
+            <li><strong>Targeting:</strong> Enables precise targeting of suspicious areas if a biopsy is needed.</li>
+          </ul>
+        </div>
+        <div class="image-wrapper scroll-animate">
+          <!-- Placeholder for technical MRI image -->
+          <img src="/images/mri-scanner-modern.jpg" alt="MRI Scanner" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider-line"></div></div>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="image-wrapper scroll-animate">
+            <!-- Placeholder for MRI Scan result image -->
+             <img src="/images/medical-scanner-equipment.jpg" alt="MRI Scan Analysis" />
+        </div>
+        <div class="content-text scroll-animate">
+          <h2>Biparametric MRI (bpMRI)</h2>
+          <p>
+            Biparametric MRI is a faster, non-invasive alternative that eliminates the need for contrast dye injection. It relies on T2-weighted and Diffusion Weighted Imaging sequences.
+          </p>
+          <p>
+              It is an excellent screening tool for ruling out significant cancer, making the process faster, cheaper, and more comfortable for the patient without significantly compromising diagnostic accuracy for screening purposes.
+          </p>
+           <ul class="feature-list">
+            <li><strong>No Needles:</strong> No intravenous cannulation required.</li>
+            <li><strong>Faster:</strong> Scans take approximately 15-20 minutes.</li>
+            <li><strong>Safe:</strong> No risk of allergic reaction to contrast media.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding theme-dark text-center">
+      <div class="container">
+          <h2 class="scroll-animate">Ready for Clarity?</h2>
+          <p class="scroll-animate">Request a screening assessment today and take the first step towards peace of mind.</p>
+          <div class="scroll-animate" style="margin-top: var(--space-md);">
+            <a href="/request-screening" class="btn btn-gold">Request Screening</a>
+          </div>
+      </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .hero-simple {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .feature-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+  }
+
+  .feature-list li {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      position: relative;
+  }
+
+  .feature-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--color-gold);
+  }
+
+   /* Animation classes */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-in {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-animate').forEach((el) => {
+    observer.observe(el);
+  });
+</script>

@@ -70,11 +70,10 @@ export const INSIGHT_CATEGORIES = [
 
 // Navigation
 export const NAV_ITEMS = [
-  { label: 'Our Approach', href: '/our-approach' },
+  { label: 'Home', href: '/' },
   { label: 'The Science', href: '/the-science' },
   { label: 'Our Experts', href: '/our-experts' },
-  { label: 'Insights', href: '/insights' },
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'Request Screening', href: '/request-screening' },
   { label: 'FAQ', href: '/faq' },
 ] as const;
 

@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/navinramachandran/Development/prost-health/logs/.03ae3b0fb0b53ac16739ad7f21ae72482c456c4e-audit.json",
+    "files": [
+        {
+            "date": 1762853722738,
+            "name": "/Users/navinramachandran/Development/prost-health/logs/mcp-puppeteer-2025-11-11.log",
+            "hash": "aeb4f666d3011dddb5c952db4a0134fa1cb8a9e5acf82d4ede70184b87bb9f2b"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -14,9 +14,11 @@
     "type-check": "astro check"
   },
   "dependencies": {
+    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0-rc1",
     "@tailwindcss/vite": "^4.1.16",
     "astro": "^5.15.1",
     "gsap": "^3.13.0",
+    "jspdf": "^2.5.1",
     "lenis": "^1.3.14",
     "tailwindcss": "^4.1.16"
   },

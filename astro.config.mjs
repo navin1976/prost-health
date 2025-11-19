@@ -8,6 +8,9 @@ export default defineConfig({
   site: 'https://prost-health.pages.dev',
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ['gsap', 'lenis']
+    }
   },
   compressHTML: true,
   build: {

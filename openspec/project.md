@@ -23,9 +23,9 @@ Transform prostate cancer screening from a source of anxiety into an act of empo
 ### Phase 1: Static Informational Site (Current)
 
 #### Core Framework
-- **SSG**: Astro 4+ (zero JavaScript by default, ship pure HTML/CSS)
+- **SSG**: Astro 5.15.1 (zero JavaScript by default, ship pure HTML/CSS)
 - **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS (JIT mode, purge unused styles)
+- **Styling**: Tailwind CSS 4.1.16 with Vite integration
 - **Why Astro?**
   - Zero client-side JavaScript by default
   - Perfect Lighthouse scores out of the box
@@ -46,11 +46,11 @@ Transform prostate cancer screening from a source of anxiety into an act of empo
 - **No heavy form libraries needed** for Phase 1
 
 #### Hosting & Infrastructure
-- **Hosting**: Cloudflare Pages (free tier, global CDN, fast)
+- **Hosting**: Cloudflare Pages (currently active at prost-health.pages.dev)
 - **Alternative**: Netlify, GitHub Pages, or any static host
-- **DNS**: Cloudflare
+- **DNS**: Cloudflare (configured in astro.config.mjs)
 - **SSL**: Auto via Cloudflare
-- **Analytics**: Plausible Analytics (privacy-focused, lightweight) OR Cloudflare Web Analytics (free)
+- **Analytics**: Not yet implemented (Plausible Analytics or Cloudflare Web Analytics recommended)
 - **Cost**: $0/month (Cloudflare Pages free tier)
 
 #### UI Components (Minimal Approach)
@@ -62,16 +62,17 @@ Transform prostate cancer screening from a source of anxiety into an act of empo
 #### Animations
 - **View Transitions API** (native, zero-JS page transitions)
 - **CSS animations** for 90% of effects
-- **Minimal GSAP** only if complex scroll animations required (unlikely for Phase 1)
+- **GSAP 3.13.0** + **Lenis 1.3.14** currently implemented for smooth scroll animations
+- Custom scroll animations integrated for enhanced user experience
 
 #### Development Tools
-- **Package Manager**: pnpm (fast, efficient)
-- **Linting**: ESLint + @typescript-eslint
-- **Formatting**: Prettier
+- **Package Manager**: npm (based on package-lock.json)
+- **Linting**: ESLint + @typescript-eslint + eslint-plugin-astro
+- **Formatting**: Prettier + prettier-plugin-astro
 - **Type Checking**: TypeScript strict mode + Astro check
-- **Testing**: Vitest (unit tests for utilities)
-- **E2E**: Playwright (only for critical paths)
-- **Git Hooks**: simple-git-hooks + lint-staged (lighter than Husky)
+- **Testing**: Not yet implemented (Vitest recommended for utilities)
+- **E2E**: Not yet implemented (Playwright recommended for critical paths)
+- **Git Hooks**: Not yet implemented (simple-git-hooks + lint-staged recommended)
 
 ### Phase 2: Add Booking Functionality (Future)
 
@@ -220,16 +221,25 @@ prost-health/
 ### Visual Design System
 
 #### Brand Colors
-```typescript
-// tailwind.config.ts
-colors: {
-  brand: {
-    charcoal: '#2B2D2F',
-    navy: '#1A2332',
-    warmGrey: '#E8E6E3',
-    gold: '#C9A668',      // Accent color
-    darkGreen: '#2C5530', // Alternative accent
-  }
+```css
+/* Current color palette from global.css */
+:root {
+  /* Typography - Formal and Professional like Brighton College */
+  --font-primary: 'Playfair Display', 'Crimson Text', serif;
+  --font-secondary: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-accent: 'Poppins', 'Inter', system-ui, sans-serif;
+
+  /* Color Palette - Harmonious & Complementary */
+  --color-navy: #1e3a5f; /* Primary navy - adjusted for better harmony */
+  --color-navy-dark: #152838; /* Darker navy for hover */
+  --color-primary: #1f2937; /* Dark text */
+  --color-secondary: #6b7280; /* Medium gray */
+  --color-accent: #1e3a5f; /* Navy accent for brand consistency */
+  --color-accent-light: #2a5080; /* Lighter navy for hover */
+  --color-accent-warm: #c9945f; /* Warm gold - complementary to navy */
+  --color-accent-teal: #2d8a8e; /* Teal - analogous harmony */
+  --color-timeline: #ff8c42; /* Vibrant orange - complementary to navy */
 }
 ```
 
@@ -371,6 +381,13 @@ chore: update dependencies
 
 ### Healthcare & Prostate Cancer Screening
 
+#### Current Site Configuration
+- **Site URL**: https://prost-health.pages.dev (deployed on Cloudflare Pages)
+- **Site Title**: Prost Health
+- **Tagline**: "Clarity, Not Chance."
+- **Primary Message**: The smarter, safer path to prostate health.
+- **Secondary Message**: Our MRI-first approach, guided by leading experts and NICE recommendations, provides definitive clarity while helping you avoid unnecessary biopsies.
+
 #### Clinical Pathway
 - **Traditional**: PSA test → DRE → TRUS biopsy (invasive, risk of infection, false negatives)
 - **Prost Health (MRI-First)**: PSA → mpMRI → PI-RADS score → Targeted biopsy if necessary
@@ -381,6 +398,7 @@ chore: update dependencies
 - **PI-RADS 4-5**: High likelihood - MRI-guided biopsy recommended
 
 #### NICE Guidelines (NG131)
+- Referenced URL: https://www.nice.org.uk/guideline/ng131
 - mpMRI is the first-line investigation for suspected clinically localized prostate cancer
 - This is a critical trust signal and third-party endorsement
 
@@ -438,15 +456,36 @@ chore: update dependencies
 ## External Dependencies
 
 ### Content Sources
-- **NICE Guidelines**: [https://www.nice.org.uk/guidance/ng131](https://www.nice.org.uk/guidance/ng131)
+- **NICE Guidelines**: [https://www.nice.org.uk/guideline/ng131](https://www.nice.org.uk/guideline/ng131) (already referenced in constants.ts)
 - **Prostate Cancer UK**: Patient information, community forums
 - **UCLH Research**: Clinical studies, expert publications
 - **BMJ, ecancer**: Peer-reviewed clinical evidence
 
+### External Resources (Already defined in constants.ts)
+```typescript
+export const EXTERNAL_RESOURCES = [
+  {
+    name: 'Prostate Cancer UK',
+    url: 'https://prostatecanceruk.org',
+    description: 'Support, information, and community for men with prostate cancer',
+  },
+  {
+    name: 'Macmillan Cancer Support',
+    url: 'https://www.macmillan.org.uk/cancer-information-and-support/prostate-cancer',
+    description: 'Practical and emotional support for cancer patients and families',
+  },
+  {
+    name: 'Cancer Research UK',
+    url: 'https://www.cancerresearchuk.org/about-cancer/prostate-cancer',
+    description: 'Evidence-based information about prostate cancer',
+  },
+] as const;
+```
+
 ### APIs & Services (Future)
 - **CMS**: Sanity.io / Contentful API
 - **Email**: Resend / SendGrid
-- **Analytics**: Vercel Analytics, Google Analytics 4 (anonymized)
+- **Analytics**: Plausible Analytics or Cloudflare Web Analytics (recommended)
 - **Booking System**: Custom or integrate with practice management software (Phase 2)
 
 ### Third-Party Integrations
@@ -455,8 +494,8 @@ chore: update dependencies
 - **Support Resources**: Links to Prostate Cancer UK, Macmillan forums
 
 ### Design Assets
-- **Typography**: Google Fonts (Inter, Playfair Display) or licensed fonts
-- **Icons**: Lucide React (consistent with shadcn/ui)
+- **Typography**: Google Fonts (Inter, Playfair Display, Poppins, Crimson Text) - already implemented
+- **Icons**: TBD - not yet implemented (Lucide React recommended)
 - **Photography**: Custom commissioned or high-end stock (Unsplash Plus)
 
 ## Key Success Metrics (KPIs)
@@ -530,6 +569,30 @@ chore: update dependencies
 - Personalized health dashboard
 - Subscription wellness programs
 - Telemedicine consultations
+
+## Implementation Status (Current)
+
+### Completed
+- Astro 5.15.1 site with TypeScript strict mode
+- Tailwind CSS 4.1.16 styling with Vite integration
+- GSAP 3.13.0 + Lenis 1.3.14 for smooth scroll animations
+- Content Collections configured for insights and experts
+- Constants library with NICE Guidelines, PI-RADS scores, navigation items
+- BaseLayout with proper SEO meta tags
+- Modern color palette with navy/teal/gold accents inspired by Brighton College
+- Deployed to Cloudflare Pages at https://prost-health.pages.dev
+
+### In Progress
+- Content population (insights and experts directories exist but empty)
+- Component library development
+- Page implementation beyond homepage
+
+### Not Yet Implemented
+- Testing (Vitest for utilities, Playwright for E2E)
+- Analytics implementation
+- Contact form functionality
+- Git hooks (simple-git-hooks + lint-staged)
+- Social media integration
 
 ## Notes for AI Assistants
 
