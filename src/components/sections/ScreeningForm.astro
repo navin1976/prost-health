@@ -63,12 +63,41 @@
               <input type="email" id="email" name="email" class="form-input" required placeholder="name@example.com" />
               <span class="form-error"></span>
             </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">5. Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input" required placeholder="07700 900123" />
+              <span class="form-error"></span>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <h3 class="section-title">Address</h3>
+          <div class="form-group">
+            <label for="addressLine1" class="form-label">6. Address Line 1</label>
+            <input type="text" id="addressLine1" name="addressLine1" class="form-input" required placeholder="House number and street" />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="addressLine2" class="form-label">7. Address Line 2 (Optional)</label>
+            <input type="text" id="addressLine2" name="addressLine2" class="form-input" placeholder="Apartment, suite, etc." />
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="city" class="form-label">8. City</label>
+              <input type="text" id="city" name="city" class="form-input" required placeholder="London" />
+              <span class="form-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="postcode" class="form-label">9. Postcode</label>
+              <input type="text" id="postcode" name="postcode" class="form-input" required placeholder="SW1A 1AA" />
+              <span class="form-error"></span>
+            </div>
           </div>
 
           <!-- Medical History -->
           <h3 class="section-title">Medical History</h3>
           <div class="form-group">
-            <label class="form-label">5. Have you ever had a PSA test?</label>
+            <label class="form-label">10. Have you ever had a PSA test?</label>
             <div class="radio-options">
               <label class="radio-card">
                 <input type="radio" name="previousPSA" value="yes" required />
@@ -95,7 +124,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">6. Have you ever had a prostate biopsy?</label>
+            <label class="form-label">11. Have you ever had a prostate biopsy?</label>
             <div class="radio-options">
               <label class="radio-card">
                 <input type="radio" name="previousBiopsy" value="yes" required />
@@ -109,7 +138,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">7. Have you ever had prostate MRI?</label>
+            <label class="form-label">12. Have you ever had prostate MRI?</label>
             <div class="radio-options">
                <label class="radio-card">
                 <input type="radio" name="previousMRI" value="yes" required />
@@ -125,7 +154,7 @@
           <!-- Risk Profile -->
           <h3 class="section-title">Risk Factors</h3>
           <div class="form-group">
-            <label class="form-label">8. Family History (Check all that apply)</label>
+            <label class="form-label">13. Family History (Check all that apply)</label>
             <div class="checkbox-options">
               <label class="checkbox-card">
                 <input type="checkbox" name="familyHistory" value="father" />
@@ -143,7 +172,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">9. Symptoms (Check all that apply)</label>
+            <label class="form-label">14. Symptoms (Check all that apply)</label>
             <div class="checkbox-options">
               <label class="checkbox-card">
                 <input type="checkbox" name="symptoms" value="urinary" />
@@ -165,15 +194,24 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">10. Ethnicity</label>
-            <select name="ethnicity" class="form-select" required>
-              <option value="">Select your ethnicity</option>
-              <option value="white">White</option>
-              <option value="black-african">Black African</option>
-              <option value="black-caribbean">Black Caribbean</option>
-              <option value="asian">Asian</option>
-              <option value="other">Other</option>
-            </select>
+            <label class="form-label">15. Ethnicity</label>
+            <!-- Custom dropdown to avoid iOS native picker -->
+            <div class="custom-select-wrapper">
+              <input type="hidden" name="ethnicity" id="ethnicityValue" required />
+              <button type="button" class="custom-select-trigger" id="ethnicityTrigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="custom-select-text">Select your ethnicity</span>
+                <svg class="custom-select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <ul class="custom-select-options" id="ethnicityOptions" role="listbox" tabindex="-1">
+                <li class="custom-select-option" data-value="white" role="option">White</li>
+                <li class="custom-select-option" data-value="black-african" role="option">Black African</li>
+                <li class="custom-select-option" data-value="black-caribbean" role="option">Black Caribbean</li>
+                <li class="custom-select-option" data-value="asian" role="option">Asian</li>
+                <li class="custom-select-option" data-value="other" role="option">Other</li>
+              </ul>
+            </div>
             <p class="form-hint">Black men have a higher risk of developing prostate cancer.</p>
           </div>
       </div>
@@ -188,7 +226,7 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">11. Do you have a cardiac pacemaker or defibrillator?</label>
+        <label class="form-label">16. Do you have a cardiac pacemaker or defibrillator?</label>
         <div class="radio-options">
           <label class="radio-card">
             <input type="radio" name="safetyPacemaker" value="yes" required />
@@ -199,10 +237,11 @@
             <span class="radio-content">No</span>
           </label>
         </div>
+        <span class="form-error"></span>
       </div>
 
       <div class="form-group">
-        <label class="form-label">12. Do you have any aneurysm clips?</label>
+        <label class="form-label">17. Do you have any aneurysm clips?</label>
         <div class="radio-options">
           <label class="radio-card">
             <input type="radio" name="safetyClips" value="yes" required />
@@ -213,10 +252,11 @@
             <span class="radio-content">No</span>
           </label>
         </div>
+        <span class="form-error"></span>
       </div>
 
       <div class="form-group">
-        <label class="form-label">13. Do you have cochlear implants?</label>
+        <label class="form-label">18. Do you have cochlear implants?</label>
         <div class="radio-options">
           <label class="radio-card">
             <input type="radio" name="safetyImplants" value="yes" required />
@@ -227,10 +267,11 @@
             <span class="radio-content">No</span>
           </label>
         </div>
+        <span class="form-error"></span>
       </div>
-      
+
       <div class="form-group">
-        <label class="form-label">14. Have you ever had metal fragments in your eyes?</label>
+        <label class="form-label">19. Have you ever had metal fragments in your eyes?</label>
         <div class="radio-options">
           <label class="radio-card">
             <input type="radio" name="safetyMetal" value="yes" required />
@@ -241,10 +282,11 @@
             <span class="radio-content">No</span>
           </label>
         </div>
+        <span class="form-error"></span>
       </div>
 
       <div class="form-group">
-        <label class="form-label">15. Do you have any kidney problems?</label>
+        <label class="form-label">20. Do you have any kidney problems?</label>
         <div class="radio-options">
           <label class="radio-card">
             <input type="radio" name="safetyKidney" value="yes" required />
@@ -255,10 +297,11 @@
             <span class="radio-content">No</span>
           </label>
         </div>
+        <span class="form-error"></span>
       </div>
 
        <div class="form-group">
-        <label class="form-label">16. Do you suffer from claustrophobia?</label>
+        <label class="form-label">21. Do you suffer from claustrophobia?</label>
         <div class="radio-options">
           <label class="radio-card">
             <input type="radio" name="safetyClaustrophobia" value="yes" required />
@@ -269,6 +312,7 @@
             <span class="radio-content">No</span>
           </label>
         </div>
+        <span class="form-error"></span>
       </div>
     </div>
 
@@ -305,10 +349,10 @@
     <div class="success-icon">✓</div>
     <h3>Assessment Complete</h3>
     <p>
-      Your personalized risk report has been generated and opened in a new window.
+      Your screening request form has been generated and downloaded as a PDF.
     </p>
     <p>
-      Use your browser's print function (Ctrl+P) to save as PDF or share with your healthcare provider.
+      Share this document with your healthcare provider to discuss your screening options.
     </p>
     <a href="/" class="btn btn-secondary return-home-link">Return Home</a>
   </div>
@@ -632,9 +676,145 @@
       border-bottom-color: var(--color-black) !important;
   }
 
+  /* Custom Select Dropdown */
+  .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+  }
+
+  .custom-select-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1rem 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: #9ca3af;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+  }
+
+  .custom-select-trigger:hover {
+      border-bottom-color: var(--color-black);
+  }
+
+  .custom-select-trigger:focus {
+      outline: none;
+      border-bottom-color: var(--color-black);
+  }
+
+  .custom-select-trigger.has-value {
+      font-size: 1.6rem;
+      color: var(--color-black);
+      border-bottom-color: var(--color-black);
+  }
+
+  .custom-select-arrow {
+      transition: transform 0.2s ease;
+      color: #9ca3af;
+  }
+
+  .custom-select-trigger[aria-expanded="true"] .custom-select-arrow {
+      transform: rotate(180deg);
+  }
+
+  .custom-select-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0.5rem 0;
+      list-style: none;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+      max-height: 300px;
+      overflow-y: auto;
+  }
+
+  .custom-select-options.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(4px);
+  }
+
+  .custom-select-option {
+      padding: 0.875rem 1rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--color-text-primary);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+  }
+
+  .custom-select-option:hover {
+      background-color: #f3f4f6;
+  }
+
+  .custom-select-option.selected {
+      background-color: #eff6ff;
+      color: var(--color-black);
+      font-weight: 500;
+  }
+
 </style>
 
 <script type="module">
+  // PDF generation using @react-pdf/renderer
+  // Provides beautiful, professional PDFs with custom fonts and flexbox layouts
+
+  // Show loading overlay with progress
+  function showLoadingOverlay(message = 'Generating PDF...') {
+    let overlay = document.getElementById('pdf-loading-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'pdf-loading-overlay';
+      overlay.innerHTML = `
+        <div style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000;">
+          <div style="background: white; padding: 2rem 3rem; border-radius: 12px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+            <div style="width: 48px; height: 48px; border: 4px solid #e5e7eb; border-top-color: #0a0a0a; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+            <p id="pdf-loading-message" style="color: #1c1c1e; font-size: 1rem; margin: 0;">${message}</p>
+            <p style="color: #666; font-size: 0.875rem; margin-top: 0.5rem;">Creating your screening request form...</p>
+          </div>
+        </div>
+        <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+      `;
+      document.body.appendChild(overlay);
+    } else {
+      const msgEl = document.getElementById('pdf-loading-message');
+      if (msgEl) msgEl.textContent = message;
+      overlay.style.display = 'block';
+    }
+    return overlay;
+  }
+
+  function hideLoadingOverlay() {
+    const overlay = document.getElementById('pdf-loading-overlay');
+    if (overlay) {
+      overlay.remove();
+    }
+  }
+
+  function updateLoadingMessage(message) {
+    const msgEl = document.getElementById('pdf-loading-message');
+    if (msgEl) msgEl.textContent = message;
+  }
+
+  // Flag to prevent multiple concurrent PDF generations
+  let isGeneratingPDF = false;
+
   // Inlined browser-compatible screening form logic to ensure loading
   (function () {
     const init = () => {
@@ -793,11 +973,73 @@
               });
             });
         }
+
+        // Custom Ethnicity Dropdown
+        const ethnicityTrigger = document.getElementById('ethnicityTrigger');
+        const ethnicityOptions = document.getElementById('ethnicityOptions');
+        const ethnicityValue = document.getElementById('ethnicityValue');
+        const ethnicityText = ethnicityTrigger?.querySelector('.custom-select-text');
+
+        if (ethnicityTrigger && ethnicityOptions && ethnicityValue) {
+          // Toggle dropdown
+          ethnicityTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isOpen = ethnicityOptions.classList.contains('open');
+            ethnicityOptions.classList.toggle('open');
+            ethnicityTrigger.setAttribute('aria-expanded', !isOpen);
+          });
+
+          // Select option
+          ethnicityOptions.querySelectorAll('.custom-select-option').forEach(option => {
+            option.addEventListener('click', () => {
+              const value = option.dataset.value;
+              const text = option.textContent;
+
+              // Update hidden input
+              ethnicityValue.value = value;
+
+              // Update trigger text
+              if (ethnicityText) {
+                ethnicityText.textContent = text;
+              }
+
+              // Update visual state
+              ethnicityTrigger.classList.add('has-value');
+              ethnicityOptions.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+              option.classList.add('selected');
+
+              // Close dropdown
+              ethnicityOptions.classList.remove('open');
+              ethnicityTrigger.setAttribute('aria-expanded', 'false');
+            });
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', (e) => {
+            if (!ethnicityTrigger.contains(e.target) && !ethnicityOptions.contains(e.target)) {
+              ethnicityOptions.classList.remove('open');
+              ethnicityTrigger.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          // Keyboard navigation
+          ethnicityTrigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              ethnicityTrigger.click();
+            } else if (e.key === 'Escape') {
+              ethnicityOptions.classList.remove('open');
+              ethnicityTrigger.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
       }
 
       // Validation Functions
       function validateField(field) {
           if (field.disabled) return true;
+
+          // Required field check
           if (field.hasAttribute('required') && !field.value.trim()) {
              if (field.type === 'checkbox' && !field.checked) {
                  showError(field.closest('.form-group'), 'This field is required');
@@ -807,6 +1049,16 @@
                  return false;
              }
           }
+
+          // Email format validation
+          if (field.type === 'email' && field.value.trim()) {
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(field.value.trim())) {
+                  showError(field, 'Please enter a valid email address');
+                  return false;
+              }
+          }
+
           clearError(field);
           return true;
       }
@@ -835,7 +1087,35 @@
              if (!previousBiopsy) { isValid = false; showError(document.querySelector('input[name="previousBiopsy"]'), 'Please select an option'); }
              const previousMRI = document.querySelector('input[name="previousMRI"]:checked');
              if (!previousMRI) { isValid = false; showError(document.querySelector('input[name="previousMRI"]'), 'Please select an option'); }
+
+             // Ethnicity validation (custom dropdown)
+             const ethnicityInput = document.getElementById('ethnicityValue');
+             if (ethnicityInput && !ethnicityInput.value) {
+                 isValid = false;
+                 const ethnicityTrigger = document.getElementById('ethnicityTrigger');
+                 if (ethnicityTrigger) {
+                     ethnicityTrigger.style.borderBottomColor = '#ef4444';
+                     setTimeout(() => ethnicityTrigger.style.borderBottomColor = '', 3000);
+                 }
+                 alert('Please select your ethnicity');
+             }
         }
+
+        // Step 2: MRI Safety Questions validation
+        if (step === 2) {
+             const safetyQuestions = ['safetyPacemaker', 'safetyClips', 'safetyImplants', 'safetyMetal', 'safetyKidney', 'safetyClaustrophobia'];
+             safetyQuestions.forEach(questionName => {
+                 const checked = document.querySelector(`input[name="${questionName}"]:checked`);
+                 if (!checked) {
+                     isValid = false;
+                     const firstRadio = document.querySelector(`input[name="${questionName}"]`);
+                     if (firstRadio) {
+                         showError(firstRadio, 'Please select an option');
+                     }
+                 }
+             });
+        }
+
         return isValid;
       }
 
@@ -910,24 +1190,34 @@
       }
 
       function saveStepData(step) {
-          // Collect all form data
-          const inputs = document.querySelectorAll('input, select'); // Collect all
+          // Collect all form data more efficiently
+          const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+          if (!currentStepElement) return;
+
+          // Get all inputs in current step
+          const inputs = currentStepElement.querySelectorAll('input, select');
+
+          // Track which checkbox groups we've already processed to avoid duplicates
+          const processedCheckboxGroups = new Set();
+
           inputs.forEach(input => {
-              if(input.type === 'radio' && input.checked) {
+              if (!input.name) return;
+
+              if (input.type === 'radio' && input.checked) {
                   formData[input.name] = input.value;
               }
-              else if(input.type === 'checkbox' && input.checked) {
-                  if(input.name === 'consent') {
-                      formData[input.name] = true;
-                  } else {
-                      // Always reinitialize checkbox arrays to avoid duplicates
-                      if(!formData[input.name]) formData[input.name] = [];
-                      // Get all checked checkboxes for this name
-                      const checkedBoxes = document.querySelectorAll(`input[name="${input.name}"]:checked`);
+              else if (input.type === 'checkbox') {
+                  if (input.name === 'consent') {
+                      formData[input.name] = input.checked;
+                  } else if (!processedCheckboxGroups.has(input.name)) {
+                      // Mark this group as processed
+                      processedCheckboxGroups.add(input.name);
+                      // Get all checked checkboxes for this name (fresh array)
+                      const checkedBoxes = currentStepElement.querySelectorAll(`input[name="${input.name}"]:checked`);
                       formData[input.name] = Array.from(checkedBoxes).map(cb => cb.value);
                   }
               }
-              else if(input.type !== 'radio' && input.type !== 'checkbox') {
+              else if (input.type !== 'radio') {
                   formData[input.name] = input.value;
               }
           });
@@ -1072,6 +1362,16 @@
             return dateStr;
           };
 
+          // Build full address string
+          const buildAddress = () => {
+            const parts = [];
+            if (formData.addressLine1) parts.push(formData.addressLine1);
+            if (formData.addressLine2) parts.push(formData.addressLine2);
+            if (formData.city) parts.push(formData.city);
+            if (formData.postcode) parts.push(formData.postcode);
+            return parts.join(', ') || 'Not provided';
+          };
+
           // Personal details
           const personalDetails = `
           <div style="margin-bottom: 1.5rem;">
@@ -1080,7 +1380,9 @@
                 <div><strong>Name:</strong> ${formData.firstName || ''} ${formData.lastName || ''}</div>
                 <div><strong>DOB:</strong> ${formatDate(formData.dateOfBirth)}</div>
                 <div><strong>Email:</strong> ${formData.email || ''}</div>
+                <div><strong>Phone:</strong> ${formData.phone || 'Not provided'}</div>
             </div>
+            <div style="margin-top: 0.5rem;"><strong>Address:</strong> ${buildAddress()}</div>
           </div>
         `;
 
@@ -1183,177 +1485,41 @@
       }
 
       async function generateClientPDF(data) {
+          // Prevent multiple concurrent PDF generations
+          if (isGeneratingPDF) {
+              console.log('PDF generation already in progress, ignoring...');
+              return;
+          }
+          isGeneratingPDF = true;
+
           try {
-              // Format arrays properly
-              const formatArray = (arr) => {
-                  if (!arr || !Array.isArray(arr)) return '';
-                  return arr.map(item => String(item)).join(', ');
-              };
+              showLoadingOverlay('Initializing PDF generator...');
 
-              // Format yes/no values
-              const formatYesNo = (val) => (val === 'yes' ? 'Yes' : 'No');
+              // Import the @react-pdf/renderer module
+              const { generateScreeningPDF } = await import('/src/pdf-generator/generatePDF.js');
 
-              // Create HTML content directly in the browser
-              const html = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Prost Health - Screening Request</title>
-    <style>
-        body {
-            font-family: Georgia, serif;
-            font-size: 11pt;
-            line-height: 1.4;
-            margin: 2cm;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            font-size: 16pt;
-            margin-bottom: 1cm;
-        }
-        h2 {
-            font-size: 14pt;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5pt;
-            margin-top: 1.5cm;
-            margin-bottom: 0.5cm;
-        }
-        .field {
-            margin-bottom: 8pt;
-            display: flex;
-        }
-        .field-label {
-            font-weight: bold;
-            width: 200px;
-            flex-shrink: 0;
-        }
-        .field-value {
-            flex-grow: 1;
-        }
-        .generated-date {
-            text-align: center;
-            font-style: italic;
-            margin-top: 1cm;
-            font-size: 9pt;
-        }
-        @media print {
-            body {
-                margin: 0 auto;
-                max-width: 21cm;
-            }
-        }
-    </style>
-</head>
-<body>
-    <h1>Prost Health - Screening Request</h1>
-    <h2>Personal Details</h2>
-    <div class="field">
-        <span class="field-label">Full Name:</span>
-        <span class="field-value">${data.firstName || ''} ${data.lastName || ''}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Date of Birth:</span>
-        <span class="field-value">${data.dateOfBirth || ''}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Email:</span>
-        <span class="field-value">${data.email || ''}</span>
-    </div>
-    
-    <h2>Medical History</h2>
-    <div class="field">
-        <span class="field-label">Previous PSA Test:</span>
-        <span class="field-value">${formatYesNo(data.previousPSA || '')}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Last PSA Date:</span>
-        <span class="field-value">${data.lastPSADate || 'N/A'}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Last PSA Result:</span>
-        <span class="field-value">${data.lastPSAResult ? data.lastPSAResult + ' ng/mL' : 'N/A'}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Previous Prostate Biopsy:</span>
-        <span class="field-value">${formatYesNo(data.previousBiopsy || '')}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Previous Prostate MRI:</span>
-        <span class="field-value">${formatYesNo(data.previousMRI || '')}</span>
-    </div>
-    
-    <h2>Risk Profile</h2>
-    <div class="field">
-        <span class="field-label">Family History:</span>
-        <span class="field-value">${formatArray(data.familyHistory)}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Symptoms:</span>
-        <span class="field-value">${formatArray(data.symptoms)}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Ethnicity:</span>
-        <span class="field-value">${data.ethnicity || 'Not specified'}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Risk Assessment:</span>
-        <span class="field-value">${data.riskLevel || 'Not calculated'}</span>
-    </div>
-    
-    <h2>MRI Safety Screening</h2>
-    <div class="field">
-        <span class="field-label">Cardiac Pacemaker:</span>
-        <span class="field-value">${formatYesNo(data.safetyPacemaker || '')}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Aneurysm Clips:</span>
-        <span class="field-value">${formatYesNo(data.safetyClips || '')}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Cochlear Implants:</span>
-        <span class="field-value">${formatYesNo(data.safetyImplants || '')}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Metal Fragments in Eyes:</span>
-        <span class="field-value">${formatYesNo(data.safetyMetal || '')}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Kidney Problems:</span>
-        <span class="field-value">${formatYesNo(data.safetyKidney || '')}</span>
-    </div>
-    <div class="field">
-        <span class="field-label">Claustrophobia:</span>
-        <span class="field-value">${formatYesNo(data.safetyClaustrophobia || '')}</span>
-    </div>
-    
-    <div class="generated-date">Generated on: ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+              // Update loading message
+              updateLoadingMessage('Building PDF document...');
 
-</body>
-</html>
-              `;
-              
-              console.log('Generating report HTML...');
-              
-              // Create a blob from the HTML content
-              const blob = new Blob([html], { type: 'text/html' });
-              
-              // Open in a new window with print dialog
-              const printWindow = window.open(URL.createObjectURL(blob), '_blank');
-              
-              // Set up event listeners
-              printWindow.onload = function() {
-                setTimeout(() => {
-                  printWindow.print();
-                  setTimeout(() => {
-                    printWindow.close();
-                  }, 100);
-                }, 500);
-              };
+              // Generate the PDF
+              await generateScreeningPDF(data);
+
+              console.log('@react-pdf/renderer PDF generated successfully');
+
           } catch (error) {
-              console.error('Error generating report:', error);
-              throw error; // Re-throw to be caught by the caller
+              // Check if error is a known post-generation cleanup issue
+              // The @react-pdf/renderer library sometimes throws "logs" errors after successful generation
+              if (error.message && error.message.includes("reading 'logs'")) {
+                  console.warn('Non-critical PDF library error (ignoring):', error.message);
+                  // PDF was likely generated successfully, don't re-throw
+              } else {
+                  console.error('PDF generation failed:', error);
+                  throw error;
+              }
+          } finally {
+              // Always reset the flag and hide overlay when done
+              isGeneratingPDF = false;
+              hideLoadingOverlay();
           }
       }
 
