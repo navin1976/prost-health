@@ -1495,14 +1495,22 @@
           try {
               showLoadingOverlay('Initializing PDF generator...');
 
-              // Import the @react-pdf/renderer module
-              const { generateScreeningPDF } = await import('/src/pdf-generator/generatePDF.js');
+              // Wait for PDF generator to be available (loaded by page script)
+              let attempts = 0;
+              while (!window.generateScreeningPDF && attempts < 50) {
+                  await new Promise(resolve => setTimeout(resolve, 100));
+                  attempts++;
+              }
+
+              if (!window.generateScreeningPDF) {
+                  throw new Error('PDF generator failed to load. Please refresh the page and try again.');
+              }
 
               // Update loading message
               updateLoadingMessage('Building PDF document...');
 
-              // Generate the PDF
-              await generateScreeningPDF(data);
+              // Generate the PDF using the globally loaded function
+              await window.generateScreeningPDF(data);
 
               console.log('@react-pdf/renderer PDF generated successfully');
 

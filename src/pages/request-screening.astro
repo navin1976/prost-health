@@ -239,6 +239,14 @@ import ScreeningForm from '../components/sections/ScreeningForm.astro';
 </style>
 
 <script>
+  // Import PDF generator - Astro will bundle this properly
+  import('../scripts/pdf-client.js').then(module => {
+    window.generateScreeningPDF = module.generateScreeningPDF;
+    console.log('PDF generator loaded');
+  }).catch(err => {
+    console.error('Failed to load PDF generator:', err);
+  });
+
   const observerOptions = {
     root: null,
     rootMargin: '0px',
